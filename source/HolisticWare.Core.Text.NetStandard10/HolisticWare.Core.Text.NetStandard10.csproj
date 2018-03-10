@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.0</TargetFramework>
+    <AssemblyName>HolisticWare.Core.Text</AssemblyName>
+    <RootNamespace>Core.Text</RootNamespace>
+  </PropertyGroup>
+
+  <Import Project="..\HolisticWare.Core.Text\HolisticWare.Core.Text.projitems" Label="Shared" />
+
+</Project>
