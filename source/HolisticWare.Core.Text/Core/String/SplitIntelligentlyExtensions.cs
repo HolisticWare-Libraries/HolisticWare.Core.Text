@@ -33,6 +33,35 @@ namespace Core.Strings
 {
     public static class SplitIntelligentlyExtensions
     {
+        public static string[] Words
+                                (
+                                    this string text,
+                                    string[] delimiters = null
+                                )
+        {
+            if (null == delimiters)
+            {
+                delimiters = new string[]
+                {
+                    " ",
+                    Environment.NewLine,
+                    @"\t",
+                    @".",
+                    @",",
+                    @"|",
+                    @"?",
+                    @":",
+                    @";",
+                    @"!",
+                    "\"",
+                };    
+            }
+
+            string[] words = text.Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
+
+            return words;
+        }
+
         public static List<string> SplitForBuffer
                                             (
                                                 this string text, 
@@ -40,53 +69,141 @@ namespace Core.Strings
                                             )
         {
             var parts = new List<string>();
+            var textlength = text.Length;
+
+            if (max > textlength)
+            {
+                parts.Add(text);
+                return parts;
+            }
 
             var positionbegin = 0;
             var positionend = max;
             var position = positionbegin;
-            var textlength = text.Length;
-
             var p = string.Empty;
-            while (position != text.Length)
+
+            while (position < textlength)
             {
+                Debug.WriteLine($"------------------------------");
+                Debug.WriteLine($"positionbegin     = {positionbegin}");
+                Debug.WriteLine($"positionend       = {positionend}");
+                Debug.WriteLine($"position          = {position}");
                 while (positionend > positionbegin)
                 {
+                    // positionend < textlength
                     var ch = text[positionend];
                     if (char.IsWhiteSpace(ch) || char.IsPunctuation(ch))
                     {
-                        p = text.Substring(positionbegin, positionend - positionbegin);
-                        break;
-                    }
-
-                    if (positionend == positionbegin)
-                    {
-                        // no whitespace or punctuation found
-                        // grab the whole buffer (max)
-                        p = text.Substring(positionbegin, positionbegin + max);
                         break;
                     }
 
                     positionend--;
                 }
-                Debug.WriteLine($"------------------------------");
+
+
+
+
+
+                char ch_begin = text[positionbegin];
+                char ch_end = text[positionend];
+
+                if (positionend != positionbegin)
+                {
+                    // whitespace or punctuation found
+
+                    p = text.Substring(positionbegin, positionend - positionbegin);
+                    parts.Add(p);
+
+                    if ((positionbegin + max) <= textlength)
+                    {
+                        // end not in sight
+
+                        string s1 = text.Substring(positionbegin, max);
+                        string s2 = text.Substring(positionbegin, positionend - positionbegin);
+
+                        // far from the end
+                        if (p.Length < max)
+                        {
+                            // p.Length < max (buffer length)
+                            positionbegin = positionbegin + p.Length + 1;
+                            positionend = positionbegin + max;
+                            if (positionend > textlength)
+                            {
+                                positionend = textlength - 1;
+                            }
+                            position = positionbegin;
+                        }
+                        else
+                        {
+                            // small buffer fixup
+                            // p.Length == max (buffer length) 
+                            // word is the length of buffer or longer
+                            if (positionbegin != positionend)
+                            {
+                                positionbegin = positionbegin + p.Length + 1;
+                                positionend = positionbegin + max;
+                                position = positionbegin;
+                            }
+                            else
+                            {
+                                positionbegin = positionbegin + p.Length + 2;
+                                positionend = textlength - 1;
+                                position = positionend;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        // end in sight - less than buffer away
+
+
+                        // close to the end - fix indices
+                        positionbegin = textlength - max + 1;
+                        positionend = positionbegin + max;
+                        position = positionbegin;
+
+                        if (positionend > textlength)
+                        {
+                            positionend = textlength - 1;
+                            parts.Add(p);
+                            break;
+                        }
+                    }
+                }
+                else
+                {
+                    // NO whitespace or punctuation found
+                    // full buffer read (single word is the size of buffer or longer)
+
+                    // no whitespace or punctuation found
+                    // grab the whole buffer (max)
+
+                    string s1 = text.Substring(positionbegin, max);
+                    string s2 = text.Substring(positionbegin, positionend - positionbegin);
+
+                    p = text.Substring(positionbegin, max);
+                    positionbegin = positionbegin + max + 1;
+                    positionend = positionbegin + max;
+                    if (positionend > textlength)
+                    {
+                        positionend = textlength - 1;
+                    }
+                    position = positionbegin;
+                    parts.Add(p);
+                    continue;
+                }
+
+
+
+
                 Debug.WriteLine($"p                 = {p}");
                 Debug.WriteLine($"p.Length          = {p.Length}");
-                Debug.WriteLine($"    positionbegin = {positionbegin}");
-                Debug.WriteLine($"    positionend   = {positionend}");
-                Debug.WriteLine($"    position      = {position}");
-
-                positionbegin = positionbegin + p.Length + 1;
-                positionend = positionbegin + max;
-                position = positionbegin;
-
-                parts.Add(p);
 
                 Debug.WriteLine($"....");
                 Debug.WriteLine($"    positionbegin = {positionbegin}");
                 Debug.WriteLine($"    positionend   = {positionend}");
                 Debug.WriteLine($"    position      = {position}");
                 Debug.WriteLine($"    textlength    = {textlength}");
-                string s1 = text.Substring(positionbegin, positionend);
             }
 
             return parts;
