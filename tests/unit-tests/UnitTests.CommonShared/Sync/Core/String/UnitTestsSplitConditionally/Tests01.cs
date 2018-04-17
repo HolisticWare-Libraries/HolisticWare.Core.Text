@@ -31,6 +31,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using BenchmarkDotNet.Attributes;
 
 #if XUNIT
 using Xunit;
@@ -63,6 +64,70 @@ namespace UnitTests.Core.Text.Sync
 {
     public partial class UnitTests20180416Splitting
     {
+        [Test()]
+        [Benchmark]
+        public void Words()
+        {
+            // Assert
+            string s =
+                "Xamarin Essentials! To make Xamarin development easier!"
+                ;
+
+            // Act
+            string[] words = s.Words();
+
+
+            // Assert
+            #if NUNIT
+            #elif XUNIT
+            #elif MSTEST
+            #endif
+
+            return;
+        }
+
+        [Test()]
+        [Benchmark]
+        public void SplitForBuffer_BufferSize_200()
+        {
+            // Assert
+            string s =
+                "Xamarin Essentials! To make Xamarin development easier!"
+                ;
+
+            // Act
+            List<string> parts = s.SplitForBuffer(200);
+
+
+            // Assert
+            #if NUNIT
+            #elif XUNIT
+            #elif MSTEST
+            #endif
+
+            return;
+        }
+
+        [Test()]
+        public void SplitForBuffer_BufferSize_20()
+        {
+            // Assert
+            string s =
+                "Xamarin Essentials! To make Xamarin development easier!"
+                ;
+
+            // Act
+            List<string> parts = s.SplitForBuffer(20);
+
+
+            // Assert
+            #if NUNIT
+            #elif XUNIT
+            #elif MSTEST
+            #endif
+
+            return;
+        }
 
         [Test()]
         public void SplitForBuffer_BufferSize_10()
@@ -85,5 +150,25 @@ namespace UnitTests.Core.Text.Sync
             return;
         }
 
+        [Test()]
+        public void SplitForBuffer_BufferSize_5()
+        {
+            // Assert
+            string s =
+                "Xamarin Essentials! To make Xamarin development easier!"
+                ;
+
+            // Act
+            List<string> parts = s.SplitForBuffer(5);
+
+
+            // Assert
+            #if NUNIT
+            #elif XUNIT
+            #elif MSTEST
+            #endif
+
+            return;
+        }
     }
 }
