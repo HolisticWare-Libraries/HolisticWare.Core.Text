@@ -8,5 +8,8 @@
     <Folder Include="Core\" />
     <Folder Include="Core\Text\" />
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="System.ValueTuple" Version="4.5.0-preview2-26406-04" />
+  </ItemGroup>
   <Import Project="..\HolisticWare.Core.Text\HolisticWare.Core.Text.projitems" Label="Shared" Condition="Exists('..\HolisticWare.Core.Text\HolisticWare.Core.Text.projitems')" />
 </Project>

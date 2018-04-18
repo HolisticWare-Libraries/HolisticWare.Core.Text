@@ -33,7 +33,7 @@ namespace Core.Strings
 {
     public static class SplitIntelligentlyExtensions
     {
-        public static string[] Words
+        public static ((string Word, int Position)[] Words, string WordLongest) Words
                                 (
                                     this string text,
                                     string[] delimiters = null
@@ -45,27 +45,122 @@ namespace Core.Strings
                 {
                     " ",
                     Environment.NewLine,
-                    @"\t",
+                    @"!",
                     @".",
-                    @",",
-                    @"|",
                     @"?",
+                    @",",
+                    @"\t",
+                    @"\r",
+                    @"\n",
                     @":",
                     @";",
-                    @"!",
                     "\"",
                 };    
             }
 
             string[] words = text.Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
 
-            return words;
+            (string Word, int Position)[] words_positions;
+
+            words_positions = new (string Word, int Position)[words.Length];
+            string word = null;
+            int length_max = -1;
+            int position_search_start = 0;
+            int position_found = 0;
+
+            for (int i = 0; i < words.Length; i++)
+            {
+                string w = words[i];
+                position_found = text.IndexOf(w, position_search_start, StringComparison.CurrentCulture);
+                words_positions[i] = (Word: w, Position: position_found);
+
+                int length = w.Length;
+                if (length > length_max)
+                {
+                    word = w;
+                    length_max = length;
+                }
+                position_search_start = position_found;
+            }
+
+            return (Words: words_positions, WordLongest: word);
+        }
+
+        public static List<string> SplitForBufferNonOptimized
+                                            (
+                                                this string text,
+                                                int max = int.MaxValue,
+                                                string[] delimiters = null
+                                            )
+        {
+            // TODO: coroutine / yield / enumerator function
+
+            List<string> parts = new List<string>();
+
+            if (text.Length <= max)
+            {
+                parts.Add(text);
+            }
+
+            ((string Word, int Position)[] Words, string WordLongest) words_positions = text.Words(delimiters);
+
+            int word_longest_length = words_positions.WordLongest.Length;
+
+            if (word_longest_length <= max)
+            {
+                int position_total_part_begin = 0;
+                int position_total_part_end = 0;
+                int position_begin = 0;
+                int position_end = 0;
+                int word_count = words_positions.Words.Length;
+
+                for (int i = 0; i < word_count - 1; i++)
+                {
+                    string word = words_positions.Words[i].Word;
+                    int j = i + 1;
+
+                    string word_next;
+                    if ()
+                    = words_positions.Words[i+1].Word;
+
+                    int position = words_positions.Words[i].Position;
+                    int position_next = words_positions.Words[i + 1].Position;
+
+                    position_end = words_positions.Words[i].Position + word.Length;
+                    position_total_part_end += position_end;
+
+                    int part_length = position_next - position_begin;
+                    int part_length_next = part_length + word_next.Length;
+
+                    if (part_length_next >= max)
+                    {
+                        string part = null;
+                        if(part_length <= max)
+                        {
+                            part = text.Substring(position_begin, part_length);
+                        }
+                        else
+                        {
+                            part = text.Substring(position_begin, max);
+                        }
+                        parts.Add(part);
+                        position_begin = position_next;
+                    }
+                }
+            }
+            else
+            {
+                throw new ArgumentException($"Unsupported: Largest word length {word_longest_length} is longer than buffer {max}");   
+            }
+
+            return parts;
         }
 
         public static List<string> SplitForBuffer
                                             (
                                                 this string text, 
-                                                int max
+                                                int max,
+                                                string[] delimiters = null
                                             )
         {
             var parts = new List<string>();

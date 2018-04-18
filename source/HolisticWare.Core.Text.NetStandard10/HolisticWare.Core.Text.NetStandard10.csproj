@@ -6,6 +6,9 @@
     <RootNamespace>Core.Text</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="System.ValueTuple" Version="4.4.0" />
+  </ItemGroup>
   <Import Project="..\HolisticWare.Core.Text\HolisticWare.Core.Text.projitems" Label="Shared" />
 
 </Project>
