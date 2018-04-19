@@ -71,10 +71,154 @@ namespace UnitTests.Core.Text.Sync
             // Assert
             string s =
                 "Xamarin Essentials! To make Xamarin development easier!"
+                +
+                "Formerly known as Caboodle. Female toolbox."
                 ;
 
             // Act
-            string[] words = s.Words();
+            ((string Word, int Position)[] Words, string WordLongest) words = s.Words();
+
+
+            // Assert
+            #if NUNIT
+            Assert.AreEqual(words.WordLongest, "development");
+            #elif XUNIT
+            Assert.Equal(words.WordLongest, "development");
+            #elif MSTEST
+            #endif
+
+            return;
+        }
+
+        [Test()]
+        [Benchmark]
+        public void Words_Perisan()
+        {
+            // Assert
+            string s = "   منزل صغير" + " " +" منزل صغير";
+
+            // Act
+            ((string Word, int Position)[] Words, string WordLongest) words = s.Words();
+
+
+            // Assert
+            #if NUNIT
+            Assert.AreEqual(words.WordLongest, "development");
+            #elif XUNIT
+            Assert.Equal(words.WordLongest, "development");
+            #elif MSTEST
+            #endif
+
+            return;
+        }
+
+            [Test()]
+        [Benchmark]
+        public void Words_Arabic()
+        {
+            // Assert
+            string s = "خانه کوچک" + " " + "خانه کوچک";
+
+            // Act
+            ((string Word, int Position)[] Words, string WordLongest) words = s.Words();
+
+
+            // Assert
+            #if NUNIT
+            Assert.AreEqual(words.WordLongest, "development");
+            #elif XUNIT
+            Assert.Equal(words.WordLongest, "development");
+            #elif MSTEST
+            #endif
+
+            return;
+        }
+
+        [Test()]
+        [Benchmark]
+        public void SplitForBufferNonOptimized_10()
+        {
+            // Assert
+            string s =
+                "Xamarin Essentials! To make Xamarin development easier!"
+                +
+                "Formerly known as Caboodle. Female toolbox."
+                ;
+
+            // Act
+            IEnumerable<string> words = s.SplitForBufferNonOptimized(10, new string[] { " ", ".", "!" });
+
+
+            // Assert
+            #if NUNIT
+            #elif XUNIT
+            #elif MSTEST
+            #endif
+
+            return;
+        }
+
+            [Test()]
+        [Benchmark]
+        public void SplitForBufferNonOptimized_20()
+        {
+            // Assert
+            string s =
+                "Xamarin Essentials! To make Xamarin development easier!"
+                +
+                "Formerly known as Caboodle. Female toolbox."
+                ;
+
+            // Act
+            IEnumerable<string> words = s.SplitForBufferNonOptimized(20, new string[] { " ", ".", "!" });
+
+
+            // Assert
+            #if NUNIT
+            #elif XUNIT
+            #elif MSTEST
+            #endif
+
+            return;
+        }
+
+        [Test()]
+        [Benchmark]
+        public void SplitForBufferNonOptimized_100()
+        {
+            // Assert
+            string s =
+                "Xamarin Essentials! To make Xamarin development easier!"
+                +
+                "Formerly known as Caboodle. Female toolbox."
+                ;
+
+            // Act
+            IEnumerable<string> words = s.SplitForBufferNonOptimized(10, new string[] { " ", ".", "!" });
+
+
+            // Assert
+            #if NUNIT
+            #elif XUNIT
+            #elif MSTEST
+            #endif
+
+            return;
+        }
+
+        [Test()]
+        [Benchmark]
+        public void SplitForBufferNonOptimized_1000()
+        {
+            // Assert
+            string s =
+                "Xamarin Essentials! To make Xamarin development easier!"
+                +
+                "Formerly known as Caboodle. Female toolbox."
+                ;
+
+            // Act
+            IEnumerable<string> words = s.SplitForBufferNonOptimized(1000, new string[] { " ", ".", "!" });
 
 
             // Assert
@@ -107,6 +251,7 @@ namespace UnitTests.Core.Text.Sync
 
             return;
         }
+
 
         [Test()]
         public void SplitForBuffer_BufferSize_20()

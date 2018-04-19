@@ -120,8 +120,8 @@ namespace Core.Strings
                     int j = i + 1;
 
                     string word_next;
-                    if ()
-                    = words_positions.Words[i+1].Word;
+                    // if ()
+                    word_next = words_positions.Words[i+1].Word;
 
                     int position = words_positions.Words[i].Position;
                     int position_next = words_positions.Words[i + 1].Position;
