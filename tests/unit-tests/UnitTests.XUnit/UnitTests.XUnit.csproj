@@ -24,6 +24,86 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\source\HolisticWare.Core.Text.NetStandard10\HolisticWare.Core.Text.NetStandard10.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.DotNet.InternalAbstractions">
+      <HintPath>..\..\..\..\..\..\..\Users\moljac\.nuget\packages\microsoft.dotnet.internalabstractions\1.0.0\lib\netstandard1.3\Microsoft.DotNet.InternalAbstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.DotNet.PlatformAbstractions">
+      <HintPath>..\..\..\..\..\..\..\Users\moljac\.nuget\packages\microsoft.dotnet.platformabstractions\1.1.1\lib\netstandard1.3\Microsoft.DotNet.PlatformAbstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyModel">
+      <HintPath>..\..\..\..\..\..\..\Users\moljac\.nuget\packages\microsoft.extensions.dependencymodel\1.0.3\lib\netstandard1.6\Microsoft.Extensions.DependencyModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.TestPlatform.CommunicationUtilities">
+      <HintPath>..\..\..\..\..\..\..\Users\moljac\.nuget\packages\microsoft.testplatform.testhost\15.3.0-preview-20170628-02\lib\netstandard1.5\Microsoft.TestPlatform.CommunicationUtilities.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.TestPlatform.CoreUtilities">
+      <HintPath>..\..\..\..\..\..\..\Users\moljac\.nuget\packages\microsoft.testplatform.objectmodel\15.3.0-preview-20170628-02\lib\netstandard1.5\Microsoft.TestPlatform.CoreUtilities.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.TestPlatform.CrossPlatEngine">
+      <HintPath>..\..\..\..\..\..\..\Users\moljac\.nuget\packages\microsoft.testplatform.testhost\15.3.0-preview-20170628-02\lib\netstandard1.5\Microsoft.TestPlatform.CrossPlatEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.TestPlatform.PlatformAbstractions">
+      <HintPath>..\..\..\..\..\..\..\Users\moljac\.nuget\packages\microsoft.testplatform.objectmodel\15.3.0-preview-20170628-02\lib\netstandard1.5\Microsoft.TestPlatform.PlatformAbstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.TestPlatform.Common">
+      <HintPath>..\..\..\..\..\..\..\Users\moljac\.nuget\packages\microsoft.testplatform.testhost\15.3.0-preview-20170628-02\lib\netstandard1.5\Microsoft.VisualStudio.TestPlatform.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.TestPlatform.ObjectModel">
+      <HintPath>..\..\..\..\..\..\..\Users\moljac\.nuget\packages\microsoft.testplatform.objectmodel\15.3.0-preview-20170628-02\lib\netstandard1.5\Microsoft.VisualStudio.TestPlatform.ObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Win32.Registry">
+      <HintPath>..\..\..\..\..\..\..\Users\moljac\.nuget\packages\microsoft.win32.registry\4.3.0\ref\netstandard1.3\Microsoft.Win32.Registry.dll</HintPath>
+    </Reference>
+    <Reference Include="Nito.AsyncEx.Concurrent">
+      <HintPath>..\..\..\..\..\..\..\Users\moljac\.nuget\packages\nito.asyncex\4.0.1\lib\net45\Nito.AsyncEx.Concurrent.dll</HintPath>
+    </Reference>
+    <Reference Include="Nito.AsyncEx">
+      <HintPath>..\..\..\..\..\..\..\Users\moljac\.nuget\packages\nito.asyncex\4.0.1\lib\net45\Nito.AsyncEx.dll</HintPath>
+    </Reference>
+    <Reference Include="Nito.AsyncEx.Enlightenment">
+      <HintPath>..\..\..\..\..\..\..\Users\moljac\.nuget\packages\nito.asyncex\4.0.1\lib\net45\Nito.AsyncEx.Enlightenment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.XPath.XmlDocument">
+      <HintPath>..\..\..\..\..\..\..\Users\moljac\.nuget\packages\system.xml.xpath.xmldocument\4.3.0\ref\netstandard1.3\System.Xml.XPath.XmlDocument.dll</HintPath>
+    </Reference>
+    <Reference Include="testhost">
+      <HintPath>..\..\..\..\..\..\..\Users\moljac\.nuget\packages\microsoft.testplatform.testhost\15.3.0-preview-20170628-02\lib\netstandard1.5\testhost.dll</HintPath>
+    </Reference>
+    <Reference Include="BenchmarkDotNet.Core">
+      <HintPath>..\..\..\..\..\..\..\Users\moljac\.nuget\packages\benchmarkdotnet.core\0.10.14\lib\netcoreapp2.0\BenchmarkDotNet.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="BenchmarkDotNet">
+      <HintPath>..\..\..\..\..\..\..\Users\moljac\.nuget\packages\benchmarkdotnet\0.10.14\lib\netcoreapp2.0\BenchmarkDotNet.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks">
+      <HintPath>..\..\..\..\..\..\..\Users\moljac\.nuget\packages\microsoft.bcl.async\1.0.168\lib\net40\Microsoft.Threading.Tasks.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions.Desktop">
+      <HintPath>..\..\..\..\..\..\..\Users\moljac\.nuget\packages\microsoft.bcl.async\1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.Desktop.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions">
+      <HintPath>..\..\..\..\..\..\..\Users\moljac\.nuget\packages\microsoft.bcl.async\1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="xunit.abstractions">
+      <HintPath>..\..\..\..\..\..\..\Users\moljac\.nuget\packages\xunit.abstractions\2.0.1\lib\netstandard1.0\xunit.abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Nito.AsyncEx.Tasks">
+      <HintPath>..\..\..\..\..\..\..\Users\moljac\.nuget\packages\nito.asyncex.tasks\1.1.0\lib\netstandard1.3\Nito.AsyncEx.Tasks.dll</HintPath>
+    </Reference>
+    <Reference Include="Nito.Disposables">
+      <HintPath>..\..\..\..\..\..\..\Users\moljac\.nuget\packages\nito.disposables\1.0.0\lib\netstandard1.0\Nito.Disposables.dll</HintPath>
+    </Reference>
+    <Reference Include="xunit.assert">
+      <HintPath>..\..\..\..\..\..\..\Users\moljac\.nuget\packages\xunit.assert\2.3.1\lib\netstandard1.1\xunit.assert.dll</HintPath>
+    </Reference>
+    <Reference Include="xunit.core">
+      <HintPath>..\..\..\..\..\..\..\Users\moljac\.nuget\packages\xunit.extensibility.core\2.3.1\lib\netstandard1.1\xunit.core.dll</HintPath>
+    </Reference>
+    <Reference Include="xunit.execution.dotnet">
+      <HintPath>..\..\..\..\..\..\..\Users\moljac\.nuget\packages\xunit.extensibility.execution\2.3.1\lib\netstandard1.1\xunit.execution.dotnet.dll</HintPath>
+    </Reference>
+  </ItemGroup>
   <Import Project="..\..\..\externals\Core.Math.Samples\tests\data\HolisticWare.Core.Math.Samples\HolisticWare.Core.Math.Samples.projitems" Label="Shared" Condition="Exists('..\..\..\externals\Core.Math.Samples\tests\data\HolisticWare.Core.Math.Samples\HolisticWare.Core.Math.Samples.projitems')" />
   <Import Project="..\UnitTests.CommonShared\UnitTests.CommonShared.projitems" Label="Shared" Condition="Exists('..\UnitTests.CommonShared\UnitTests.CommonShared.projitems')" />
 </Project>
