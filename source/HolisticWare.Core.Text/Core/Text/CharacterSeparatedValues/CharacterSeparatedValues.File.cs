@@ -33,31 +33,13 @@ namespace Core.Text
 {
     public partial class CharacterSeparatedValues
     {
-        public IEnumerable<KeyValuePair<string, string[]>> Parse
-                                                            (
-                                                                string csv,
-                                                                NumberFormatInfo number_format_info,
-                                                                string[] newlines
-                                                            )
-        {
-            if (string.IsNullOrEmpty(csv))
-            {
-                throw new ArgumentException($"Empty or null string (input): {nameof(csv)}");
-            }
-
-
-            string[] lines = csv.Split(nl, StringSplitOptions.RemoveEmptyEntries);
-
-            return this.Parse(lines);
-        }
-
-        public IEnumerable<KeyValuePair<string, string[]>> Parse
-                                                            (
-                                                                string csv,
-                                                                NumberFormatInfo number_format_info = null,
-                                                                string[] newline_separators = null,
-                                                                string[] separators = null
-                                                            )
+        public IEnumerable<string[]> Parse
+                                        (
+                                            string csv,
+                                            NumberFormatInfo number_format_info = null,
+                                            string[] newline_separators = null,
+                                            string[] separators = null
+                                        )
         {
             if (string.IsNullOrEmpty(csv))
             {

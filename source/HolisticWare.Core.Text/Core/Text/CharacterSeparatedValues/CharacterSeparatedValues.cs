@@ -75,7 +75,14 @@ namespace Core.Text
             set;
         }
 
-        public Func<string, string[], IEnumerable<KeyValuePair<string, string[]>>> ParseMethod
+        public Func
+                <
+                    string, 
+                    NumberFormatInfo, 
+                    string[], 
+                    string[], 
+                    IEnumerable<string[]>
+                > ParseMethod
         {
             get;
             set;

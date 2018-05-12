@@ -32,10 +32,10 @@ namespace Core.Text
 {
     public partial class CharacterSeparatedValues
     {
-        public IEnumerable<KeyValuePair<string, string[]>> Parse
-                                                            (
-                                                                string[] lines
-                                                            )
+        public IEnumerable<string[]> Parse
+                                        (
+                                            string[] lines
+                                        )
         {
             if (null == lines || lines.Length == 0)
             {
@@ -45,11 +45,11 @@ namespace Core.Text
             return this.Parse(lines, this.Separators);
         }
 
-        public IEnumerable<KeyValuePair<string, string[]>> Parse
-                                                            (
-                                                                string[] lines,
-                                                                string[] separators
-                                                            )
+        public IEnumerable<string[]> Parse
+                                        (
+                                            string[] lines,
+                                            string[] separators
+                                        )
         {
             if (null == lines || lines.Length == 0)
             {
@@ -59,13 +59,13 @@ namespace Core.Text
             return this.Parse(lines, separators, this.CommentStrings, this.HasHeader);
         }
 
-        public IEnumerable<KeyValuePair<string, string[]>> Parse
-                                                            (
-                                                                string[] lines,
-                                                                string[] separators,
-                                                                string[] comment_strings,
-                                                                bool is_commented
-                                                            )
+        public IEnumerable<string[]> Parse
+                                        (
+                                            string[] lines,
+                                            string[] separators,
+                                            string[] comment_strings,
+                                            bool is_commented
+                                        )
         {
             string[] keys = null;
             int i = 0;
@@ -78,7 +78,7 @@ namespace Core.Text
 
             while (i < lines.Length)
             {
-                KeyValuePair<string, string[]> kvp;
+                string[] kvp = null;
 
                 i++;
 
