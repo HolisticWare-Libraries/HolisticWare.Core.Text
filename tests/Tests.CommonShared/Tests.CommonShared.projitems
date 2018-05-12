@@ -21,7 +21,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)0Portability\UnitTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sync\Core\Text\UnitTests20180416DataSetBasketball\BasketballTeamData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sync\Core\Text\UnitTests20180416DataSetBasketball\Tests00Data.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Sync\Core\Text\UnitTests20180416DataSetBasketball\Tests01.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sync\Core\Text\UnitTests20180416DataSetBasketball\Tests01_CharacterSeparatedValues_Parse.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sync\Core\String\UnitTestsSplitConditionally\Tests01.cs" />
   </ItemGroup>
 </Project>

@@ -65,16 +65,56 @@ namespace UnitTests.Core.Text.Sync
     {
 
         [Test()]
-        public void Load()
+        public void CharacterSeparatedValues_Header()
         {
+            //-----------------------------------------------------------------------------------------
+            // Assert
+            string[] lines =
+            {
+                "SUT_2_US.SUT_2_NE.SUT_3_US.SUT_3_NE.SL_BA_US.SL_BA_NE.SKOK_NAP.SKOK_OBR.ASISTENC.OSOB_GRE.IZG_LOPT.UKR_LOPT.BLOKADE.K1.K2",
+                "9,000.18,000.6,000.11,000.16,000.7,000.7,000.19,000.4,000.21,000.19,000.3,000.1,000.0,000.- 31,000"
+            };
+            CharacterSeparatedValues csv = new CharacterSeparatedValues()
+            {
+                Separators = new string[] { "." },
+                CultureInfo = new System.Globalization.CultureInfo("hr")
+            };
+
+            //-----------------------------------------------------------------------------------------
+            // Act
+            csv.
+            //-----------------------------------------------------------------------------------------
+            // Assert
+            #if NUNIT
+            Assert.AreEqual(data.Count(), 129);
+            #elif XUNIT
+            Assert.Equal(data.Count(), 129);
+            #elif MSTEST
+            Assert.AreEqual(data.Count(), 129);
+            #endif
+            //-----------------------------------------------------------------------------------------
+
+            foreach (KeyValuePair<string, string> kvp in data)
+            {
+                Console.WriteLine($"data [{kvp.Key}] = {kvp.Value}");
+            }
+
+            return;
+        }
+
+            [Test()]
+		public void CharacterSeparatedValues_Parse()
+        {
+            //-----------------------------------------------------------------------------------------
             // Assert
             CharacterSeparatedValues csv = new CharacterSeparatedValues()
             {
                 Separators = new string[] { "." },
-                IsCommented = false,
+                HasHeader = false,
             };
 
-            // Act
+            //-----------------------------------------------------------------------------------------
+           // Act
             IEnumerable<KeyValuePair<string, string>> data = null;
 
             data = csv.Parse
@@ -82,12 +122,21 @@ namespace UnitTests.Core.Text.Sync
                             FileTextContent, 
                             new string[] {Environment.NewLine}
                         );
-
-            // Assert
+            //-----------------------------------------------------------------------------------------
+			// Assert
             #if NUNIT
+			Assert.AreEqual(data.Count(), 129);
             #elif XUNIT
+			Assert.Equal(data.Count(), 129);
             #elif MSTEST
+			Assert.AreEqual(data.Count(), 129);
             #endif
+			//-----------------------------------------------------------------------------------------
+
+			foreach (KeyValuePair<string, string> kvp in data)
+			{
+    			Console.WriteLine($"data [{kvp.Key}] = {kvp.Value}");
+			}
 
             return;
         }

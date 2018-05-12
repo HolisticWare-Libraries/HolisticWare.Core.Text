@@ -92,6 +92,6 @@
       <HintPath>..\..\..\..\..\..\..\Users\moljac\.nuget\packages\microsoft.bcl.async\1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.dll</HintPath>
     </Reference>
   </ItemGroup>
+  <Import Project="..\..\Tests.CommonShared\Tests.CommonShared.projitems" Label="Shared" Condition="Exists('..\..\Tests.CommonShared\Tests.CommonShared.projitems')" />
   <Import Project="..\..\..\externals\Core.Math.Samples\tests\data\HolisticWare.Core.Math.Samples\HolisticWare.Core.Math.Samples.projitems" Label="Shared" Condition="Exists('..\..\..\externals\Core.Math.Samples\tests\data\HolisticWare.Core.Math.Samples\HolisticWare.Core.Math.Samples.projitems')" />
-  <Import Project="..\UnitTests.CommonShared\UnitTests.CommonShared.projitems" Label="Shared" Condition="Exists('..\UnitTests.CommonShared\UnitTests.CommonShared.projitems')" />
 </Project>
