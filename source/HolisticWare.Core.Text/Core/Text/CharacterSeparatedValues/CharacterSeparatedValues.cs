@@ -27,6 +27,7 @@
 // */
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace Core.Text
 {
@@ -37,8 +38,9 @@ namespace Core.Text
             Separators = new string[] { ",", ";", " ", @"\t", };
             SeparatorsNewLine = new string[] { Environment.NewLine };
             CommentStrings = new string[] { "#", "//" };
-            IsCommented = false;
+            HasHeader = false;
             ParseMethod = Parse;
+            NumberFormatInfo = CultureInfo.CurrentCulture.NumberFormat;
 
             return;
         }
@@ -61,13 +63,19 @@ namespace Core.Text
             set; 
         }
 
-        public bool IsCommented 
+        public bool HasHeader 
         { 
             get; 
             set; 
         }
 
-        public Func<string, string[], IEnumerable<KeyValuePair<string, string>>> ParseMethod
+        public NumberFormatInfo NumberFormatInfo
+        {
+            get;
+            set;
+        }
+
+        public Func<string, string[], IEnumerable<KeyValuePair<string, string[]>>> ParseMethod
         {
             get;
             set;

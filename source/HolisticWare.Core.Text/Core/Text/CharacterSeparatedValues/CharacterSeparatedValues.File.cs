@@ -27,14 +27,16 @@
 // */
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace Core.Text
 {
     public partial class CharacterSeparatedValues
     {
-        public IEnumerable<KeyValuePair<string, string>> Parse
+        public IEnumerable<KeyValuePair<string, string[]>> Parse
                                                             (
-                                                                string csv, 
+                                                                string csv,
+                                                                NumberFormatInfo number_format_info,
                                                                 string[] newlines
                                                             )
         {
@@ -43,23 +45,18 @@ namespace Core.Text
                 throw new ArgumentException($"Empty or null string (input): {nameof(csv)}");
             }
 
-            string[] nl = new string[newlines.Length];
 
-            Array.Copy(newlines, 0, nl, 0, newlines.Length);
-
-            if (null == newlines || newlines.Length == 0)
-            {
-
-            }
-
-            string[] lines = csv.Split(newlines, StringSplitOptions.RemoveEmptyEntries);
+            string[] lines = csv.Split(nl, StringSplitOptions.RemoveEmptyEntries);
 
             return this.Parse(lines);
         }
 
-        public IEnumerable<KeyValuePair<string, string>> Parse
+        public IEnumerable<KeyValuePair<string, string[]>> Parse
                                                             (
-                                                                string csv
+                                                                string csv,
+                                                                NumberFormatInfo number_format_info = null,
+                                                                string[] newline_separators = null,
+                                                                string[] separators = null
                                                             )
         {
             if (string.IsNullOrEmpty(csv))
@@ -67,7 +64,53 @@ namespace Core.Text
                 throw new ArgumentException($"Empty or null string (input): {nameof(csv)}");
             }
 
-            return this.Parse(csv, this.SeparatorsNewLine);
+            int n_snl = newline_separators.Length;
+            string[] nl = null;
+
+            if (null == newline_separators || n_snl == 0)
+            {
+                if (null == this.SeparatorsNewLine || this.SeparatorsNewLine.Length == 0)
+                {
+                    nl = new string[n_snl];
+                    Array.Copy(this.SeparatorsNewLine, 0, nl, 0, n_snl);
+                }
+                else
+                {
+                    nl = new string[] { Environment.NewLine };
+                }
+            }
+
+            NumberFormatInfo nfi_current = CultureInfo.CurrentCulture.NumberFormat;
+            NumberFormatInfo nfi_en = new CultureInfo("en").NumberFormat;
+
+            int n_s = separators.Length;
+            string[] s = null;
+
+            if (null == separators || n_s == 0)
+            {
+                if (null == this.Separators || this.Separators.Length == 0)
+                {
+                    s = new string[n_s];
+                    Array.Copy(this.Separators, 0, s, 0, n_s);
+                }
+                else
+                {
+                    if (null == number_format_info && nfi_current == nfi_en)
+                    {
+                        // not using "."
+                        s = new string[] { ";", ",", " ", "#", "-" };
+                    }
+                    else
+                    {
+                        // not using "."
+                        s = new string[] { ";", ".", " ", "#", "-" };
+
+                    }
+                }
+            }
+
+            return this.Parse(csv, number_format_info, this.SeparatorsNewLine);
         }
+
     }
 }

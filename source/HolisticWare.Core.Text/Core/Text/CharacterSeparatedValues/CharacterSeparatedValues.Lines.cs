@@ -32,7 +32,10 @@ namespace Core.Text
 {
     public partial class CharacterSeparatedValues
     {
-        public IEnumerable<KeyValuePair<string, string>> Parse(string[] lines)
+        public IEnumerable<KeyValuePair<string, string[]>> Parse
+                                                            (
+                                                                string[] lines
+                                                            )
         {
             if (null == lines || lines.Length == 0)
             {
@@ -42,28 +45,32 @@ namespace Core.Text
             return this.Parse(lines, this.Separators);
         }
 
-        public IEnumerable<KeyValuePair<string, string>> Parse(string[] lines, string[] separators)
+        public IEnumerable<KeyValuePair<string, string[]>> Parse
+                                                            (
+                                                                string[] lines,
+                                                                string[] separators
+                                                            )
         {
             if (null == lines || lines.Length == 0)
             {
                 throw new ArgumentException($"Empty or null string[] (input): {nameof(lines)}");
             }
 
-            return this.Parse(lines, separators, this.CommentStrings, this.IsCommented);
+            return this.Parse(lines, separators, this.CommentStrings, this.HasHeader);
         }
 
-        public IEnumerable<KeyValuePair<string, string>> Parse
+        public IEnumerable<KeyValuePair<string, string[]>> Parse
                                                             (
-                                                                string[] lines, 
-                                                                string[] separators, 
-                                                                string[] comment_strings, 
+                                                                string[] lines,
+                                                                string[] separators,
+                                                                string[] comment_strings,
                                                                 bool is_commented
                                                             )
         {
             string[] keys = null;
             int i = 0;
 
-            if (this.IsCommentLine(lines[0]))
+            if (this.IsHeader(lines[0]))
             {
                 keys = this.ParseCommentLine(lines[0]);
                 i = 1;
@@ -71,7 +78,7 @@ namespace Core.Text
 
             while (i < lines.Length)
             {
-                KeyValuePair<string, string> kvp;
+                KeyValuePair<string, string[]> kvp;
 
                 i++;
 
@@ -79,20 +86,31 @@ namespace Core.Text
             }
         }
 
-        private bool IsCommentLine
-                                (
-                                    string v
-                                )
+        public bool IsHeader(string line)
         {
-            throw new NotImplementedException();
+            bool is_commented = false;
+            string l = line.TrimStart();
+            foreach (string cs in this.CommentStrings)
+            {
+                if (l.StartsWith(cs, StringComparison.CurrentCulture))
+                {
+                    is_commented = true;
+                    break;
+                }
+
+            }
+
+            return is_commented;
         }
 
         private string[] ParseCommentLine
-                                (
-                                    string v
-                                )
+                                        (
+                                            string line
+                                        )
         {
-            throw new NotImplementedException();
+            string[] items = line.Split(this.Separators, StringSplitOptions.None);
+
+            return items;
         }
 
     }
