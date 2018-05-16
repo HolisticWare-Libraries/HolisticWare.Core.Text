@@ -31,6 +31,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using System.Globalization;
 
 #if XUNIT
 using Xunit;
@@ -68,7 +69,7 @@ namespace UnitTests.Core.Text.Sync
         public void CharacterSeparatedValues_Header()
         {
             //-----------------------------------------------------------------------------------------
-            // Assert
+            // Arrange
             string[] lines =
             {
                 "SUT_2_US.SUT_2_NE.SUT_3_US.SUT_3_NE.SL_BA_US.SL_BA_NE.SKOK_NAP.SKOK_OBR.ASISTENC.OSOB_GRE.IZG_LOPT.UKR_LOPT.BLOKADE.K1.K2",
@@ -77,66 +78,64 @@ namespace UnitTests.Core.Text.Sync
             CharacterSeparatedValues csv = new CharacterSeparatedValues()
             {
                 Separators = new string[] { "." },
-                CultureInfo = new System.Globalization.CultureInfo("hr")
+                NumberFormatInfo = new System.Globalization.NumberFormatInfo()
+                {
+                    CurrencyDecimalSeparator = ","
+                }
             };
 
             //-----------------------------------------------------------------------------------------
             // Act
-            csv.
+            sw.Start();
+            IEnumerable<string[]> csv_parsed = csv.Parse(lines);
+            sw.Reset();
+            ConsoleOutput(csv_parsed);
             //-----------------------------------------------------------------------------------------
             // Assert
             #if NUNIT
-            Assert.AreEqual(data.Count(), 129);
-            #elif XUNIT
-            Assert.Equal(data.Count(), 129);
+            Assert.AreEqual(lines.Count(), 2);
+            #elif XUNITlines
+            Assert.Equal(lines.Count(), 2);
             #elif MSTEST
-            Assert.AreEqual(data.Count(), 129);
+            Assert.AreEqual(lines.Count(), 2);
             #endif
             //-----------------------------------------------------------------------------------------
-
-            foreach (KeyValuePair<string, string> kvp in data)
-            {
-                Console.WriteLine($"data [{kvp.Key}] = {kvp.Value}");
-            }
 
             return;
         }
 
-            [Test()]
+        [Test()]
 		public void CharacterSeparatedValues_Parse()
         {
             //-----------------------------------------------------------------------------------------
-            // Assert
+            // Arrange
             CharacterSeparatedValues csv = new CharacterSeparatedValues()
             {
                 Separators = new string[] { "." },
                 HasHeader = false,
             };
+            IEnumerable<string[]> csv_parsed = null;
 
             //-----------------------------------------------------------------------------------------
-           // Act
-            IEnumerable<KeyValuePair<string, string>> data = null;
-
-            data = csv.Parse
-                        (
-                            FileTextContent, 
-                            new string[] {Environment.NewLine}
-                        );
+            // Act
+            sw.Start();
+            csv_parsed = csv.Parse
+                                (
+                                    FileTextContent,
+                                    NumberFormatInfo.CurrentInfo
+                                );
+            sw.Reset();
+            ConsoleOutput(csv_parsed);
             //-----------------------------------------------------------------------------------------
-			// Assert
+            // Assert
             #if NUNIT
-			Assert.AreEqual(data.Count(), 129);
+            Assert.AreEqual(csv_parsed.Count(), 129);
             #elif XUNIT
-			Assert.Equal(data.Count(), 129);
+            Assert.Equal(csv_parsed.Count(), 129);
             #elif MSTEST
-			Assert.AreEqual(data.Count(), 129);
+            Assert.AreEqual(csv_parsed.Count(), 129);
             #endif
-			//-----------------------------------------------------------------------------------------
-
-			foreach (KeyValuePair<string, string> kvp in data)
-			{
-    			Console.WriteLine($"data [{kvp.Key}] = {kvp.Value}");
-			}
+            //-----------------------------------------------------------------------------------------
 
             return;
         }

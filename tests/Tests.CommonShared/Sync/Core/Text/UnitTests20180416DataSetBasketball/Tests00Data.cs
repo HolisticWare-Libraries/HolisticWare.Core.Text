@@ -65,6 +65,8 @@ namespace UnitTests.Core.Text.Sync
     [TestClass] // for MSTest - NUnit [TestFixture] and XUnit not needed
     public partial class UnitTests20180318DataSetBasketball
     {
+        private Stopwatch sw = new Stopwatch();
+
         private static List<BasketballTeamData> basketball_team_data_table = null;
 
         public static List<BasketballTeamData> BasketballTeamDataTable
@@ -125,6 +127,19 @@ namespace UnitTests.Core.Text.Sync
             }
 
             return;
+        }
+
+        private static void ConsoleOutput(IEnumerable<string[]> data)
+        {
+            foreach (string[] row_items in data)
+            {
+                int n = row_items.Length;
+                for (int i = 0; i < n; i++)
+                {
+                    Console.Write($" {i} = {row_items[i]}");
+                }
+                Console.WriteLine();
+            }
         }
     }
 }
