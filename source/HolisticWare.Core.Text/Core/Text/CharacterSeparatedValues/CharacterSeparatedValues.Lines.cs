@@ -32,60 +32,6 @@ namespace Core.Text
 {
     public partial class CharacterSeparatedValues
     {
-        public IEnumerable<string[]> Parse
-                                        (
-                                            string[] lines
-                                        )
-        {
-            if (null == lines || lines.Length == 0)
-            {
-                throw new ArgumentException($"Empty or null string[] (input): {nameof(lines)}");
-            }
-
-            return this.Parse(lines, this.Separators);
-        }
-
-        public IEnumerable<string[]> Parse
-                                        (
-                                            string[] lines,
-                                            string[] separators
-                                        )
-        {
-            if (null == lines || lines.Length == 0)
-            {
-                throw new ArgumentException($"Empty or null string[] (input): {nameof(lines)}");
-            }
-
-            return this.Parse(lines, separators, this.CommentStrings, this.HasHeader);
-        }
-
-        public IEnumerable<string[]> Parse
-                                        (
-                                            string[] lines,
-                                            string[] separators,
-                                            string[] comment_strings,
-                                            bool is_commented
-                                        )
-        {
-            string[] keys = null;
-            int i = 0;
-
-            if (this.IsHeader(lines[0]))
-            {
-                keys = this.ParseCommentLine(lines[0]);
-                i = 1;
-            }
-
-            while (i < lines.Length)
-            {
-                string[] kvp = null;
-
-                i++;
-
-                yield return kvp;
-            }
-        }
-
         public bool IsHeader(string line)
         {
             bool is_commented = false;

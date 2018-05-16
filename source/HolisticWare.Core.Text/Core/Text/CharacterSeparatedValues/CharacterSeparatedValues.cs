@@ -31,7 +31,7 @@ using System.Globalization;
 
 namespace Core.Text
 {
-    public partial class CharacterSeparatedValues
+    public partial class    CharacterSeparatedValues
     {
         public CharacterSeparatedValues()
         {

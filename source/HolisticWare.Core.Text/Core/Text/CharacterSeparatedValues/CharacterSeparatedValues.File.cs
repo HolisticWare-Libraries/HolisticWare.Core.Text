@@ -46,12 +46,13 @@ namespace Core.Text
                 throw new ArgumentException($"Empty or null string (input): {nameof(csv)}");
             }
 
-            int n_snl = newline_separators.Length;
             string[] nl = null;
+            int n_snl = -1;
 
-            if (null == newline_separators || n_snl == 0)
+            if (null == newline_separators || newline_separators.Length == 0)
             {
-                if (null == this.SeparatorsNewLine || this.SeparatorsNewLine.Length == 0)
+                n_snl = this.SeparatorsNewLine.Length;
+                if (null == this.SeparatorsNewLine || n_snl == 0)
                 {
                     nl = new string[n_snl];
                     Array.Copy(this.SeparatorsNewLine, 0, nl, 0, n_snl);
@@ -59,16 +60,29 @@ namespace Core.Text
                 else
                 {
                     nl = new string[] { Environment.NewLine };
+                    this.SeparatorsNewLine = nl;
                 }
             }
 
-            NumberFormatInfo nfi_current = CultureInfo.CurrentCulture.NumberFormat;
-            NumberFormatInfo nfi_en = new CultureInfo("en").NumberFormat;
+            string[] lines = csv.Split(nl, StringSplitOptions.None);
 
-            int n_s = separators.Length;
+            return this.Parse(lines, number_format_info, separators);
+        }
+
+        public IEnumerable<string[]> Parse
+                                         (
+                                             string[] csv,
+                                             NumberFormatInfo number_format_info = null,
+                                             string[] separators = null
+                                         )
+        {
             string[] s = null;
+            int n_s = -1;
 
-            if (null == separators || n_s == 0)
+            NumberFormatInfo nfi_current = NumberFormatInfo.CurrentInfo;
+            NumberFormatInfo nfi_en_us = (new CultureInfo("en-US")).NumberFormat;
+
+            if (null == separators || separators.Length == 0)
             {
                 if (null == this.Separators || this.Separators.Length == 0)
                 {
@@ -77,7 +91,7 @@ namespace Core.Text
                 }
                 else
                 {
-                    if (null == number_format_info && nfi_current == nfi_en)
+                    if (null == number_format_info && nfi_current == nfi_en_us)
                     {
                         // not using "."
                         s = new string[] { ";", ",", " ", "#", "-" };
@@ -91,8 +105,23 @@ namespace Core.Text
                 }
             }
 
-            return this.Parse(csv, number_format_info, this.SeparatorsNewLine);
-        }
+            string[] keys = null;
+            int i = 0;
 
-    }
+            if (this.IsHeader(csv[0]))
+            {
+                keys = this.ParseCommentLine(csv[0]);
+                i = 1;
+            }
+
+            while (i < csv.Length)
+            {
+                string[] row_items = csv[i].Split(separators, StringSplitOptions.None);
+
+                i++;
+
+                yield return row_items;
+            }
+        }
+   }
 }
