@@ -28,28 +28,38 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 
 namespace Core.Text
 {
     public partial class CharacterSeparatedValues
     {
+        /// <summary>
+        /// Parse the specified csv data (character separated values) 
+        ///     with given newline_separaqtors, number_format_info and separators.
+        /// </summary>
+        /// <returns>The parse.</returns>
+        /// <param name="csv_content">Csv content.</param>
+        /// <param name="newline_separators">Newline separators.</param>
+        /// <param name="number_format_info">Number format info.</param>
+        /// <param name="separators">Separators.</param>
         public IEnumerable<string[]> Parse
                                         (
-                                            string csv,
+                                            string csv_content,
+                                            IEnumerable<string> newline_separators = null,
                                             NumberFormatInfo number_format_info = null,
-                                            string[] newline_separators = null,
                                             string[] separators = null
                                         )
         {
-            if (string.IsNullOrEmpty(csv))
+            if (string.IsNullOrEmpty(csv_content))
             {
-                throw new ArgumentException($"Empty or null string (input): {nameof(csv)}");
+                throw new ArgumentException($"Empty or null string (input): {nameof(csv_content)}");
             }
 
             string[] nl = null;
             int n_snl = -1;
 
-            if (null == newline_separators || newline_separators.Length == 0)
+            if (null == newline_separators || newline_separators.Count() == 0)
             {
                 n_snl = this.SeparatorsNewLine.Length;
                 if (null == this.SeparatorsNewLine || n_snl == 0)
@@ -64,11 +74,49 @@ namespace Core.Text
                 }
             }
 
-            string[] lines = csv.Split(nl, StringSplitOptions.None);
+            string[] lines = csv_content.Split(nl, StringSplitOptions.None);
 
             return this.Parse(lines, number_format_info, separators);
         }
 
+        /// <summary>
+        /// Parse the specified collection of csv data (character separated values) 
+        ///     with given number_format_info and separators.
+        /// </summary>
+        /// <returns>The parse.</returns>
+        /// <param name="csv_contents">Csv contents.</param>
+        /// <param name="newline_separators">Newline separators.</param>
+        /// <param name="number_format_info">Number format info.</param>
+        /// <param name="separators">Separators.</param>
+        public IEnumerable<IEnumerable<string[]>> Parse
+                                        (
+                                            IEnumerable<string> csv_contents,
+                                            IEnumerable<string> newline_separators = null,
+                                            NumberFormatInfo number_format_info = null,
+                                            string[] separators = null
+                                        )
+        {
+            foreach(string csv_content in csv_contents)
+            {
+                yield return this.Parse
+                                    (
+                                        csv_content,
+                                        newline_separators,
+                                        number_format_info,
+                                        separators
+                                    );
+            }
+        }
+
+
+        /// <summary>
+        /// Parse the specified lines of csv (character separated values) 
+        ///     with given number_format_info and separators.
+        /// </summary>
+        /// <returns>The parse.</returns>
+        /// <param name="csv">Csv.</param>
+        /// <param name="number_format_info">Number format info.</param>
+        /// <param name="separators">Separators.</param>
         public IEnumerable<string[]> Parse
                                          (
                                              string[] csv,

@@ -31,7 +31,7 @@ using System.Globalization;
 
 namespace Core.Text
 {
-    public partial class    CharacterSeparatedValues
+    public partial class CharacterSeparatedValues
     {
         public CharacterSeparatedValues()
         {
@@ -78,8 +78,8 @@ namespace Core.Text
         public Func
                 <
                     string, 
+                    IEnumerable<string>, 
                     NumberFormatInfo, 
-                    string[], 
                     string[], 
                     IEnumerable<string[]>
                 > ParseMethod

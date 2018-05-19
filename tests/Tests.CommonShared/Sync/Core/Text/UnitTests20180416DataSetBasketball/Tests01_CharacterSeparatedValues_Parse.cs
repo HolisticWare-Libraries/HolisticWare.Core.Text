@@ -122,7 +122,8 @@ namespace UnitTests.Core.Text.Sync
             csv_parsed = csv.Parse
                                 (
                                     FileTextContent,
-                                    NumberFormatInfo.CurrentInfo
+                                    newline_separators: null,
+                                    number_format_info: NumberFormatInfo.CurrentInfo
                                 );
             sw.Reset();
             ConsoleOutput(csv_parsed);

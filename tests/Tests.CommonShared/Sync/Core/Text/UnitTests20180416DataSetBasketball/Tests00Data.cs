@@ -131,14 +131,19 @@ namespace UnitTests.Core.Text.Sync
 
         private static void ConsoleOutput(IEnumerable<string[]> data)
         {
+            int i_row = 0;
+            int n_rows = data.Count();
+
             foreach (string[] row_items in data)
             {
-                int n = row_items.Length;
-                for (int i = 0; i < n; i++)
+                Console.Write($" row[{i_row}] = ");
+                int n_items = row_items.Length;
+                for (int i = 0; i < n_items; i++)
                 {
                     Console.Write($" {i} = {row_items[i]}");
                 }
                 Console.WriteLine();
+                i_row++;
             }
         }
     }
