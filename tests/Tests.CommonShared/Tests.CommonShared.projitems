@@ -71,5 +71,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Core\String\UnitTestsSplitConditionally\Tests01.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\Text\UnitTests20180416DataSetBasketball\Tests00Data.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\Text\UnitTests20180416DataSetBasketball\Tests01_CharacterSeparatedValues_Parse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Text\Tests01_Simple.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Text\Tests01_Simple_Data.cs" />
   </ItemGroup>
 </Project>
