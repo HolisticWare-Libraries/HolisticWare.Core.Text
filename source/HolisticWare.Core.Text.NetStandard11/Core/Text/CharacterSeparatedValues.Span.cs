@@ -28,63 +28,55 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Runtime.CompilerServices;
+using System.Text;
 
 namespace Core.Text
 {
     public partial class CharacterSeparatedValues
     {
-        public CharacterSeparatedValues()
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public
+            void
+                Parse
+                    (
+                        string csv_content,
+                        string[] data_separators = null,
+                        IEnumerable<string> newline_separators = null,
+                        NumberFormatInfo number_format_info = null
+                    )
         {
-            Separators = new string[] { ",", ";", " ", @"\t", };
-            SeparatorsNewLine = new string[] { Environment.NewLine };
-            CommentStrings = new string[] { "#", "//" };
-            HasHeader = false;
-            NumberFormatInfo = CultureInfo.CurrentCulture.NumberFormat;
+            if (string.IsNullOrEmpty(csv_content))
+            {
+                throw new ArgumentException($"Empty or null string (input): {nameof(csv_content)}");
+            }
 
-            return;
-        }
+            #if DEBUG
+            StringBuilder sb = new StringBuilder();
+            #endif
 
-        public string[] Separators 
-        { 
-            get; 
-            set; 
-        }
+            ReadOnlySpan<char> csv_content_span = csv_content.AsSpan();
 
-        public string[] SeparatorsNewLine
-        {
-            get;
-            set;
-        }
+            int position = 0;
 
-        public string[] CommentStrings 
-        { 
-            get; 
-            set; 
-        }
+            while (position < csv_content_span.Length)
+            {
+                char ch_at_position = csv_content_span[position];
 
-        public bool HasHeader 
-        { 
-            get; 
-            set; 
-        }
+                if(char.IsWhiteSpace(ch_at_position))
+                {
+                    position++;
+                    continue;
+                }
 
-        public NumberFormatInfo NumberFormatInfo
-        {
-            get;
-            set;
-        }
 
-        public Func
-                <
-                    string, 
-                    IEnumerable<string>, 
-                    NumberFormatInfo, 
-                    string[], 
-                    IEnumerable<string[]>
-                > ParseMethod
-        {
-            get;
-            set;
+
+                #if DEBUG
+                sb.Append(ch_at_position);
+                System.Diagnostics.Debug.WriteLine(sb.ToString());
+                #endif
+            }
+
         }
 
     }

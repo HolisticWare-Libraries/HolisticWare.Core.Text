@@ -12,7 +12,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Core\Text\Parser.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\String\SplitIntelligentlyExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\Text\CharacterSeparatedValues\CharacterSeparatedValues.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Core\Text\CharacterSeparatedValues\CharacterSeparatedValues.File.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\Text\CharacterSeparatedValues\CharacterSeparatedValues.Lines.cs" />
   </ItemGroup>
   <ItemGroup>
