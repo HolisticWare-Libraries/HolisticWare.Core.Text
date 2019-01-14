@@ -108,7 +108,6 @@ namespace Core.Strings
 
             if (word_longest_length <= max)
             {
-                int position_total_part_begin = 0;
                 int position_total_part_end = 0;
                 int position_begin = 0;
                 int position_end = 0;

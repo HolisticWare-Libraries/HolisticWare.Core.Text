@@ -27,47 +27,57 @@
 // */
 using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Runtime.CompilerServices;
+using System.Text;
 
 namespace Core.Text
 {
     public partial class CharacterSeparatedValues
     {
-        public IEnumerable<KeyValuePair<string, string>> Parse
-                                                            (
-                                                                string csv, 
-                                                                string[] newlines
-                                                            )
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public
+            void
+                Parse
+                    (
+                        string csv_content,
+                        string[] data_separators = null,
+                        IEnumerable<string> newline_separators = null,
+                        NumberFormatInfo number_format_info = null
+                    )
         {
-            if (string.IsNullOrEmpty(csv))
+            if (string.IsNullOrEmpty(csv_content))
             {
-                throw new ArgumentException($"Empty or null string (input): {nameof(csv)}");
+                throw new ArgumentException($"Empty or null string (input): {nameof(csv_content)}");
             }
 
-            string[] nl = new string[newlines.Length];
+            #if DEBUG
+            StringBuilder sb = new StringBuilder();
+            #endif
 
-            Array.Copy(newlines, 0, nl, 0, newlines.Length);
+            ReadOnlySpan<char> csv_content_span = csv_content.AsSpan();
 
-            if (null == newlines || newlines.Length == 0)
+            int position = 0;
+
+            while (position < csv_content_span.Length)
             {
+                char ch_at_position = csv_content_span[position];
 
+                if(char.IsWhiteSpace(ch_at_position))
+                {
+                    position++;
+                    continue;
+                }
+
+
+
+                #if DEBUG
+                sb.Append(ch_at_position);
+                System.Diagnostics.Debug.WriteLine(sb.ToString());
+                #endif
             }
 
-            string[] lines = csv.Split(newlines, StringSplitOptions.RemoveEmptyEntries);
-
-            return this.Parse(lines);
         }
 
-        public IEnumerable<KeyValuePair<string, string>> Parse
-                                                            (
-                                                                string csv
-                                                            )
-        {
-            if (string.IsNullOrEmpty(csv))
-            {
-                throw new ArgumentException($"Empty or null string (input): {nameof(csv)}");
-            }
-
-            return this.Parse(csv, this.SeparatorsNewLine);
-        }
     }
 }

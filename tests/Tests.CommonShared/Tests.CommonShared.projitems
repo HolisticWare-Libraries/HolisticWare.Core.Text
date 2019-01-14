@@ -10,6 +10,68 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)UnitTestsSpan.cs" />
+    <None Include="$(MSBuildThisFileDirectory)Data\C2FamilyRelationshipConnectorSample.csv" />
+    <None Include="$(MSBuildThisFileDirectory)Data\C2GroupConnectorSample.csv" />
+    <None Include="$(MSBuildThisFileDirectory)Data\C2ImportCalEventSample.csv" />
+    <None Include="$(MSBuildThisFileDirectory)Data\C2ImportFamRelSample.csv" />
+    <None Include="$(MSBuildThisFileDirectory)Data\C2ImportGroupsSample.csv" />
+    <None Include="$(MSBuildThisFileDirectory)Data\C2ImportSchoolSample.csv" />
+    <None Include="$(MSBuildThisFileDirectory)Data\C2ImportStaffSample.csv" />
+    <None Include="$(MSBuildThisFileDirectory)Data\C2ImportUsersSample.csv" />
+    <None Include="$(MSBuildThisFileDirectory)Data\C2MassAssignUsersSample_.csv" />
+    <None Include="$(MSBuildThisFileDirectory)Data\C2MembershipConnectorSample.csv" />
+    <None Include="$(MSBuildThisFileDirectory)Data\C2PKMSampleImport.csv" />
+    <None Include="$(MSBuildThisFileDirectory)Data\C2SectionConnectorSample.csv" />
+    <None Include="$(MSBuildThisFileDirectory)Data\C2SectionRobotSample.csv" />
+    <None Include="$(MSBuildThisFileDirectory)Data\C2User-GroupMembershipConnectorSample.csv" />
+    <None Include="$(MSBuildThisFileDirectory)Data\C2UserConnectorSample.csv" />
+    <None Include="$(MSBuildThisFileDirectory)Data\FL_insurance_sample.csv" />
+    <None Include="$(MSBuildThisFileDirectory)Data\HalfHourParentTeacherConferenceSampleImportFile.csv" />
+    <None Include="$(MSBuildThisFileDirectory)Data\OneHourParentTeacherConferenceSampleImportFile.csv" />
+    <None Include="$(MSBuildThisFileDirectory)Data\SacramentocrimeJanuary2006.csv" />
+    <None Include="$(MSBuildThisFileDirectory)Data\Sacramentorealestatetransactions.csv" />
+    <None Include="$(MSBuildThisFileDirectory)Data\SalesJan2009.csv" />
+    <None Include="$(MSBuildThisFileDirectory)Data\SampleCSVFile_119kb.csv" />
+    <None Include="$(MSBuildThisFileDirectory)Data\TechCrunchcontinentalUSA.csv" />
+    <None Include="$(MSBuildThisFileDirectory)Data\addresses.csv" />
+    <None Include="$(MSBuildThisFileDirectory)Data\airtravel.csv" />
+    <None Include="$(MSBuildThisFileDirectory)Data\biostats.csv" />
+    <None Include="$(MSBuildThisFileDirectory)Data\cities.csv" />
+    <None Include="$(MSBuildThisFileDirectory)Data\crash_catalonia.csv" />
+    <None Include="$(MSBuildThisFileDirectory)Data\deniro.csv" />
+    <None Include="$(MSBuildThisFileDirectory)Data\example.csv" />
+    <None Include="$(MSBuildThisFileDirectory)Data\faithful.csv" />
+    <None Include="$(MSBuildThisFileDirectory)Data\ford_escort.csv" />
+    <None Include="$(MSBuildThisFileDirectory)Data\freshman_kgs.csv" />
+    <None Include="$(MSBuildThisFileDirectory)Data\freshman_lbs.csv" />
+    <None Include="$(MSBuildThisFileDirectory)Data\grades.csv" />
+    <None Include="$(MSBuildThisFileDirectory)Data\homes.csv" />
+    <None Include="$(MSBuildThisFileDirectory)Data\hooke.csv" />
+    <None Include="$(MSBuildThisFileDirectory)Data\hurricanes.csv" />
+    <None Include="$(MSBuildThisFileDirectory)Data\hw_200.csv" />
+    <None Include="$(MSBuildThisFileDirectory)Data\hw_25000.csv" />
+    <None Include="$(MSBuildThisFileDirectory)Data\lead_shot.csv" />
+    <None Include="$(MSBuildThisFileDirectory)Data\letter_frequency.csv" />
+    <None Include="$(MSBuildThisFileDirectory)Data\mlb_players.csv" />
+    <None Include="$(MSBuildThisFileDirectory)Data\mlb_teams_2012.csv" />
+    <None Include="$(MSBuildThisFileDirectory)Data\news_decline.csv" />
+    <None Include="$(MSBuildThisFileDirectory)Data\nile.csv" />
+    <None Include="$(MSBuildThisFileDirectory)Data\oscar_age_female.csv" />
+    <None Include="$(MSBuildThisFileDirectory)Data\oscar_age_male.csv" />
+    <None Include="$(MSBuildThisFileDirectory)Data\snakes_count_10.csv" />
+    <None Include="$(MSBuildThisFileDirectory)Data\snakes_count_100.csv" />
+    <None Include="$(MSBuildThisFileDirectory)Data\snakes_count_1000.csv" />
+    <None Include="$(MSBuildThisFileDirectory)Data\snakes_count_10000.csv" />
+    <None Include="$(MSBuildThisFileDirectory)Data\tally_cab.csv" />
+    <None Include="$(MSBuildThisFileDirectory)Data\taxables.csv" />
+    <None Include="$(MSBuildThisFileDirectory)Data\trees.csv" />
+    <None Include="$(MSBuildThisFileDirectory)Data\zillow.csv" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Core\String\UnitTestsSplitConditionally\Tests01.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Text\UnitTests20180416DataSetBasketball\Tests00Data.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Text\UnitTests20180416DataSetBasketball\Tests01_CharacterSeparatedValues_Parse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Text\Tests01_Simple.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Text\Tests01_Simple_Data.cs" />
   </ItemGroup>
 </Project>

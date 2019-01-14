@@ -28,64 +28,11 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 
 namespace Core.Text
 {
     public partial class CharacterSeparatedValues
     {
-        public CharacterSeparatedValues()
-        {
-            Separators = new string[] { ",", ";", " ", @"\t", };
-            SeparatorsNewLine = new string[] { Environment.NewLine };
-            CommentStrings = new string[] { "#", "//" };
-            HasHeader = false;
-            NumberFormatInfo = CultureInfo.CurrentCulture.NumberFormat;
-
-            return;
-        }
-
-        public string[] Separators 
-        { 
-            get; 
-            set; 
-        }
-
-        public string[] SeparatorsNewLine
-        {
-            get;
-            set;
-        }
-
-        public string[] CommentStrings 
-        { 
-            get; 
-            set; 
-        }
-
-        public bool HasHeader 
-        { 
-            get; 
-            set; 
-        }
-
-        public NumberFormatInfo NumberFormatInfo
-        {
-            get;
-            set;
-        }
-
-        public Func
-                <
-                    string, 
-                    IEnumerable<string>, 
-                    NumberFormatInfo, 
-                    string[], 
-                    IEnumerable<string[]>
-                > ParseMethod
-        {
-            get;
-            set;
-        }
-
     }
 }
