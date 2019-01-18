@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HolisticWare.Core.Text.NetS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HolisticWare.Core.Text.NetStandard11", "HolisticWare.Core.Text.NetStandard11\HolisticWare.Core.Text.NetStandard11.csproj", "{18C2D1F9-A0F6-4A04-9CFF-DF984242395B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HolisticWare.Core.Text.NetStandard13", "HolisticWare.Core.Text.NetStandard13\HolisticWare.Core.Text.NetStandard13.csproj", "{8A0CAEFF-7E76-4133-86D8-0FEB0C08E851}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		HolisticWare.Core.Text\HolisticWare.Core.Text.projitems*{921cfea5-564c-4975-a20f-8cad32ea88e3}*SharedItemsImports = 13
@@ -26,6 +28,10 @@ Global
 		{18C2D1F9-A0F6-4A04-9CFF-DF984242395B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{18C2D1F9-A0F6-4A04-9CFF-DF984242395B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{18C2D1F9-A0F6-4A04-9CFF-DF984242395B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A0CAEFF-7E76-4133-86D8-0FEB0C08E851}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A0CAEFF-7E76-4133-86D8-0FEB0C08E851}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A0CAEFF-7E76-4133-86D8-0FEB0C08E851}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A0CAEFF-7E76-4133-86D8-0FEB0C08E851}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

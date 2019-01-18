@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Threading.Tasks;
 
 namespace Core.Text
@@ -8,6 +9,12 @@ namespace Core.Text
     {
         public CharacterSeparatedValues()
         {
+            Separators = new string[] { ",", ";", " ", @"\t", };
+            SeparatorsNewLine = new string[] { Environment.NewLine };
+            CommentStrings = new string[] { "#", "//" };
+            HasHeader = false;
+            NumberFormatInfo = CultureInfo.CurrentCulture.NumberFormat;
+
             ContainedType = typeof((string Ivek, string Jozo));
 
             return;
@@ -17,28 +24,6 @@ namespace Core.Text
         {
             get;
             set;
-        }
-
-        public async Task<string> LoadAsync(string filename)
-        {
-            using
-                (
-                    System.IO.FileStream stream = System.IO.File.Open
-                                                                    (
-                                                                        filename,
-                                                                        System.IO.FileMode.Open,
-                                                                        System.IO.FileAccess.Read
-                                                                    )
-                )
-            using
-                (
-                    System.IO.TextReader tr = new System.IO.StreamReader(stream)
-                )
-            {
-                Text = await tr.ReadToEndAsync();
-            }
-
-            return Text;
         }
 
         public IEnumerable<string> ColumnNames

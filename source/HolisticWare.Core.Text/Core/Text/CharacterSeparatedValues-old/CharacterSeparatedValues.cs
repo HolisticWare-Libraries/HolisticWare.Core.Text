@@ -33,16 +33,6 @@ namespace Core.Text
 {
     public partial class CharacterSeparatedValues
     {
-        public CharacterSeparatedValues()
-        {
-            Separators = new string[] { ",", ";", " ", @"\t", };
-            SeparatorsNewLine = new string[] { Environment.NewLine };
-            CommentStrings = new string[] { "#", "//" };
-            HasHeader = false;
-            NumberFormatInfo = CultureInfo.CurrentCulture.NumberFormat;
-
-            return;
-        }
 
         public string[] Separators 
         { 

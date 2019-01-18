@@ -14,7 +14,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Core\Text\CharacterSeparatedValues-old\CharacterSeparatedValues.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\Text\CharacterSeparatedValues-old\CharacterSeparatedValues.Lines.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\Text\CharacterSeparatedValues\CharacterSeparatedValues.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' " />
-    <Compile Include="$(MSBuildThisFileDirectory)Core\Text\CharacterSeparatedValues\CharacterSeparatedValues.Memory.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' " />
     <Compile Include="$(MSBuildThisFileDirectory)Core\Text\CharacterSeparatedValues\CharacterSeparatedValues.String.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' " />
   </ItemGroup>
   <ItemGroup>
