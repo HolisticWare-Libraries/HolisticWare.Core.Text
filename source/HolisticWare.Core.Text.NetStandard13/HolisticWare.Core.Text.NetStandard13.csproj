@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.3</TargetFramework>
+    <RootNamespace>Core.Text</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Core\" />
+    <Folder Include="Core\Text\" />
+    <Folder Include="Core\Text\CharacterSeparatedValues\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="System.ValueTuple" Version="4.5.0" />
+    <PackageReference Include="System.IO" Version="4.3.0" />
+  </ItemGroup>
+  <Import Project="..\HolisticWare.Core.Text\HolisticWare.Core.Text.projitems" Label="Shared" Condition="Exists('..\HolisticWare.Core.Text\HolisticWare.Core.Text.projitems')" />
+</Project>

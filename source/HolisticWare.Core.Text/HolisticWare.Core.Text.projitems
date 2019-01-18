@@ -11,11 +11,14 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Core\Text\Parser.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\String\SplitIntelligentlyExtensions.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Core\Text\CharacterSeparatedValues\CharacterSeparatedValues.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Core\Text\CharacterSeparatedValues\CharacterSeparatedValues.Lines.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Text\CharacterSeparatedValues-old\CharacterSeparatedValues.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Text\CharacterSeparatedValues-old\CharacterSeparatedValues.Lines.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Text\CharacterSeparatedValues\CharacterSeparatedValues.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' " />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Text\CharacterSeparatedValues\CharacterSeparatedValues.String.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' " />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Core\String\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Core\Text\CharacterSeparatedValues-old\" />
     <Folder Include="$(MSBuildThisFileDirectory)Core\Text\CharacterSeparatedValues\" />
   </ItemGroup>
 </Project>

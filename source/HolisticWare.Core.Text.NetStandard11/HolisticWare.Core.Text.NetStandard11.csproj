@@ -2,11 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard1.1</TargetFramework>
+    <LangVersion>7.2</LangVersion>
+    <RootNamespace>Core.Text</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
     <Folder Include="Core\" />
     <Folder Include="Core\Text\" />
+    <Folder Include="Core\Text\CharacterSeparatedValues\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="System.ValueTuple" Version="4.5.0-preview2-26406-04" />
