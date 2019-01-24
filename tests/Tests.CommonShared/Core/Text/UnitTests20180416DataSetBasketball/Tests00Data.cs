@@ -33,7 +33,6 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using System.IO;
 using System.Reflection;
-using UnitTests.Core.Math.Statistics.Descriptive.Sequential.Sync;
 
 #if XUNIT
 using Xunit;
