@@ -25,14 +25,6 @@
 //    FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 //    OTHER DEALINGS IN THE SOFTWARE.
 // */
-using System;
-
-using System.Collections.Generic;
-using System.Linq;
-using System.Diagnostics;
-using System.Threading.Tasks;
-using System.IO;
-using System.Reflection;
 
 #if XUNIT
 using Xunit;
@@ -57,6 +49,15 @@ using Test = Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute;
 // XUnit aliases
 using Fact = Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute;
 #endif
+
+using System;
+
+using System.Collections.Generic;
+using System.Linq;
+using System.Diagnostics;
+using System.IO;
+using System.Reflection;
+using HolisticWare.Core.SampleData;
 
 using Core.Text;
 

@@ -25,12 +25,6 @@
 //    FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 //    OTHER DEALINGS IN THE SOFTWARE.
 // */
-using System;
-
-using System.Collections.Generic;
-using System.Linq;
-using System.Diagnostics;
-using System.Threading.Tasks;
 
 #if XUNIT
 using Xunit;
@@ -67,6 +61,13 @@ using BenchmarkDotNet.Attributes.Jobs;
 using Benchmark = HolisticWare.Core.Testing.BenchmarkTests.Benchmark;
 using ShortRunJob = HolisticWare.Core.Testing.BenchmarkTests.ShortRunJob;
 #endif
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Diagnostics;
+using System.Threading.Tasks;
+
 using Core.Strings;
 
 namespace UnitTests.Core.Text
