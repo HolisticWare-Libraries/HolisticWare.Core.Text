@@ -22,6 +22,11 @@ namespace Core.Text
             set;
         }
 
+        public IEnumerable<string[]> Parse()
+        {
+            return this.ParseTemporaryImplementation();
+        }
+
         public IEnumerable<string[]> ParseTemporaryImplementation()
                         // // Error CS0702: Constraint cannot be special class 'ValueType'         
                         // where T : ValueType
