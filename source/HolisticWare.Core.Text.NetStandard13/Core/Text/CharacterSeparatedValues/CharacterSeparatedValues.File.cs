@@ -1,5 +1,4 @@
-﻿// /*
-//    Copyright (c) 2018-4
+﻿//    Copyright (c) 2018-4
 //
 //    moljac
 //    CharacterSeparatedValues.cs
@@ -25,14 +24,35 @@
 //    FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 //    OTHER DEALINGS IN THE SOFTWARE.
 // */
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
+
+using System.Threading.Tasks;
 
 namespace Core.Text
 {
     public partial class CharacterSeparatedValues
     {
+#if NETSTANDARD1_3
+#endif
+        public async Task<string> LoadAsync(string filename)
+        {
+            using
+                (
+                    System.IO.FileStream stream = System.IO.File.Open
+                                                                    (
+                                                                        filename,
+                                                                        System.IO.FileMode.Open,
+                                                                        System.IO.FileAccess.Read
+                                                                    )
+                )
+            using
+                (
+                    System.IO.TextReader tr = new System.IO.StreamReader(stream)
+                )
+            {
+                Text = await tr.ReadToEndAsync();
+            }
+
+            return Text;
+        }
     }
 }
