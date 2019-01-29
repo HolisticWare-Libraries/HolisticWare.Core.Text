@@ -34,10 +34,10 @@ namespace Core.Text.Core.String
                 }
             }
 
-            var lastItem = memory.Span.LastIndexOf(character);
-            if (lastItem != -1)
+            int last_item = memory.Span.LastIndexOf(character);
+            if (last_item != -1)
             {
-                yield return memory.Span.Slice(lastItem + 1).ToString();
+                yield return memory.Span.Slice(last_item + 1).ToString();
             }
         }
     }
