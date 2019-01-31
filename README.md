@@ -1,5 +1,25 @@
 # HolisticWare.Core.Text
 
+
+Implementations are based on:
+
+*   `string`
+
+    *   `netstandard1.0`
+
+    *   Implementation [INPROGRESS]
+
+    *   Tests [INPROGRESS]
+
+*   `Span<T>` and `Memory<T>` from `System.Memory`
+
+    *   `netstandard1.1`
+
+    *   Implementation [INPROGRESS]
+
+    *   Tests [INPROGRESS]
+
+
 Text utilities:
 
 *   CharacterSeparatedValues
