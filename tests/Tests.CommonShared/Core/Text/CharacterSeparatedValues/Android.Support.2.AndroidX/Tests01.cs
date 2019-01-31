@@ -25,11 +25,21 @@
 //    FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 //    OTHER DEALINGS IN THE SOFTWARE.
 // */
+using System;
+
+using System.Collections.Generic;
+using System.Linq;
+using System.Diagnostics;
+using System.Threading.Tasks;
+using System.Globalization;
+using System.IO;
+using System.Reflection;
 
 #if XUNIT
 using Xunit;
 // NUnit aliases
 using Test = Xunit.FactAttribute;
+using OneTimeSetUp = HolisticWare.Core.Testing.UnitTests.UnitTestsCompatibilityAliasAttribute;
 // XUnit aliases
 using TestClass = HolisticWare.Core.Testing.UnitTests.UnitTestsCompatibilityAliasAttribute;
 #elif NUNIT
@@ -37,97 +47,56 @@ using NUnit.Framework;
 // MSTest aliases
 using TestInitialize = NUnit.Framework.SetUpAttribute;
 using TestProperty = NUnit.Framework.PropertyAttribute;
-using TestClass = NUnit.Framework.TestFixtureAttribute;
+using TestClass = HolisticWare.Core.Testing.UnitTests.UnitTestsCompatibilityAliasAttribute;
 using TestMethod = NUnit.Framework.TestAttribute;
 using TestCleanup = NUnit.Framework.TearDownAttribute;
 // XUnit aliases
-using Fact=NUnit.Framework.TestAttribute;
+using Fact = NUnit.Framework.TestAttribute;
 #elif MSTEST
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 // NUnit aliases
 using Test = Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute;
+using OneTimeSetUp = Microsoft.VisualStudio.TestTools.UnitTesting.ClassInitializeAttribute;
 // XUnit aliases
 using Fact = Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute;
 #endif
 
-using System;
+#if BENCHMARKDOTNET
+using BenchmarkDotNet.Running;
+using BenchmarkDotNet.Configs;
+using BenchmarkDotNet.Attributes.Jobs;
+#else
+using Benchmark = HolisticWare.Core.Testing.BenchmarkTests.Benchmark;
+using ShortRunJob = HolisticWare.Core.Testing.BenchmarkTests.ShortRunJob;
+#endif
 
-using System.Collections.Generic;
-using System.Linq;
-using System.Diagnostics;
-using System.IO;
-using System.Reflection;
+using Core.Text;
 
-using HolisticWare.Core.SampleData;
-
-namespace UnitTests.Core.Text
+namespace UnitTests.Core.Text.CharacterSeparatedValuesSamples.AndroidSupport2AndroidX
 {
-    [TestClass] // for MSTest - NUnit [TestFixture] and XUnit not needed
-    public partial class UnitTests20180318DataSetBasketball
+    public partial class Tests01
     {
         private Stopwatch sw = new Stopwatch();
 
-        private static List<BasketballTeamData> basketball_team_data_table = null;
-
-        public static List<BasketballTeamData> BasketballTeamDataTable
+        private static string LoadDataFromFile(string[] path)
         {
-            get
-            {
-                if (basketball_team_data_table == null)
-                {
-                    LoadDataFromFile();
-                }
+            #if NUNIT
+            string directory_test = TestContext.CurrentContext.TestDirectory;
+            #elif XUNIT
+            string directory_test = Environment.CurrentDirectory;
+            #elif MSTEST
+            string directory_test = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            #endif
 
-                return basketball_team_data_table;
-            }
+            List<string> path_combined = new List<string>() { directory_test };
+            path_combined.AddRange(path);
+            string path_file = Path.Combine(path_combined.ToArray());
+
+            string content = System.IO.File.ReadAllText(path_file);
+
+            return content;
         }
 
-        static string file_text_content;
-
-        public static string FileTextContent
-        {
-            get
-            {
-                if (file_text_content == null)
-                {
-                    LoadDataFromFile();
-                }
-
-                return file_text_content;
-            }
-        }
-
-        //[OneTimeSetUp]
-        private static void LoadDataFromFile()
-        {
-            string directory_test =
-                                    #if NUNIT
-                                    TestContext.CurrentContext.TestDirectory
-                                    #elif XUNIT
-                                    Environment.CurrentDirectory
-                                    #elif MSTEST
-                                    Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)
-                                    #endif
-                                    ;
-            string path_data = null;
-
-            //------------------------------------------------------------------
-            path_data = System.IO.Path.Combine
-                                    (
-                                        new string[]
-                                            {
-                                                directory_test,
-                                                $@"Xtras-SampleData",
-                                                $@"Basketball.csv",
-                                            }
-                                    );
-            using (StreamReader reader = new StreamReader(path_data))
-            {
-                file_text_content = reader.ReadToEnd();
-            }
-
-            return;
-        }
 
         private static void ConsoleOutput(IEnumerable<string[]> data)
         {
