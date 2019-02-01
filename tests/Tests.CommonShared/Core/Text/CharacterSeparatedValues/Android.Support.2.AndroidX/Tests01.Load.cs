@@ -66,7 +66,7 @@ namespace UnitTests.Core.Text.CharacterSeparatedValuesSamples.AndroidSupport2And
     {
 
         [Test()]
-        public void Load()
+        public void ParseAndroidxClassMappings()
         {
 
             //-----------------------------------------------------------------------------------------
@@ -86,19 +86,24 @@ namespace UnitTests.Core.Text.CharacterSeparatedValuesSamples.AndroidSupport2And
 
             CharacterSeparatedValues csv = new CharacterSeparatedValues()
             {
-                Separators = new string[] { "." },
-                NumberFormatInfo = new System.Globalization.NumberFormatInfo()
-                {
-                    CurrencyDecimalSeparator = ","
-                }
+                Text = csv_content
             };
-
             //-----------------------------------------------------------------------------------------
             // Act
             sw.Start();
-            IEnumerable<string[]> csv_parsed = csv.Parse(); //(lines);
+            IEnumerable<string[]> mapping = csv
+                                            .ParseTemporaryImplementation()
+                                            .ToList()
+                                            ;
+            IEnumerable<
+                            (
+                                string AndroidSupportArtifact,
+                                string AndroidXArtifact
+                            )
+                        > mapping_strongly_typed = Convert_GoogleArtifactMappings(mapping);
+
             sw.Reset();
-            ConsoleOutput(csv_parsed);
+            ConsoleOutput(mapping);
             //-----------------------------------------------------------------------------------------
             // Assert
             #if NUNIT
@@ -113,42 +118,26 @@ namespace UnitTests.Core.Text.CharacterSeparatedValuesSamples.AndroidSupport2And
             return;
         }
 
-        [Test()]
-		public void CharacterSeparatedValues_Parse()
+
+        private static
+            IEnumerable<
+                            (
+                                string AndroidSupportArtifact,
+                                string AndroidXArtifact
+                            )
+                        >
+                Convert_GoogleArtifactMappings(IEnumerable<string[]> untyped_data)
         {
-            //-----------------------------------------------------------------------------------------
-            // Arrange
-            CharacterSeparatedValues csv = new CharacterSeparatedValues()
+            foreach (string[] row in untyped_data)
             {
-                Separators = new string[] { "." },
-                HasHeader = false,
-            };
-            IEnumerable<string[]> csv_parsed = null;
-
-            //-----------------------------------------------------------------------------------------
-            // Act
-            //sw.Start();
-            csv_parsed = csv.Parse
-                                (
-                                    //FileTextContent,
-                                    //newline_separators: null,
-                                    //number_format_info: NumberFormatInfo.CurrentInfo
-                                );
-            //sw.Reset();
-            //ConsoleOutput(csv_parsed);
-            //-----------------------------------------------------------------------------------------
-            // Assert
-            #if NUNIT
-            Assert.AreEqual(csv_parsed.Count(), 129);
-            #elif XUNIT
-            Assert.Equal(csv_parsed.Count(), 129);
-            #elif MSTEST
-            Assert.AreEqual(csv_parsed.Count(), 129);
-            #endif
-            //-----------------------------------------------------------------------------------------
-
-            return;
+                yield return
+                        (
+                            AndroidSupportArtifact: row[0],
+                            AndroidXArtifact: row[1]
+                        );
+            }
         }
+
 
     }
 }

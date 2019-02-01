@@ -98,18 +98,18 @@ namespace UnitTests.Core.Text.CharacterSeparatedValuesSamples.AndroidSupport2And
         }
 
 
-        private static void ConsoleOutput(IEnumerable<string[]> data)
+        private static void ConsoleOutput(IEnumerable<IEnumerable<string>> data)
         {
             int i_row = 0;
             int n_rows = data.Count();
 
-            foreach (string[] row_items in data)
+            foreach (IEnumerable<string> row_items in data)
             {
                 Console.Write($" row[{i_row}] = ");
-                int n_items = row_items.Length;
+                int n_items = row_items.Count();
                 for (int i = 0; i < n_items; i++)
                 {
-                    Console.Write($" {i} = {row_items[i]}");
+                    Console.Write($" {i} = {row_items.ElementAt(i)}");
                 }
                 Console.WriteLine();
                 i_row++;
