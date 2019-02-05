@@ -76,6 +76,56 @@ namespace UnitTests.Core.Text.CharacterSeparatedValuesSamples.AndroidSupport2And
 {
     public partial class Tests01
     {
+#if NUNIT
+        [SetUp] 
+        public void Init()
+        {
+        TextContent = LoadDataFromFile
+                                            (
+                                                new string[]
+                                                {
+                                                    //directory_test,
+                                                    $@"mappings",
+                                                    $@"google-readonly-1-baseline",
+                                                    $@"androidx-class-mapping.csv",
+                                                }
+
+                                            );
+        }
+#elif XUNIT
+            public Tests01 ()
+	        {
+                TextContent = LoadDataFromFile
+                                            (
+                                                new string[]
+                                                {
+                                                    //directory_test,
+                                                    $@"mappings",
+                                                    $@"google-readonly-1-baseline",
+                                                    $@"androidx-class-mapping.csv",
+                                                }
+
+                                            );
+	        }
+#elif MSTEST
+        [TestInitialize]
+        public void Init()
+        {
+            TextContent = LoadDataFromFile
+                                            (
+                                                new string[]
+                                                {
+                                                    //directory_test,
+                                                    $@"mappings",
+                                                    $@"google-readonly-1-baseline",
+                                                    $@"androidx-class-mapping.csv",
+                                                }
+
+                                            );
+        }
+#endif
+        public string TextContent { get; set; }
+
         private Stopwatch sw = new Stopwatch();
 
         private static string LoadDataFromFile(string[] path)

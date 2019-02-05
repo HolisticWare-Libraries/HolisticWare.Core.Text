@@ -129,7 +129,7 @@ namespace UnitTests.Core.Text
             return;
         }
 
-        private static void ConsoleOutput(IEnumerable<string[]> data)
+        private static void ConsoleOutput(IEnumerable<IEnumerable<string>> data)
         {
             int i_row = 0;
             int n_rows = data.Count();

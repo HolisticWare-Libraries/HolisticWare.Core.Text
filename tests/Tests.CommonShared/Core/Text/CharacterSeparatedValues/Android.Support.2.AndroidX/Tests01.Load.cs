@@ -71,48 +71,46 @@ namespace UnitTests.Core.Text.CharacterSeparatedValuesSamples.AndroidSupport2And
 
             //-----------------------------------------------------------------------------------------
             // Arrange
-
-            string csv_content = LoadDataFromFile
-                                            (
-                                                new string[]
-                                                {
-                                                    //directory_test,
-                                                    $@"mappings",
-                                                    $@"google-readonly-1-baseline",
-                                                    $@"androidx-class-mapping.csv",
-                                                }
-
-                                            );
-
             CharacterSeparatedValues csv = new CharacterSeparatedValues()
             {
-                Text = csv_content
+                Text = TextContent,
+                Separators = new string[] { "," }
             };
             //-----------------------------------------------------------------------------------------
             // Act
             sw.Start();
-            IEnumerable<string[]> mapping = csv
-                                            .ParseTemporaryImplementation()
-                                            .ToList()
-                                            ;
+            IEnumerable<IEnumerable<string>> mapping = csv.Parse();
             IEnumerable<
                             (
                                 string AndroidSupportArtifact,
                                 string AndroidXArtifact
                             )
                         > mapping_strongly_typed = Convert_GoogleArtifactMappings(mapping);
-
             sw.Reset();
             ConsoleOutput(mapping);
             //-----------------------------------------------------------------------------------------
             // Assert
-            #if NUNIT
-            //Assert.AreEqual(lines.Count(), 2);
-            #elif XUNITlines
-            //Assert.Equal(lines.Count(), 2);
-            #elif MSTEST
-            //Assert.AreEqual(lines.Count(), 2);
-            #endif
+#if NUNIT
+            foreach (IEnumerable<string> item in mapping)
+            {
+                Assert.AreEqual(item.Count(), 2);
+            }
+
+            Assert.AreEqual(mapping.Count(), mapping_strongly_typed.Count());
+#elif XUNIT
+            foreach (IEnumerable<string> item in mapping)
+            {
+                Assert.Equal(item.Count(), 2);
+            }
+            Assert.Equal(mapping.Count(), mapping_strongly_typed.Count());
+#elif MSTEST
+            foreach (IEnumerable<string> item in mapping)
+            {
+                Assert.AreEqual(item.Count(), 2);
+            }
+
+            Assert.AreEqual(mapping.Count(), mapping_strongly_typed.Count());
+#endif
             //-----------------------------------------------------------------------------------------
 
             return;
@@ -126,14 +124,14 @@ namespace UnitTests.Core.Text.CharacterSeparatedValuesSamples.AndroidSupport2And
                                 string AndroidXArtifact
                             )
                         >
-                Convert_GoogleArtifactMappings(IEnumerable<string[]> untyped_data)
+                Convert_GoogleArtifactMappings(IEnumerable<IEnumerable<string>> untyped_data)
         {
-            foreach (string[] row in untyped_data)
+            foreach (IEnumerable<string> row in untyped_data)
             {
                 yield return
                         (
-                            AndroidSupportArtifact: row[0],
-                            AndroidXArtifact: row[1]
+                            AndroidSupportArtifact: row.ElementAt(0),
+                            AndroidXArtifact: row.ElementAt(1)
                         );
             }
         }

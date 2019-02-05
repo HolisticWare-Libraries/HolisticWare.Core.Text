@@ -10,7 +10,7 @@ namespace Core.Text
         public CharacterSeparatedValues()
         {
             Separators = new string[] { ",", ";", " ", @"\t", };
-            SeparatorsNewLine = new string[] { Environment.NewLine };
+            SeparatorsNewLine = new string[] { Environment.NewLine, @"\n" };
             CommentStrings = new string[] { "#", "//" };
             HasHeader = false;
             NumberFormatInfo = CultureInfo.CurrentCulture.NumberFormat;
