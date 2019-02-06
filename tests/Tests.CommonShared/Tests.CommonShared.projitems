@@ -8,7 +8,6 @@
   <PropertyGroup Label="Configuration">
     <Import_RootNamespace>Tests.CommonShared</Import_RootNamespace>
   </PropertyGroup>
-
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Core\String\UnitTestsSplitConditionally\Tests01.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\Text\CharacterSeparatedValues\Tests01_Simple.cs" />
