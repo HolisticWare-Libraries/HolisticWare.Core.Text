@@ -73,9 +73,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)Core\Text\CharacterSeparatedValues\Tests01_Simple_Data.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\Text\CharacterSeparatedValues\UnitTests20180416DataSetBasketball\Tests00Data.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\Text\CharacterSeparatedValues\UnitTests20180416DataSetBasketball\Tests01_CharacterSeparatedValues_Parse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Text\CharacterSeparatedValues\Xamarin.AndroidSupport.AndroidX\Loading.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Core\Text\CharacterSeparatedValues\" />
     <Folder Include="$(MSBuildThisFileDirectory)Core\Text\CharacterSeparatedValues\UnitTests20180416DataSetBasketball\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Core\Text\CharacterSeparatedValues\Xamarin.AndroidSupport.AndroidX\" />
   </ItemGroup>
 </Project>
