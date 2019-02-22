@@ -57,9 +57,8 @@ using System.Linq;
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
-using HolisticWare.Core.SampleData;
 
-using Core.Text;
+using HolisticWare.Core.SampleData;
 
 namespace UnitTests.Core.Text
 {
@@ -130,7 +129,7 @@ namespace UnitTests.Core.Text
             return;
         }
 
-        private static void ConsoleOutput(IEnumerable<string[]> data)
+        private static void ConsoleOutput(IEnumerable<IEnumerable<string>> data)
         {
             int i_row = 0;
             int n_rows = data.Count();

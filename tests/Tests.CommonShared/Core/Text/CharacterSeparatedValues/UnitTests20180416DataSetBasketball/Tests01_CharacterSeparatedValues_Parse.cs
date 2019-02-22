@@ -87,7 +87,7 @@ namespace UnitTests.Core.Text
             //-----------------------------------------------------------------------------------------
             // Act
             sw.Start();
-            IEnumerable<string[]> csv_parsed = csv.Parse(); //(lines);
+            IEnumerable<IEnumerable<string>> csv_parsed = csv.Parse(lines); //(lines);
             sw.Reset();
             ConsoleOutput(csv_parsed);
             //-----------------------------------------------------------------------------------------
@@ -109,18 +109,24 @@ namespace UnitTests.Core.Text
         {
             //-----------------------------------------------------------------------------------------
             // Arrange
+            string[] lines =
+           {
+                "SUT_2_US.SUT_2_NE.SUT_3_US.SUT_3_NE.SL_BA_US.SL_BA_NE.SKOK_NAP.SKOK_OBR.ASISTENC.OSOB_GRE.IZG_LOPT.UKR_LOPT.BLOKADE.K1.K2",
+                "9,000.18,000.6,000.11,000.16,000.7,000.7,000.19,000.4,000.21,000.19,000.3,000.1,000.0,000.- 31,000"
+            };
             CharacterSeparatedValues csv = new CharacterSeparatedValues()
             {
                 Separators = new string[] { "." },
-                HasHeader = false,
+                HasHeader = false
             };
-            IEnumerable<string[]> csv_parsed = null;
+            IEnumerable<IEnumerable<string>> csv_parsed = null;
 
             //-----------------------------------------------------------------------------------------
             // Act
             //sw.Start();
             csv_parsed = csv.Parse
                                 (
+                lines
                                     //FileTextContent,
                                     //newline_separators: null,
                                     //number_format_info: NumberFormatInfo.CurrentInfo
@@ -130,11 +136,11 @@ namespace UnitTests.Core.Text
             //-----------------------------------------------------------------------------------------
             // Assert
             #if NUNIT
-            Assert.AreEqual(csv_parsed.Count(), 129);
+            Assert.AreEqual(csv_parsed.Count(), 2);
             #elif XUNIT
-            Assert.Equal(csv_parsed.Count(), 129);
+            Assert.Equal(csv_parsed.Count(), 2);
             #elif MSTEST
-            Assert.AreEqual(csv_parsed.Count(), 129);
+            Assert.AreEqual(csv_parsed.Count(), 2);
             #endif
             //-----------------------------------------------------------------------------------------
 

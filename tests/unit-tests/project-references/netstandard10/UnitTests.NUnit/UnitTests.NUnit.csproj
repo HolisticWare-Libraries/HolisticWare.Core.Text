@@ -205,10 +205,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\externals\Core.Math.Data\data\HolisticWare.Core.Sample.Data\HolisticWare.Core.Sample.Data.csproj">
-      <Project>{B67B6D51-CD62-4374-9934-029CEFC1337C}</Project>
-      <Name>HolisticWare.Core.Sample.Data</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\..\..\externals\AndroidX.Data\source\HolisticWare.Xamarin.Tools.Bindings.XamarinAndroid.AndroidX.Data\HolisticWare.Xamarin.Tools.Bindings.XamarinAndroid.AndroidX.Data.csproj">
       <Project>{7AB51321-2155-47AD-BB0A-38171CA5B325}</Project>
       <Name>HolisticWare.Xamarin.Tools.Bindings.XamarinAndroid.AndroidX.Data</Name>
@@ -216,6 +212,10 @@
     <ProjectReference Include="..\..\..\..\..\source\HolisticWare.Core.Text.NetStandard10\HolisticWare.Core.Text.NetStandard10.csproj">
       <Project>{74D5F84F-9E9E-4645-B842-5057A20C2579}</Project>
       <Name>HolisticWare.Core.Text.NetStandard10</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\externals\Core.Math.Data\data\HolisticWare.Core.Sample.Data\HolisticWare.Core.Sample.Data.csproj">
+      <Project>{B67B6D51-CD62-4374-9934-029CEFC1337C}</Project>
+      <Name>HolisticWare.Core.Sample.Data</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
