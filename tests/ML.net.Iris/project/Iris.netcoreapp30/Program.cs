@@ -41,42 +41,63 @@ namespace Iris.netcoreapp30
         static readonly string _dataPath = Path.Combine(Environment.CurrentDirectory, "Data", "iris.data");
         static readonly string _modelPath = Path.Combine(Environment.CurrentDirectory, "Data", "IrisClusteringModel.zip");
 
-        static async Task Main(string[] args)
+        //static async Task Main(string[] args)
+        static void Main(string[] args)
         {
-            string file = "iris.data.csv";
-            CharacterSeparatedValues csv = new CharacterSeparatedValues();
-            string content =
-                            await csv.LoadAsync(file)
-                            //csv.LoadAsync(file).Result
-                            ;
+            //string file = "iris.data.csv";
+            //CharacterSeparatedValues csv = new CharacterSeparatedValues();
+            //string content =
+            //                await csv.LoadAsync(file)
+            //                csv.LoadAsync(file).Result
+            //                ;
 
-            var mapping = csv
-                            .ParseTemporaryImplementation()
-                            .ToList()
-                            ;
-            foreach (string[] row in mapping)
-            {
-                foreach (string c in row)
-                {
-                    Console.Write($"csv = {c}    ");
-                }
-                Console.WriteLine($"");
-            }
+            //var mapping = csv
+            //                .ParseTemporaryImplementation()
+            //                .ToList()
+            //                ;
+            //foreach (string[] row in mapping)
+            //{
+            //    foreach (string c in row)
+            //    {
+            //        Console.Write($"csv = {c}    ");
+            //    }
+            //    Console.WriteLine($"");
+            //}
 
             var mlContext = new MLContext(seed: 0);
 
-                TextLoader textLoader =
-                                    null
-                                    //new TextLoader()
-                                    ;
-                textLoader = mlContext.Data.CreateTextLoader<IrisData>(hasHeader: false, separatorChar: ',');
-                IDataView dataView = textLoader.Read(_dataPath);
+            TextLoader textLoader =
+                                null
+                                //new TextLoader()
+                                ;
+            textLoader = mlContext.Data.CreateTextLoader<IrisData>(hasHeader: false, separatorChar: ',');
+            IDataView dataView = textLoader.Read(_dataPath);
 
 
-                string featuresColumnName = "Features";
-                var pipeline = mlContext.Transforms
-                    .Concatenate(featuresColumnName, "SepalLength", "SepalWidth", "PetalLength", "PetalWidth")
-                    .Append(mlContext.Clustering.Trainers.KMeans(featuresColumnName, clustersCount: 3));
+            string featuresColumnName = "Features";
+            var pipeline = mlContext.Transforms
+                .Concatenate(featuresColumnName, "SepalLength", "SepalWidth", "PetalLength", "PetalWidth")
+                .Append(mlContext.Clustering.Trainers.KMeans(featuresColumnName, clustersCount: 3));
+
+
+
+
+            var model = pipeline.Fit(dataView);
+
+
+            using (var fileStream = new FileStream(_modelPath, FileMode.Create, FileAccess.Write, FileShare.Write))
+            {
+                mlContext.Model.Save(model, fileStream);
+            }
+
+            var predictor = model.CreatePredictionEngine<IrisData, ClusterPrediction>(mlContext);
+
+            var prediction = predictor.Predict(TestIrisData.Setosa);
+            Console.WriteLine($"Cluster: {prediction.PredictedClusterId}");
+            Console.WriteLine($"Distances: {string.Join(" ", prediction.Distances)}");
+
+            //Task.WaitAll();
+
         }
     }
 }
