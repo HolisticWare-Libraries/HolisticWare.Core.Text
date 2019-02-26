@@ -5,7 +5,7 @@
     <IsPackable>false</IsPackable>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DefineConstants>TRACE;MSTEST;DEBUG;NETCOREAPP;NETCOREAPP2_0</DefineConstants>
+    <DefineConstants>TRACE;MSTEST;NETCOREAPP2_0;DEBUG;NETCOREAPP;NETCOREAPP2_1;NETSTANDARD1_0</DefineConstants>
     <DocumentationFile>bin\Debug\netcoreapp2.0\UnitTests.MSTest.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
