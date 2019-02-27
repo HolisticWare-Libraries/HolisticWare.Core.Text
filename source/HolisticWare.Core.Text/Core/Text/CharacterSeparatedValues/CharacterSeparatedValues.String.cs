@@ -37,7 +37,7 @@ namespace Core.Text
                 string[] columns = lines[i].Split
                                         (
                                             new char[] { ',' },
-                                            StringSplitOptions.RemoveEmptyEntries
+                                            StringSplitOptions.None
                                         );
 
                 yield return columns;
