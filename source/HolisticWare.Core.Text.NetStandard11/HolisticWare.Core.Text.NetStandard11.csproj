@@ -12,8 +12,8 @@
     <Folder Include="Core\Text\CharacterSeparatedValues\" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="System.ValueTuple" Version="4.5.0-preview2-26406-04" />
-    <PackageReference Include="System.Memory" Version="4.5.1" />
+    <PackageReference Include="System.ValueTuple" Version="4.5.0" />
+    <PackageReference Include="System.Memory" Version="4.5.2" />
   </ItemGroup>
   <Import Project="..\HolisticWare.Core.Text\HolisticWare.Core.Text.projitems" Label="Shared" Condition="Exists('..\HolisticWare.Core.Text\HolisticWare.Core.Text.projitems')" />
 </Project>

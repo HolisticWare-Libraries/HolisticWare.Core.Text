@@ -17,7 +17,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Core\Text\CharacterSeparatedValues\CharacterSeparatedValues.String.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' " />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)Core\String\" />
     <Folder Include="$(MSBuildThisFileDirectory)Core\Text\CharacterSeparatedValues-old\" />
     <Folder Include="$(MSBuildThisFileDirectory)Core\Text\CharacterSeparatedValues\" />
   </ItemGroup>
