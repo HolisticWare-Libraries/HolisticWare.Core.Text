@@ -5,6 +5,12 @@ namespace Core.Strings
 {
     public static class StringExtensions
     {
+        /// <summary>
+        /// Too slow.
+        /// </summary>
+        /// <param name="s"></param>
+        /// <param name="character"></param>
+        /// <returns></returns>
         public static IEnumerable<string> SplitWithCharacter(this string s, char character)
         {
             ReadOnlyMemory<char> memory = s.AsMemory();
@@ -40,6 +46,12 @@ namespace Core.Strings
             }
         }
 
+        /// <summary>
+        /// Too slow.
+        /// </summary>
+        /// <param name="s"></param>
+        /// <param name="separators"></param>
+        /// <returns></returns>
         public static IEnumerable<string> SplitWithoutEmptySpaces(this string s, string[] separators)
         {
             ReadOnlyMemory<char> readOnlyMemory = s.AsMemory();
@@ -81,6 +93,34 @@ namespace Core.Strings
                     }
 
                     start_index = i + length_of_item;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Very Fast - super fast.
+        /// </summary>
+        /// <param name="s"></param>
+        /// <param name="separators"></param>
+        /// <returns></returns>
+        public static IEnumerable<string> FastSplit(this string s, char[] separators)
+        {
+            ReadOnlyMemory<char> stringAsMemory = s.AsMemory();
+            var length = stringAsMemory.Length;
+
+            while (stringAsMemory.Span.GetEnumerator().MoveNext())
+            {
+                int idx = stringAsMemory.Span.IndexOfAny(separators);
+                if (idx != -1)
+                {
+                    yield return stringAsMemory.Slice(0, idx).ToString();
+                    stringAsMemory = stringAsMemory.Slice(idx + 1);
+                    length = stringAsMemory.Length;
+                }
+                else
+                {
+                    yield return stringAsMemory.ToString();
+                    stringAsMemory = default;
                 }
             }
         }
