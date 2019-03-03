@@ -106,7 +106,6 @@ namespace Core.Strings
         public static IEnumerable<string> FastSplit(this string s, char[] separators)
         {
             ReadOnlyMemory<char> stringAsMemory = s.AsMemory();
-            var length = stringAsMemory.Length;
 
             while (stringAsMemory.Span.GetEnumerator().MoveNext())
             {
@@ -115,7 +114,6 @@ namespace Core.Strings
                 {
                     yield return stringAsMemory.Slice(0, idx).ToString();
                     stringAsMemory = stringAsMemory.Slice(idx + 1);
-                    length = stringAsMemory.Length;
                 }
                 else
                 {
