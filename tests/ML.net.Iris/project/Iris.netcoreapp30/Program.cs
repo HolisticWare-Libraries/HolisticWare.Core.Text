@@ -71,7 +71,7 @@ namespace Iris.netcoreapp30
                                 //new TextLoader()
                                 ;
             textLoader = mlContext.Data.CreateTextLoader<IrisData>(hasHeader: false, separatorChar: ',');
-            IDataView dataView = textLoader.Read(_dataPath);
+            IDataView dataView = textLoader.Load(_dataPath);
 
 
             string featuresColumnName = "Features";
