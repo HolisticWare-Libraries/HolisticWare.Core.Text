@@ -44,3 +44,7 @@ Text utilities:
    http://fileformats.archiveteam.org/wiki/Electronic_File_Formats
    
    
+## Multitargeting
+
+*   https://github.com/xamarin/Essentials/blob/master/Xamarin.Essentials/Xamarin.Essentials.csproj
+
