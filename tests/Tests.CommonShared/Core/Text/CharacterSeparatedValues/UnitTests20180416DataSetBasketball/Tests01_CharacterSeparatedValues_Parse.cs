@@ -87,7 +87,7 @@ namespace UnitTests.Core.Text
             //-----------------------------------------------------------------------------------------
             // Act
             sw.Start();
-            IEnumerable<IEnumerable<string>> csv_parsed = csv.Parse(lines); //(lines);
+            IEnumerable<IEnumerable<string>> csv_parsed = null; //csv.Parse(lines); //(lines);
             sw.Reset();
             ConsoleOutput(csv_parsed);
             //-----------------------------------------------------------------------------------------
@@ -123,24 +123,25 @@ namespace UnitTests.Core.Text
 
             //-----------------------------------------------------------------------------------------
             // Act
-            //sw.Start();
-            csv_parsed = csv.Parse
-                                (
-                lines
-                                    //FileTextContent,
-                                    //newline_separators: null,
-                                    //number_format_info: NumberFormatInfo.CurrentInfo
-                                );
-            //sw.Reset();
+            sw.Start();
+            //csv_parsed = csv.Parse
+            //                    (
+            //                        lines
+            //                        FileTextContent,
+            //                        newline_separators: null,
+            //                        number_format_info: NumberFormatInfo.CurrentInfo
+            //                    );
+            sw.Reset();
             //ConsoleOutput(csv_parsed);
             //-----------------------------------------------------------------------------------------
             // Assert
+            int count = -1; // csv_parsed.Count();
             #if NUNIT
-            Assert.AreEqual(csv_parsed.Count(), 2);
+            Assert.AreEqual(count, 2);
             #elif XUNIT
-            Assert.Equal(csv_parsed.Count(), 2);
+            Assert.Equal(count, 2);
             #elif MSTEST
-            Assert.AreEqual(csv_parsed.Count(), 2);
+            Assert.AreEqual(count, 2);
             #endif
             //-----------------------------------------------------------------------------------------
 

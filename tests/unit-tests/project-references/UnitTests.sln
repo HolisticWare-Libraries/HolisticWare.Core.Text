@@ -62,6 +62,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests.NUnit.XamarinIOS"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.CommonShared.netstandard", "Tests.CommonShared.netstandard\Tests.CommonShared.netstandard.csproj", "{2039F564-4F00-4FDF-9E50-02F7ABC1AC29}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HolisticWare.Core.Text.NetStandard10", "..\..\..\source\HolisticWare.Core.Text.NetStandard10\HolisticWare.Core.Text.NetStandard10.csproj", "{D216B2BC-25FC-43F9-AF5E-E4175C9FAA1E}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "HolisticWare.Core.Text", "..\..\..\source\HolisticWare.Core.Text\HolisticWare.Core.Text.shproj", "{921CFEA5-564C-4975-A20F-8CAD32EA88E3}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		..\..\Tests.CommonShared\Tests.CommonShared.projitems*{04f3d823-abea-46dd-9ec2-56c08ca074db}*SharedItemsImports = 4
@@ -333,6 +337,18 @@ Global
 		{2039F564-4F00-4FDF-9E50-02F7ABC1AC29}.Release|iPhone.Build.0 = Release|Any CPU
 		{2039F564-4F00-4FDF-9E50-02F7ABC1AC29}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{2039F564-4F00-4FDF-9E50-02F7ABC1AC29}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{D216B2BC-25FC-43F9-AF5E-E4175C9FAA1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D216B2BC-25FC-43F9-AF5E-E4175C9FAA1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D216B2BC-25FC-43F9-AF5E-E4175C9FAA1E}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{D216B2BC-25FC-43F9-AF5E-E4175C9FAA1E}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{D216B2BC-25FC-43F9-AF5E-E4175C9FAA1E}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{D216B2BC-25FC-43F9-AF5E-E4175C9FAA1E}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{D216B2BC-25FC-43F9-AF5E-E4175C9FAA1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D216B2BC-25FC-43F9-AF5E-E4175C9FAA1E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D216B2BC-25FC-43F9-AF5E-E4175C9FAA1E}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{D216B2BC-25FC-43F9-AF5E-E4175C9FAA1E}.Release|iPhone.Build.0 = Release|Any CPU
+		{D216B2BC-25FC-43F9-AF5E-E4175C9FAA1E}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{D216B2BC-25FC-43F9-AF5E-E4175C9FAA1E}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -358,8 +374,28 @@ Global
 		{6CAA3CBC-C59D-4423-954F-3BFCC07B600C} = {5C9F8548-D479-4F0E-8FB0-3E364EDF8A4B}
 		{F375D21F-33F2-44EA-BE18-F777CE161F4E} = {5C9F8548-D479-4F0E-8FB0-3E364EDF8A4B}
 		{E40E3214-64F4-415D-A0A7-197F9D6D082D} = {5C9F8548-D479-4F0E-8FB0-3E364EDF8A4B}
+		{D216B2BC-25FC-43F9-AF5E-E4175C9FAA1E} = {56123580-99E9-45AC-8300-ABF8EE1D021E}
+		{921CFEA5-564C-4975-A20F-8CAD32EA88E3} = {56123580-99E9-45AC-8300-ABF8EE1D021E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {440F697D-77CA-4EA5-9C13-585B4998A64A}
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		Policies = $0
+		$0.DotNetNamingPolicy = $1
+		$1.DirectoryNamespaceAssociation = PrefixedHierarchical
+		$0.TextStylePolicy = $2
+		$2.TabsToSpaces = True
+		$2.scope = text/x-csharp
+		$0.CSharpFormattingPolicy = $3
+		$3.scope = text/x-csharp
+		$0.TextStylePolicy = $4
+		$4.TabsToSpaces = True
+		$4.scope = text/plain
+		$0.TextStylePolicy = $5
+		$5.inheritsSet = null
+		$5.scope = text/csv
+		$0.StandardHeader = $6
+		$6.Text = @/*\n   Copyright (c) ${Year}-${Month}\n\n   ${AuthorName}\n   ${FileName}\n\n   Permission is hereby granted, free of charge, to any person\n   obtaining a copy of this software and associated documentation\n   files (the "Software"), to deal in the Software without\n   restriction, including without limitation the rights to use,\n   copy, modify, merge, publish, distribute, sublicense, and/or sell\n   copies of the Software, and to permit persons to whom the\n   Software is furnished to do so, subject to the following\n   conditions:\n   \n   The above copyright notice and this permission notice shall be\n   included in all copies or substantial portions of the Software.\n   \n   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,\n   EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES\n   OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND\n   NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT\n   HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,\n   WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING\n   FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR\n   OTHER DEALINGS IN THE SOFTWARE.\n*/
 	EndGlobalSection
 EndGlobal

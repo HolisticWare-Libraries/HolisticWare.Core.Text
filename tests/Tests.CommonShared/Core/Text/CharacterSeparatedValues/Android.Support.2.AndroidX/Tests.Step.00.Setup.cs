@@ -92,7 +92,7 @@ namespace UnitTests.Core.Text.CharacterSeparatedValuesSamples.AndroidSupport2And
 
                                             );
         }
-#elif XUNIT
+        #elif XUNIT
             public Tests01 ()
 	        {
                 TextContent = LoadDataFromFile
@@ -107,7 +107,7 @@ namespace UnitTests.Core.Text.CharacterSeparatedValuesSamples.AndroidSupport2And
 
                                             );
 	        }
-#elif MSTEST
+        #elif MSTEST
         [TestInitialize]
         public void Init()
         {
@@ -123,7 +123,8 @@ namespace UnitTests.Core.Text.CharacterSeparatedValuesSamples.AndroidSupport2And
 
                                             );
         }
-#endif
+        #endif
+
         public string TextContent { get; set; }
 
         private Stopwatch sw = new Stopwatch();

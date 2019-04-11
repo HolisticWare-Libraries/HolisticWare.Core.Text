@@ -60,33 +60,36 @@ using Fact = Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute;
 
 using Core.Text;
 
-namespace UnitTests.Core.Text
+namespace UnitTests.Core_Text_CharacterSeparatedValues
 {
     [TestClass] // for MSTest - NUnit [TestFixture] and XUnit not needed
-    public partial class Tests01_Simple
+    public partial class TestsStaticAPI
     {
-        string text = "SUT_2_US.SUT_2_NE.SUT_3_US.SUT_3_NE.SL_BA_US.SL_BA_NE.SKOK_NAP.SKOK_OBR.ASISTENC.OSOB_GRE.IZG_LOPT.UKR_LOPT.BLOKADE.K1.K2"
+        string text =
+            "SUT_2_US.SUT_2_NE.SUT_3_US.SUT_3_NE.SL_BA_US.SL_BA_NE.SKOK_NAP.SKOK_OBR.ASISTENC.OSOB_GRE.IZG_LOPT.UKR_LOPT.BLOKADE.K1.K2"
             + Environment.NewLine +
             "9,000.18,000.6,000.11,000.16,000.7,000.7,000.19,000.4,000.21,000.19,000.3,000.1,000.0,000.- 31,000"
             ;
-#if NUNIT
+
+        #if NUNIT
         [SetUp] 
         public void Init()
         {
             TextContent = text;
         }
-#elif XUNIT
-            public Tests01_Simple ()
-	        {
-                TextContent = text;
-	        }
-#elif MSTEST
+        #elif XUNIT
+        public TestsStaticAPI ()
+	    {
+            TextContent = text;
+	    }
+        #elif MSTEST
         [TestInitialize]
         public void Init()
         {
             TextContent = text;
         }
-#endif
+        #endif
+
         public string TextContent { get; set; }
 
         private Stopwatch sw = new Stopwatch();

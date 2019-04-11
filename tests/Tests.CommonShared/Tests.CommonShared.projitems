@@ -10,16 +10,18 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Core\String\UnitTestsSplitConditionally\Tests01.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Core\Text\CharacterSeparatedValues\Tests01_Simple.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Core\Text\CharacterSeparatedValues\Tests01_Simple_Data.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\Text\CharacterSeparatedValues\UnitTests20180416DataSetBasketball\Tests00Data.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\Text\CharacterSeparatedValues\UnitTests20180416DataSetBasketball\Tests01_CharacterSeparatedValues_Parse.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Core\Text\CharacterSeparatedValues\Android.Support.2.AndroidX\Tests01.Load.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Core\Text\CharacterSeparatedValues\Android.Support.2.AndroidX\Tests01.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Text\CharacterSeparatedValues\Android.Support.2.AndroidX\Tests.Step.01.ParsingLines.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Text\CharacterSeparatedValues\Android.Support.2.AndroidX\Tests.Step.00.Setup.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Text\CharacterSeparatedValues\TestsStaticAPI\Tests01_ParseLine.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Text\CharacterSeparatedValues\TestsStaticAPI\Tests01_Simple_Data.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Text\CharacterSeparatedValues\TestsStaticAPI\Tests01_ParseLines.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Core\Text\CharacterSeparatedValues\" />
     <Folder Include="$(MSBuildThisFileDirectory)Core\Text\CharacterSeparatedValues\UnitTests20180416DataSetBasketball\" />
     <Folder Include="$(MSBuildThisFileDirectory)Core\Text\CharacterSeparatedValues\Android.Support.2.AndroidX\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Core\Text\CharacterSeparatedValues\TestsStaticAPI\" />
   </ItemGroup>
 </Project>

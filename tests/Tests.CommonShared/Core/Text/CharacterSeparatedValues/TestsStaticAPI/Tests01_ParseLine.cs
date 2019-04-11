@@ -60,39 +60,57 @@ using Fact = Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute;
 
 using Core.Text;
 
-namespace UnitTests.Core.Text
+namespace UnitTests.Core_Text_CharacterSeparatedValues
 {
-    public partial class Tests01_Simple
+    public partial class TestsStaticAPI
     {
         [Test()]
-        public void CharacterSeparatedValues_Header()
+        public void CharacterSeparatedValues_API_static_ParseLine_01()
         {
             //-----------------------------------------------------------------------------------------
             // Arrange
-            CharacterSeparatedValues csv = new CharacterSeparatedValues()
-            {
-                Text = TextContent,
-                Separators = new string[] { "." },
-                NumberFormatInfo = new System.Globalization.NumberFormatInfo()
-                {
-                    CurrencyDecimalSeparator = ","
-                }
-            };
+            string line = "1,2,3,4,5,6,7,8,9,10,11,12,13";
             //-----------------------------------------------------------------------------------------
             // Act
             sw.Start();
-            IEnumerable<IEnumerable<string>> lines = csv.Parse();  //(text);
-            csv.Parse(); //(text);
+            IEnumerable<string> line_parts = CharacterSeparatedValues.ParseLine(line, ',');  //(text);
+
             sw.Reset();
             //ConsoleOutput(csv_parsed);
             //-----------------------------------------------------------------------------------------
             // Assert
+            int count = line_parts.Count();
             #if NUNIT
-            Assert.AreEqual(lines.Count(), 2);
+            Assert.AreEqual(count, 13);
             #elif XUNIT
-            Assert.Equal(lines.Count(), 2);
+            Assert.Equal(count, 13);
             #elif MSTEST
-            Assert.AreEqual(lines.Count(), 2);
+            Assert.AreEqual(count, 14);
+            #endif
+
+            string[] line_parts_assert = new string[]
+            {
+                "1", "2", "3", "4", "5", "6", "7",
+                "8", "9", "10", "11", "12", "13", 
+            };
+            #if NUNIT && !NUNIT_LITE
+            CollectionAssert.AreEquivalent
+                        (
+                            line_parts_assert.ToList(),
+                            line_parts
+                        );
+            #elif XUNIT
+            Assert.Equal
+                        (
+                            line_parts_assert.ToList(),
+                            line_parts
+                        );
+            #elif MSTEST
+            CollectionAssert.AreEquivalent
+                        (
+                            line_parts_assert.ToList(),
+                            line_parts.ToArray()
+                        );
             #endif
             //-----------------------------------------------------------------------------------------
 
@@ -100,42 +118,58 @@ namespace UnitTests.Core.Text
         }
 
         [Test()]
-		public void CharacterSeparatedValues_Parse()
+        public void CharacterSeparatedValues_API_static_ParseLine_02()
         {
             //-----------------------------------------------------------------------------------------
             // Arrange
-            CharacterSeparatedValues csv = new CharacterSeparatedValues()
-            {
-                Text = TextContent,
-                Separators = new string[] { "." },
-                HasHeader = false,
-            };
-            IEnumerable<IEnumerable<string>> csv_parsed = null;
-
+            string line = "1,2,3,4,5,6,7,8,9,10,11,12,13";
             //-----------------------------------------------------------------------------------------
             // Act
             sw.Start();
-            csv_parsed = csv.Parse
-                                (
-                                    //FileTextContent,
-                                    //newline_separators: null,
-                                    //number_format_info: NumberFormatInfo.CurrentInfo
-                                );
+            IEnumerable<string> line_parts = CharacterSeparatedValues.ParseLine(line, ';');  //(text);
+
             sw.Reset();
             //ConsoleOutput(csv_parsed);
             //-----------------------------------------------------------------------------------------
             // Assert
-#if NUNIT
-            Assert.AreEqual(csv_parsed.Count(), 2);
-#elif XUNIT
-            Assert.Equal(csv_parsed.Count(), 2);
-#elif MSTEST
-            Assert.AreEqual(csv_parsed.Count(), 2);
+            int count = line_parts.Count();
+            #if NUNIT && !NUNIT_LITE
+            Assert.AreEqual(count, 1);
+            #elif XUNIT
+            Assert.Equal(count, 1);
+            #elif MSTEST
+            Assert.AreEqual(count, 1);
             #endif
+
+            string[] line_parts_assert = new string[]
+            {
+                "1,2,3,4,5,6,7,8,9,10,11,12,13"
+            };
+            #if NUNIT && !NUNIT_LITE
+            CollectionAssert.AreEquivalent
+                        (
+                            line_parts_assert.ToList(),
+                            line_parts
+                        );
+            #elif XUNIT
+            Assert.Equal
+                        (
+                            line_parts_assert.ToList(),
+                            line_parts
+                        );
+            #elif MSTEST
+            CollectionAssert.AreEquivalent
+                        (
+                            line_parts_assert.ToList(),
+                            line_parts.ToArray()
+                        );
+            #endif
+ 
             //-----------------------------------------------------------------------------------------
 
             return;
         }
+
 
     }
 }

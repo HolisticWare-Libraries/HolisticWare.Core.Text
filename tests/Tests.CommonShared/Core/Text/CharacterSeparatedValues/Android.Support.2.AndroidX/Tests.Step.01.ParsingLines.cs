@@ -79,7 +79,7 @@ namespace UnitTests.Core.Text.CharacterSeparatedValuesSamples.AndroidSupport2And
             //-----------------------------------------------------------------------------------------
             // Act
             sw.Start();
-            IEnumerable<IEnumerable<string>> mapping = csv.Parse();
+            IEnumerable<IEnumerable<string>> mapping = null; //csv.Parse()
             IEnumerable<
                             (
                                 string AndroidSupportArtifact,
@@ -90,27 +90,27 @@ namespace UnitTests.Core.Text.CharacterSeparatedValuesSamples.AndroidSupport2And
             ConsoleOutput(mapping);
             //-----------------------------------------------------------------------------------------
             // Assert
-#if NUNIT
+            #if NUNIT
             foreach (IEnumerable<string> item in mapping)
             {
                 Assert.AreEqual(item.Count(), 2);
             }
 
             Assert.AreEqual(mapping.Count(), mapping_strongly_typed.Count());
-#elif XUNIT
+            #elif XUNIT
             foreach (IEnumerable<string> item in mapping)
             {
                 Assert.Equal(item.Count(), 2);
             }
             Assert.Equal(mapping.Count(), mapping_strongly_typed.Count());
-#elif MSTEST
+            #elif MSTEST
             foreach (IEnumerable<string> item in mapping)
             {
                 Assert.AreEqual(item.Count(), 2);
             }
 
             Assert.AreEqual(mapping.Count(), mapping_strongly_typed.Count());
-#endif
+            #endif
             //-----------------------------------------------------------------------------------------
 
             return;
@@ -118,7 +118,7 @@ namespace UnitTests.Core.Text.CharacterSeparatedValuesSamples.AndroidSupport2And
 
 
         private static
-            IEnumerable<
+                IEnumerable<
                             (
                                 string AndroidSupportArtifact,
                                 string AndroidXArtifact

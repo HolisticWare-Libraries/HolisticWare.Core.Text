@@ -22,29 +22,20 @@ namespace Core.Text
             set;
         }
 
-        public IEnumerable<string[]> ParseTemporaryImplementation()
-                        // // Error CS0702: Constraint cannot be special class 'ValueType'         
-                        // where T : ValueType
+        public Func
+                <
+                    string,
+                    char,
+                    IEnumerable<string[]>
+                >
+                    ParseLineImplementation 
         {
-            string[] lines = Text.Split
-                                        (
-                                            new string[] { Environment.NewLine, @"\n" },
-                                            StringSplitOptions.RemoveEmptyEntries
-                                        );
-
-            for (int i = 0; i < lines.Length; i++)
-            {
-                string[] columns = lines[i].Split
-                                        (
-                                            new char[] { ',' },
-                                            StringSplitOptions.None
-                                        );
-
-                yield return columns;
-            }
+            get;
+            set;
         }
 
-        public delegate IEnumerable<T> TransformationMethod<T>(IEnumerable<string[]> untyped_data);
+
+        public delegate IEnumerable<RowType> TransformationMethod<RowType>(IEnumerable<string[]> untyped_data);
 
         protected TransformationMethod<string[]> TransformationDefault;
 

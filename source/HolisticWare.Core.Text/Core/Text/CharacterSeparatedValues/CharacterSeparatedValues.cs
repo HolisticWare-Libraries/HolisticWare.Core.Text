@@ -32,6 +32,36 @@ namespace Core.Text
             set;
         }
 
+        public string[] Separators 
+        { 
+            get; 
+            set; 
+        }
+
+        public string[] SeparatorsNewLine
+        {
+            get;
+            set;
+        }
+
+        public string[] CommentStrings 
+        { 
+            get; 
+            set; 
+        }
+
+        public bool HasHeader 
+        { 
+            get; 
+            set; 
+        }
+
+        public NumberFormatInfo NumberFormatInfo
+        {
+            get;
+            set;
+        }
+
 
     }
 }
