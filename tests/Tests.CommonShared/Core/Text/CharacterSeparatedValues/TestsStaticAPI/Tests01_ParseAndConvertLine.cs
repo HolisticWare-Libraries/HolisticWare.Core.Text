@@ -65,7 +65,7 @@ namespace UnitTests.Core_Text_CharacterSeparatedValues
     public partial class TestsStaticAPI
     {
         [Test()]
-        public void CharacterSeparatedValues_API_static_ParseLine_01()
+        public void CharacterSeparatedValues_API_static_ParseAndConvertLine_01()
         {
             //-----------------------------------------------------------------------------------------
             // Arrange
@@ -73,7 +73,8 @@ namespace UnitTests.Core_Text_CharacterSeparatedValues
             //-----------------------------------------------------------------------------------------
             // Act
             sw.Start();
-            IEnumerable<string> line_parts = CharacterSeparatedValues.ParseLine
+            IEnumerable<string> line_parts = CharacterSeparatedValues
+                                                    .ParseAndConvertLine<IEnumerable<string>>
                                                                             (
                                                                                 line,
                                                                                 ','
@@ -122,7 +123,7 @@ namespace UnitTests.Core_Text_CharacterSeparatedValues
         }
 
         [Test()]
-        public void CharacterSeparatedValues_API_static_ParseLine_02()
+        public void CharacterSeparatedValues_API_static_ParseAndConvertLine_02()
         {
             //-----------------------------------------------------------------------------------------
             // Arrange
@@ -130,10 +131,11 @@ namespace UnitTests.Core_Text_CharacterSeparatedValues
             //-----------------------------------------------------------------------------------------
             // Act
             sw.Start();
-            IEnumerable<string> line_parts = CharacterSeparatedValues.ParseLine
+            IEnumerable<string> line_parts = CharacterSeparatedValues
+                                                    .ParseAndConvertLine<IEnumerable<string>>
                                                                             (
                                                                                 line,
-                                                                                ';'
+                                                                                ','
                                                                             );
 
             sw.Reset();
@@ -174,10 +176,6 @@ namespace UnitTests.Core_Text_CharacterSeparatedValues
             #endif
  
             //-----------------------------------------------------------------------------------------
-
-
-
-
 
             return;
         }
