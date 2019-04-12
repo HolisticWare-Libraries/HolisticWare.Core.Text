@@ -68,5 +68,69 @@ namespace Core.Text
         }
         //============================================================================================================
 
+        //============================================================================================================
+        public static TypeCustom ParseAndConvertLine<TypeCustom>
+                                                        (
+                                                            string line,
+                                                            char separator,
+                                                            Func<IEnumerable<string>, TypeCustom> conversion = null
+                                                        )
+        {
+            TypeCustom result = default(TypeCustom);
+            Type type_type_custom = typeof(TypeCustom);
+
+            if (conversion != null)
+            {
+                //result = conversion
+                //                (
+                //                    ParseAndConvertLineDefaultImplementation(line, separator)
+                //                );
+            }
+            else if ( type_type_custom == typeof(IEnumerable<string>) )
+            {
+                //result = ParseAndConvertLineDefaultImplementation(line, separator);
+
+            }
+
+            return result;
+        }
+
+        public static IEnumerable<string> ConvertLineDefaultImplementation
+                                                            (
+                                                                IEnumerable<string> items
+                                                            )
+        {
+            return items;
+        }
+
+        public static T ConvertLine<T>
+                                                            (
+                                                                IEnumerable<string> items,
+                                                                Func<IEnumerable<string>, T> converter = null
+                                                            )
+        {
+            return converter(items);
+        }
+
+
+
+
+
+        public static IEnumerable<string> ParseAndConvertLine
+                                                (
+                                                    string line,
+                                                    IEnumerable<char> separators,
+                                                    Func<IEnumerable<string>, Type> conversion
+                                                )
+        {
+            if (separators.Count() == 1)
+            {
+                char separator = separators.ElementAt(0);
+                ParseLines(line, separator);
+            }
+
+            return line.Split(separators.ToArray());
+        }
+        //============================================================================================================
     }
 }
