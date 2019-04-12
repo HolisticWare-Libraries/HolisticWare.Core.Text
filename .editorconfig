@@ -3,7 +3,7 @@
 # https://docs.microsoft.com/en-us/visualstudio/mac/editorconfig
 # https://editorconfig.org/#supported-properties
 # https://www.jetbrains.com/help/resharper/EditorConfig_Index.html
-
+# https://docs.microsoft.com/en-us/visualstudio/ide/editorconfig-code-style-settings-reference?view=vs-2019
 
 # top-most EditorConfig file
 root = true
@@ -18,7 +18,11 @@ indent_size=4
 trim_trailing_whitespace = true
 
 [*.cs]
-csharp_new_line_before_open_brace = none
+csharp_new_line_before_open_brace = all
+dotnet_style_qualification_for_field = true
+dotnet_style_qualification_for_property = true
+dotnet_style_qualification_for_method = true
+dotnet_style_qualification_for_event = true
 
 # Matches multiple files with brace expansion notation
 # Set default charset
