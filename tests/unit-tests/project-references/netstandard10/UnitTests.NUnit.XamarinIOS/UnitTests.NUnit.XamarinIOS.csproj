@@ -101,10 +101,10 @@
     <Reference Include="Xamarin.iOS" />
     <Reference Include="MonoTouch.NUnitLite" />
     <Reference Include="Nito.AsyncEx.Tasks">
-      <HintPath>..\packages\Nito.AsyncEx.Tasks.1.1.0\lib\netstandard1.3\Nito.AsyncEx.Tasks.dll</HintPath>
+      <HintPath>..\..\packages\Nito.AsyncEx.Tasks.5.0.0\lib\netstandard2.0\Nito.AsyncEx.Tasks.dll</HintPath>
     </Reference>
     <Reference Include="Nito.AsyncEx.Context">
-      <HintPath>..\packages\Nito.AsyncEx.Context.1.1.0\lib\netstandard1.3\Nito.AsyncEx.Context.dll</HintPath>
+      <HintPath>..\..\packages\Nito.AsyncEx.Context.5.0.0\lib\netstandard2.0\Nito.AsyncEx.Context.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
