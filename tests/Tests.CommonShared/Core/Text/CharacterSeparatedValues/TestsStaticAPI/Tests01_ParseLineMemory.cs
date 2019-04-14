@@ -90,9 +90,6 @@ namespace UnitTests.Core_Text_CharacterSeparatedValues
             #elif MSTEST
             Assert.AreEqual(count, 13);
             #endif
-#elif MSTEST
-            Assert.AreEqual(count, 13);
-#endif
 
             string[] line_parts_assert = new string[]
             {
