@@ -27,5 +27,16 @@ namespace Core.Text
         {
             return lines.FastSplit(row_separator);
         }
+
+        public static IEnumerable<string> ParseLinesMemory(string lines, IEnumerable<char> row_separators)
+        {
+            if (row_separators.Count() == 1)
+            {
+                char separator = row_separators.ElementAt(0);
+                ParseLinesMemory(lines, row_separators);
+            }
+
+            return lines.FastSplit(row_separators.ToArray());
+        }
     }
 }
