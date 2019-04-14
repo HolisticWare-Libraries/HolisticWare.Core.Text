@@ -89,7 +89,7 @@ namespace UnitTests.Core_Text_CharacterSeparatedValues
 #elif XUNIT
             Assert.Equal(count, 13);
 #elif MSTEST
-            Assert.AreEqual(count, 14);
+            Assert.AreEqual(count, 13);
 #endif
 
             string[] line_parts_assert = new string[]
@@ -118,6 +118,62 @@ namespace UnitTests.Core_Text_CharacterSeparatedValues
 #endif
             //-----------------------------------------------------------------------------------------
 
+            return;
+        }
+
+        [Test()]
+        public void CharacterSeparatedValues_API_static_ParseLineMemory_02()
+        {
+            //-----------------------------------------------------------------------------------------
+            // Arrange
+            string line = "1,2,3,4,5,6,7,8,9,10,11,12,13";
+            //-----------------------------------------------------------------------------------------
+            // Act
+            sw.Start();
+            IEnumerable<string> line_parts = CharacterSeparatedValues.ParseLineMemory
+                                                                            (
+                                                                                line,
+                                                                                ';'
+                                                                            );
+
+            sw.Reset();
+            //ConsoleOutput(csv_parsed);
+            //-----------------------------------------------------------------------------------------
+            // Assert
+            int count = line_parts.Count();
+#if NUNIT && !NUNIT_LITE
+            Assert.AreEqual(count, 1);
+#elif XUNIT
+            Assert.Equal(count, 1);
+#elif MSTEST
+            Assert.AreEqual(count, 1);
+#endif
+
+            string[] line_parts_assert = new string[]
+            {
+                "1,2,3,4,5,6,7,8,9,10,11,12,13"
+            };
+#if NUNIT && !NUNIT_LITE
+            CollectionAssert.AreEquivalent
+                        (
+                            line_parts_assert.ToList(),
+                            line_parts
+                        );
+#elif XUNIT
+            Assert.Equal
+                        (
+                            line_parts_assert.ToList(),
+                            line_parts
+                        );
+#elif MSTEST
+            CollectionAssert.AreEquivalent
+                        (
+                            line_parts_assert.ToList(),
+                            line_parts.ToArray()
+                        );
+#endif
+
+            //-----------------------------------------------------------------------------------------
             return;
         }
     }
