@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace Core.Strings
@@ -110,6 +110,32 @@ namespace Core.Strings
             while (stringAsMemory.Span.GetEnumerator().MoveNext())
             {
                 int idx = stringAsMemory.Span.IndexOfAny(separators);
+                if (idx != -1)
+                {
+                    yield return stringAsMemory.Slice(0, idx).ToString();
+                    stringAsMemory = stringAsMemory.Slice(idx + 1);
+                }
+                else
+                {
+                    yield return stringAsMemory.ToString();
+                    stringAsMemory = default;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Very Fast - one character as parameter.
+        /// </summary>
+        /// <param name="s"></param>
+        /// <param name="separator"></param>
+        /// <returns></returns>
+        public static IEnumerable<string> FastSplit(this string s, char separator)
+        {
+            ReadOnlyMemory<char> stringAsMemory = s.AsMemory();
+
+            while (stringAsMemory.Span.GetEnumerator().MoveNext())
+            {
+                int idx = stringAsMemory.Span.IndexOf(separator);
                 if (idx != -1)
                 {
                     yield return stringAsMemory.Slice(0, idx).ToString();
