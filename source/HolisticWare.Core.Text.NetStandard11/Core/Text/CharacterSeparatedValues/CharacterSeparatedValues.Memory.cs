@@ -48,7 +48,6 @@ namespace Core.Text
                 {
                     char ch = text.Span[i];
 
-                    int j = 0;
                     if (ch == row_delimiter)
                     {
                         yield return this.ParseRowUsingMemory(text.Slice(i_0, i), column_delimiter);
@@ -167,7 +166,6 @@ namespace Core.Text
                 {
                     char ch = text.Span[i];
 
-                    int j = 0;
                     if (ch == row_delimiter)
                     {
                         yield return this.ParseRowUsingString(text.Slice(i_0, i), column_delimiter);
