@@ -78,44 +78,43 @@ namespace UnitTests.Core_Text_CharacterSeparatedValues
                                                                                 line,
                                                                                 ','
                                                                             );
-
             sw.Reset();
             //ConsoleOutput(csv_parsed);
             //-----------------------------------------------------------------------------------------
-            // Assert
+            // Assert            int count = line_parts.Count();
             int count = line_parts.Count();
-#if NUNIT
+            #if NUNIT
             Assert.AreEqual(count, 13);
-#elif XUNIT
+            #elif XUNIT
             Assert.Equal(count, 13);
-#elif MSTEST
-            Assert.AreEqual(count, 14);
-#endif
+            #elif MSTEST
+            Assert.AreEqual(count, 13);
+            #endif
 
             string[] line_parts_assert = new string[]
             {
                 "1", "2", "3", "4", "5", "6", "7",
                 "8", "9", "10", "11", "12", "13",
             };
-#if NUNIT && !NUNIT_LITE
+            #if NUNIT && !NUNIT_LITE
             CollectionAssert.AreEquivalent
                         (
                             line_parts_assert.ToList(),
                             line_parts
                         );
-#elif XUNIT
+            #elif XUNIT
             Assert.Equal
                         (
                             line_parts_assert.ToList(),
                             line_parts
                         );
-#elif MSTEST
+            #elif MSTEST
             CollectionAssert.AreEquivalent
                         (
                             line_parts_assert.ToList(),
                             line_parts.ToArray()
                         );
-#endif
+            #endif
             //-----------------------------------------------------------------------------------------
 
             return;
