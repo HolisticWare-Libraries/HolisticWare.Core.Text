@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\source\HolisticWare.Core.Text.NetStandard11\HolisticWare.Core.Text.NetStandard11.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="BenchmarkDotNet" Version="0.11.5" />
+    <PackageReference Include="TinyCsvParser" Version="2.3.0" />
+    <PackageReference Include="NReco.Csv" Version="1.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="androidx-class-mapping.csv" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="androidx-class-mapping.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <Import Project="..\Tests.Common.Shared\Tests.Common.Shared.projitems" Label="Shared" Condition="Exists('..\Tests.Common.Shared\Tests.Common.Shared.projitems')" />
+</Project>

@@ -1,5 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\Tests.Common.Shared\Tests.Common.Shared.projitems" Label="Shared" Condition="Exists('..\Tests.Common.Shared\Tests.Common.Shared.projitems')" />
   <Import Project="..\packages\Microsoft.CodeAnalysis.Analyzers.2.9.1\build\Microsoft.CodeAnalysis.Analyzers.props" Condition="Exists('..\packages\Microsoft.CodeAnalysis.Analyzers.2.9.1\build\Microsoft.CodeAnalysis.Analyzers.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -159,16 +160,27 @@
       <HintPath>..\packages\BenchmarkDotNet.0.11.5\lib\netstandard2.0\BenchmarkDotNet.dll</HintPath>
     </Reference>
     <Reference Include="System.Buffers">
-      <HintPath>..\packages\System.Buffers.4.4.0\lib\netstandard2.0\System.Buffers.dll</HintPath>
+      <HintPath>..\packages\System.Buffers.4.5.0\lib\netstandard2.0\System.Buffers.dll</HintPath>
     </Reference>
     <Reference Include="System.Numerics.Vectors">
-      <HintPath>..\packages\System.Numerics.Vectors.4.4.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
     </Reference>
     <Reference Include="System.Memory">
-      <HintPath>..\packages\System.Memory.4.5.1\lib\netstandard2.0\System.Memory.dll</HintPath>
+      <HintPath>..\packages\System.Memory.4.5.2\lib\netstandard2.0\System.Memory.dll</HintPath>
     </Reference>
-    <Reference Include="HolisticWare.Core.Text.NetStandard11">
-      <HintPath>..\..\..\source\HolisticWare.Core.Text.NetStandard11\obj\Release\netstandard1.1\HolisticWare.Core.Text.NetStandard11.dll</HintPath>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="CsvHelper">
+      <HintPath>..\packages\CsvHelper.12.1.2\lib\net45\CsvHelper.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="CsvHelper.Fluent">
+      <HintPath>..\packages\CsvHelper.Fluent.0.1.4\lib\net45\CsvHelper.Fluent.dll</HintPath>
+    </Reference>
+    <Reference Include="TinyCsvParser">
+      <HintPath>..\packages\TinyCsvParser.2.3.0\lib\net45\TinyCsvParser.dll</HintPath>
+    </Reference>
+    <Reference Include="NReco.Csv">
+      <HintPath>..\packages\NReco.Csv.1.0.0\lib\net45\NReco.Csv.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -178,6 +190,15 @@
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="androidx-class-mapping.csv" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\source\HolisticWare.Core.Text.NetStandard11\HolisticWare.Core.Text.NetStandard11.csproj">
+      <Project>{18c2d1f9-a0f6-4a04-9cff-df984242395b}</Project>
+      <Name>HolisticWare.Core.Text.NetStandard11</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="androidx-class-mapping.1.csv" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

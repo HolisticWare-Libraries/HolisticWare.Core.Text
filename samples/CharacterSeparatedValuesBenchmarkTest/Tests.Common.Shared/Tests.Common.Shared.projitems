@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>{F7FF99F8-E914-4F57-AF8E-F1DFA19CDEB8}</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Tests.Common.Shared</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)CharacterSeparatedValuesTest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FileHelpersTest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CsvHelperTest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FastCVSReaderTest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TinyCsvParserTest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ChoETLTest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AngaraTableTest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TextFieldParserTest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NRecoCsvTest.cs" />
+  </ItemGroup>
+</Project>
