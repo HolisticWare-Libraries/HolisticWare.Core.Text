@@ -7,8 +7,22 @@ namespace CharacterSeparatedValuesBenchmarkTest.dotnetcore
     class Program
     {
         static void Main(string[] args)
+
         {
-            BenchmarkRunner.Run<Benchmarks.CharacterSeparatedValuesTest>();
+            //BenchmarkSwitcher.FromAssembly
+            //                            (
+            //                                typeof(Program).Assembly
+            //                            )
+            //                            .Run
+            //                                (
+            //                                    args,
+            //                                    new BenchmarkDotNet.Configs.DebugInProcessConfig()
+            //                                );
+
+            BenchmarkRunner.Run<Benchmarks.FileReadingTests>();
+
+            //BenchmarkRunner.Run<Benchmarks.CharacterSeparatedValuesTest>();
+            //BenchmarkRunner.Run<Benchmarks.MLnet>();
             //BenchmarkRunner.Run<Benchmarks.AngaraTableTest>();
             //BenchmarkRunner.Run<Benchmarks.ChoETLTest>();
             //BenchmarkRunner.Run<Benchmarks.CsvHelperTest>();
