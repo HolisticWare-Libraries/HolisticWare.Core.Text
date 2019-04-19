@@ -5,6 +5,7 @@ namespace Core.Strings
 {
     public static class StringExtensions
     {
+        #if ! NETSTANDARD1_0
         /// <summary>
         /// Too slow.
         /// </summary>
@@ -148,6 +149,7 @@ namespace Core.Strings
                 }
             }
         }
+        #endif
 
     }
 }

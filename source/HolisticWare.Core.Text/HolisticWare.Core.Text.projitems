@@ -14,6 +14,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)Core\Text\CharacterSeparatedValues\CharacterSeparatedValues.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' " />
     <Compile Include="$(MSBuildThisFileDirectory)Core\Text\CharacterSeparatedValues\CharacterSeparatedValues.String.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' " />
     <Compile Include="$(MSBuildThisFileDirectory)Core\Text\CharacterSeparatedValues\CharacterSeparatedValues.API.Static.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' " />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Text\CharacterSeparatedValues\CharacterSeparatedValues.Memory.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' " />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Text\CharacterSeparatedValues\CharacterSeparatedValues.Static.Memory.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' " />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Text\CharacterSeparatedValues\CharacterSeparatedValues.Span.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' " />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\String\StringExtensions.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' " />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Text\CharacterSeparatedValues\CharacterSeparatedValues.File.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' " />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Core\Text\CharacterSeparatedValues\" />
