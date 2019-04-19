@@ -258,13 +258,13 @@ namespace UnitTests.Core_Text_CharacterSeparatedValues
             // Assert
             int count = lines.Count();
             int count_correct = 17;
-#if NUNIT
+            #if NUNIT
             Assert.AreEqual(count, count_correct);
-#elif XUNIT
+            #elif XUNIT
             Assert.Equal(count, count_correct);
-#elif MSTEST
+            #elif MSTEST
             Assert.AreEqual(count, count_correct);
-#endif
+            #endif
 
             string[] lines_assert = new string[]
             {
@@ -286,7 +286,7 @@ namespace UnitTests.Core_Text_CharacterSeparatedValues
                 "",
                 "                "
             };
-#if NUNIT && !NUNIT_LITE
+            #if NUNIT && !NUNIT_LITE
             CollectionAssert.AreEquivalent
                         (
                             lines_assert.ToList(),

@@ -1,5 +1,4 @@
-﻿// /*
-//    Copyright (c) 2018-4
+﻿//    Copyright (c) 2018-4
 //
 //    moljac
 //    CharacterSeparatedValues.cs
@@ -35,6 +34,7 @@ namespace Core.Text
 {
     public partial class CharacterSeparatedValues
     {
+        #if NETSTANDARD1_1
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public
             void
@@ -78,6 +78,7 @@ namespace Core.Text
             }
 
         }
+        #endif
 
     }
 }
