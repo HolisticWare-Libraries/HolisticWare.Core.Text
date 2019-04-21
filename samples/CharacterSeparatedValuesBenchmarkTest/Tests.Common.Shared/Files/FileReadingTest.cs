@@ -10,6 +10,8 @@ using Core.Text;
 
 namespace Benchmarks
 {
+    [RankColumn]
+    [Orderer(BenchmarkDotNet.Order.SummaryOrderPolicy.FastestToSlowest)]
     [MemoryDiagnoser]
     public class FileReadingTests : TestBase
     {
@@ -38,6 +40,133 @@ namespace Benchmarks
         public void FileStream_With_StreamReader_Strings()
         {
             lines_strings = FileStream_With_StreamReader_Strings_Impl().ToArray();
+        }
+
+        [Benchmark]
+        public string StreamReader_Returning_String()
+        {
+            using (StreamReader sr = File.OpenText(filename))
+            {
+                string s = sr.ReadToEnd();
+
+                return s;
+            }
+        }
+
+        [Benchmark]
+        public string StreamReader_StringBuilder_Returning_String()
+        {
+            using (StreamReader sr = File.OpenText(filename))
+            {
+                System.Text.StringBuilder sb = new System.Text.StringBuilder();
+                sb.Append(sr.ReadToEnd());
+
+                return sb.ToString();
+            }
+        }
+
+        [Benchmark]
+        public IEnumerable<string> StreamReader_String_Returning_IEnumerable_Of_String()
+        {
+            using (StreamReader sr = File.OpenText(filename))
+            {
+                string s = String.Empty;
+                while ((s = sr.ReadLine()) != null)
+                {
+                    yield return s;
+                }
+            }
+        }
+
+        [Benchmark]
+        public IEnumerable<string> FileStream_BufferedStream_StreamReader_String_Returning_IEnumerable_Of_String()
+        {
+            using (FileStream fs = File.Open(filename, FileMode.Open, FileAccess.Read))
+            using (BufferedStream bs = new BufferedStream(fs))
+            using (StreamReader sr = new StreamReader(bs))
+            {
+                string s;
+                while ((s = sr.ReadLine()) != null)
+                {
+                    yield return s;
+                }
+            }
+        }
+
+        [Benchmark]
+        public IEnumerable<string> FileStream_BufferedStream_Allocated_StreamReader_String_Returning_IEnumerable_Of_String()
+        {
+            char[] g = new char[1024];
+
+            using (FileStream fs = File.Open(filename, FileMode.Open, FileAccess.Read))
+            using (BufferedStream bs = new BufferedStream(fs, System.Text.ASCIIEncoding.Unicode.GetByteCount(g)))
+            using (StreamReader sr = new StreamReader(bs))
+            {
+                string s;
+                while ((s = sr.ReadLine()) != null)
+                {
+                    yield return s;
+                }
+            }
+        }
+
+        [Benchmark]
+        public IEnumerable<string> StreamReader_StringBuilder_Returning_IEnumerable_Of_String()
+        {
+            using (StreamReader sr = File.OpenText(filename))
+            {
+                System.Text.StringBuilder sb = new System.Text.StringBuilder();
+                while (sb.Append(sr.ReadLine()).Length > 0)
+                {
+                    yield return sb.ToString();
+                    sb.Clear();
+                }
+            }
+        }
+
+        [Benchmark]
+        public IEnumerable<string> StreamReader_BufferedStream_StreamReader_String_Returning_IEnumerable_Of_String()
+        {
+            char[] g = new char[1024];
+
+            using (StreamReader sr = File.OpenText(filename))
+            {
+                System.Text.StringBuilder sb = new System.Text.StringBuilder(g.Length);
+                while (sb.Append(sr.ReadLine()).Length > 0)
+                {
+                    yield return sb.ToString();
+                    sb.Clear();
+                }
+            }
+        }
+
+        int MAX = 4096;
+
+        [Benchmark]
+        public string[] FStreamReader_BufferedStream_StreamReader_String_Returning_Arrayixed()
+        {
+            var AllLines = new string[MAX];
+            using (StreamReader sr = File.OpenText(filename))
+            {
+                int i = 0;
+                while (!sr.EndOfStream)
+                {
+                    //we're just testing read speeds
+                    AllLines[i] = sr.ReadLine();
+                    i += 1;
+                }
+            }
+
+            return AllLines;
+        }
+
+        [Benchmark]
+        public string[] File_Returning_ArrayFixed()
+        {
+            var AllLines = new string[MAX];
+            AllLines = File.ReadAllLines(filename);
+
+            return AllLines;
         }
 
         public IEnumerable<string> FileStream_With_StreamReader_Strings_Impl()
