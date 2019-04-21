@@ -6,6 +6,8 @@ https://en.wikipedia.org/wiki/Comma-separated_values
 
 RFC4180
 
+*   https://dfederm.com/learn-span-by-implementing-a-high-performance-csv-parser/
+
 ## Libraries
 
 *   FileHelpers
