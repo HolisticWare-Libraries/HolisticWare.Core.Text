@@ -13,6 +13,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)CSV\CharacterSeparatedValuesTest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CSV\MLnet.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Files\FileReadingTest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MemoryStringExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)CSV\AngaraTableTest.cs" />

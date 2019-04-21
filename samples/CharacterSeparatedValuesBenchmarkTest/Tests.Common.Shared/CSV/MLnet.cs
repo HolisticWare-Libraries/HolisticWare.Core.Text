@@ -12,7 +12,8 @@ using Microsoft.ML.Data;
 
 namespace Benchmarks
 {
-    public class MLnet
+    [MemoryDiagnoser]
+    public class MLnet :TestBase
     {
         public class AndroidX
         {

@@ -9,6 +9,7 @@ using Core.Text;
 
 namespace Benchmarks
 {
+    [MemoryDiagnoser]
     public class CharacterSeparatedValuesTest : TestBase
     {
 
