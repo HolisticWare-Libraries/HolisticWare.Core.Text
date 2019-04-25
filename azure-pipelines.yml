@@ -29,9 +29,13 @@ jobs:
       - checkout: self
         submodules: recursive
       - task: DotNetCoreInstaller@0
-        displayName: 'Use .NET Core SDK $(DOTNET_SDK_VERSION)'
+        displayName: 'Use .NET Core SDK 2.2.105'
         inputs:
-          version: '$(DOTNET_SDK_VERSION)'
+          version: '2.2.105'
+      - task: DotNetCoreInstaller@0
+        displayName: 'Use .NET Core SDK 3.0.100-preview3-010431'
+        inputs:
+          version: '3.0.100-preview3-010431'
       - powershell: |
             $(Build.SourcesDirectory)\build.ps1
         workingDirectory: '$(Build.SourcesDirectory)' #
@@ -58,9 +62,13 @@ jobs:
       - checkout: self
         submodules: recursive
       - task: DotNetCoreInstaller@0
-        displayName: 'Use .NET Core SDK $(DOTNET_SDK_VERSION)'
+        displayName: 'Use .NET Core SDK 2.2.105'
         inputs:
-          version: '$(DOTNET_SDK_VERSION)'
+          version: '2.2.105'
+      - task: DotNetCoreInstaller@0
+        displayName: 'Use .NET Core SDK 3.0.100-preview3-010431'
+        inputs:
+          version: '3.0.100-preview3-010431'
       - powershell: |
             $(Build.SourcesDirectory)\build.ps1
         workingDirectory: '$(Build.SourcesDirectory)' #
@@ -86,6 +94,14 @@ jobs:
     steps:
       - checkout: self
         submodules: recursive
+      - task: DotNetCoreInstaller@0
+        displayName: 'Use .NET Core SDK 2.2.105'
+        inputs:
+          version: '2.2.105'
+      - task: DotNetCoreInstaller@0
+        displayName: 'Use .NET Core SDK 3.0.100-preview3-010431'
+        inputs:
+          version: '3.0.100-preview3-010431'
       - powershell: |
             dotnet tool install --tool-path ./tools --version 0.30.0 Cake.Tool
             ./tools/dotnet-cake --version
@@ -93,13 +109,13 @@ jobs:
         workingDirectory: '$(Build.SourcesDirectory)' #
       - bash: sudo $AGENT_HOMEDIRECTORY/scripts/select-xamarin-sdk.sh $(MONO_VERSION)
         displayName: Switch to the latest Xamarin SDK
-        workingDirectory: #
+        workingDirectory: '$(Build.SourcesDirectory)' #
       - bash: echo '##vso[task.setvariable variable=MD_APPLE_SDK_ROOT;]'/Applications/Xcode_$(XCODE_VERSION).app;sudo xcode-select --switch /Applications/Xcode_$(XCODE_VERSION).app/Contents/Developer
         displayName: Switch to the latest Xcode
-        workingDirectory: #
+        workingDirectory: '$(Build.SourcesDirectory)' #
       - bash: sh ./build.sh
         displayName: Run build
-        workingDirectory: #
+        workingDirectory: '$(Build.SourcesDirectory)' #
       - task: PublishTestResults@2
         displayName: Publish test results
         condition: always()
@@ -115,19 +131,27 @@ jobs:
     steps:
       - checkout: self
         submodules: recursive
+      - task: DotNetCoreInstaller@0
+        displayName: 'Use .NET Core SDK 2.2.105'
+        inputs:
+          version: '2.2.105'
+      - task: DotNetCoreInstaller@0
+        displayName: 'Use .NET Core SDK 3.0.100-preview3-010431'
+        inputs:
+          version: '3.0.100-preview3-010431'
       - powershell: |
             dotnet tool install --tool-path ./tools --version 0.30.0 Cake.Tool
             ./tools/dotnet-cake --version
-            ./$(Build.SourcesDirectory)/build.ps1
+            $(Build.SourcesDirectory)/build.ps1
         workingDirectory: '$(Build.SourcesDirectory)' #
       - bash: sudo $AGENT_HOMEDIRECTORY/scripts/select-xamarin-sdk.sh $(MONO_VERSION)
-        workingDirectory: #
+        workingDirectory: '$(Build.SourcesDirectory)' #
         displayName: Switch to the latest Xamarin SDK
       - bash: echo '##vso[task.setvariable variable=MD_APPLE_SDK_ROOT;]'/Applications/Xcode_$(XCODE_VERSION).app;sudo xcode-select --switch /Applications/Xcode_$(XCODE_VERSION).app/Contents/Developer
-        workingDirectory: #
+        workingDirectory: '$(Build.SourcesDirectory)' #
         displayName: Switch to the latest Xcode
       - bash: sh ./build.sh
-        workingDirectory: #
+        workingDirectory: '$(Build.SourcesDirectory)' #
         displayName: Run build
       - task: PublishTestResults@2
         displayName: Publish test results
