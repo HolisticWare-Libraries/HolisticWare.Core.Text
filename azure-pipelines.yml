@@ -34,10 +34,12 @@ jobs:
           version: '$(DOTNET_SDK_VERSION)'
       - powershell: ./build.ps1
         displayName: 'Execute Cake PowerShell Bootstrapper'
+        workingDirectory: #
       - powershell: |
             dotnet tool install --tool-path ./tools --version 0.30.0 Cake.Tool
             ./tools/dotnet-cake --version
             ./build.ps1
+        workingDirectory: #
         displayName: Run build
       - task: PublishTestResults@2
         displayName: Publish test results
@@ -60,11 +62,13 @@ jobs:
           version: '$(DOTNET_SDK_VERSION)'
       - powershell: ./build.ps1
         displayName: 'Execute Cake PowerShell Bootstrapper'
+        workingDirectory: #
       - powershell: |
             dotnet tool install --tool-path ./tools --version 0.30.0 Cake.Tool
             ./tools/dotnet-cake --version
             ./build.ps1
         displayName: Run build
+        workingDirectory: #
       - task: PublishTestResults@2
         displayName: Publish test results
         condition: always()
@@ -84,12 +88,16 @@ jobs:
             dotnet tool install --tool-path ./tools --version 0.30.0 Cake.Tool
             ./tools/dotnet-cake --version
             ./build.ps1
+        workingDirectory: #
       - bash: sudo $AGENT_HOMEDIRECTORY/scripts/select-xamarin-sdk.sh $(MONO_VERSION)
         displayName: Switch to the latest Xamarin SDK
+        workingDirectory: #
       - bash: echo '##vso[task.setvariable variable=MD_APPLE_SDK_ROOT;]'/Applications/Xcode_$(XCODE_VERSION).app;sudo xcode-select --switch /Applications/Xcode_$(XCODE_VERSION).app/Contents/Developer
         displayName: Switch to the latest Xcode
+        workingDirectory: #
       - bash: sh ./build.sh
         displayName: Run build
+        workingDirectory: #
       - task: PublishTestResults@2
         displayName: Publish test results
         condition: always()
@@ -109,11 +117,15 @@ jobs:
             dotnet tool install --tool-path ./tools --version 0.30.0 Cake.Tool
             ./tools/dotnet-cake --version
             ./build.ps1
+        workingDirectory: #
       - bash: sudo $AGENT_HOMEDIRECTORY/scripts/select-xamarin-sdk.sh $(MONO_VERSION)
+        workingDirectory: #
         displayName: Switch to the latest Xamarin SDK
       - bash: echo '##vso[task.setvariable variable=MD_APPLE_SDK_ROOT;]'/Applications/Xcode_$(XCODE_VERSION).app;sudo xcode-select --switch /Applications/Xcode_$(XCODE_VERSION).app/Contents/Developer
+        workingDirectory: #
         displayName: Switch to the latest Xcode
       - bash: sh ./build.sh
+        workingDirectory: #
         displayName: Run build
       - task: PublishTestResults@2
         displayName: Publish test results
