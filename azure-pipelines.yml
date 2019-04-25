@@ -32,9 +32,10 @@ jobs:
         displayName: 'Use .NET Core SDK $(DOTNET_SDK_VERSION)'
         inputs:
           version: '$(DOTNET_SDK_VERSION)'
-      - powershell: ./build.ps1
+      - powershell: |
+            $(Build.SourcesDirectory)/build.ps1
+        workingDirectory: '$(Build.SourcesDirectory)' #
         displayName: 'Execute Cake PowerShell Bootstrapper'
-        workingDirectory: #
       - powershell: |
             dotnet tool install --tool-path ./tools --version 0.30.0 Cake.Tool
             ./tools/dotnet-cake --version
@@ -60,9 +61,10 @@ jobs:
         displayName: 'Use .NET Core SDK $(DOTNET_SDK_VERSION)'
         inputs:
           version: '$(DOTNET_SDK_VERSION)'
-      - powershell: ./build.ps1
+      - powershell: |
+            ./$(Build.SourcesDirectory)/build.ps1
+        workingDirectory: '$(Build.SourcesDirectory)' #
         displayName: 'Execute Cake PowerShell Bootstrapper'
-        workingDirectory: #
       - powershell: |
             dotnet tool install --tool-path ./tools --version 0.30.0 Cake.Tool
             ./tools/dotnet-cake --version
@@ -87,8 +89,8 @@ jobs:
       - powershell: |
             dotnet tool install --tool-path ./tools --version 0.30.0 Cake.Tool
             ./tools/dotnet-cake --version
-            ./build.ps1
-        workingDirectory: #
+            ./$(Build.SourcesDirectory)/build.ps1
+        workingDirectory: '$(Build.SourcesDirectory)' #
       - bash: sudo $AGENT_HOMEDIRECTORY/scripts/select-xamarin-sdk.sh $(MONO_VERSION)
         displayName: Switch to the latest Xamarin SDK
         workingDirectory: #
@@ -116,8 +118,8 @@ jobs:
       - powershell: |
             dotnet tool install --tool-path ./tools --version 0.30.0 Cake.Tool
             ./tools/dotnet-cake --version
-            ./build.ps1
-        workingDirectory: #
+            ./$(Build.SourcesDirectory)/build.ps1
+        workingDirectory: '$(Build.SourcesDirectory)' #
       - bash: sudo $AGENT_HOMEDIRECTORY/scripts/select-xamarin-sdk.sh $(MONO_VERSION)
         workingDirectory: #
         displayName: Switch to the latest Xamarin SDK
