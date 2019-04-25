@@ -1,4 +1,4 @@
-# File: templates/steps-with-params.yml
+# File: templates/steps-common.yml
 
 parameters:
     runExtendedTests: 'false'  # defaults for any parameters that aren't specified
