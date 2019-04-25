@@ -8,9 +8,18 @@ variables:
   MONO_VERSION: 5_16_0
   XCODE_VERSION: 10.1
 
+# specific branch build
+trigger:
+  branches:
+    include:
+    - master
+    - releases/*
+    exclude:
+    - releases/old*
+
 jobs:
 
-  - job: build_windows
+  - job: build_windows_vs4w_2019
     displayName: Build on Windows with VS2019
     pool:
       vmImage: windows-2019
@@ -27,7 +36,7 @@ jobs:
           testResultsFiles: tests/**/TestResults/TestResults.xml
           testRunTitle: Windows Tests
 
-  - job: build_windows
+  - job: build_windows_vs4w_2017
     displayName: Build on Windows with VS2017
     pool:
       vmImage: vs2017-win2016
