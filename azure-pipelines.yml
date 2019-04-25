@@ -7,7 +7,6 @@
 variables:
   MONO_VERSION: 5_16_0
   XCODE_VERSION: 10.1
-  DOTNET_SDK_VERSION: '2.2.203'
 
 # specific branch build
 trigger:
@@ -102,11 +101,6 @@ jobs:
         displayName: 'Use .NET Core SDK 3.0.100-preview3-010431'
         inputs:
           version: '3.0.100-preview3-010431'
-      - powershell: |
-            dotnet tool install --tool-path ./tools --version 0.30.0 Cake.Tool
-            ./tools/dotnet-cake --version
-            ./$(Build.SourcesDirectory)/build.ps1
-        workingDirectory: '$(Build.SourcesDirectory)' #
       - bash: sudo $AGENT_HOMEDIRECTORY/scripts/select-xamarin-sdk.sh $(MONO_VERSION)
         displayName: Switch to the latest Xamarin SDK
         workingDirectory: '$(Build.SourcesDirectory)' #
@@ -115,6 +109,11 @@ jobs:
         workingDirectory: '$(Build.SourcesDirectory)' #
       - bash: sh ./build.sh
         displayName: Run build
+        workingDirectory: '$(Build.SourcesDirectory)' #
+      - powershell: |
+            dotnet tool install --tool-path ./tools --version 0.30.0 Cake.Tool
+            ./tools/dotnet-cake --version
+            $(Build.SourcesDirectory)/build.ps1
         workingDirectory: '$(Build.SourcesDirectory)' #
       - task: PublishTestResults@2
         displayName: Publish test results
@@ -139,20 +138,14 @@ jobs:
         displayName: 'Use .NET Core SDK 3.0.100-preview3-010431'
         inputs:
           version: '3.0.100-preview3-010431'
+      - bash: sh ./build.sh
+        workingDirectory: '$(Build.SourcesDirectory)' #
+        displayName: Run build
       - powershell: |
             dotnet tool install --tool-path ./tools --version 0.30.0 Cake.Tool
             ./tools/dotnet-cake --version
             $(Build.SourcesDirectory)/build.ps1
         workingDirectory: '$(Build.SourcesDirectory)' #
-      - bash: sudo $AGENT_HOMEDIRECTORY/scripts/select-xamarin-sdk.sh $(MONO_VERSION)
-        workingDirectory: '$(Build.SourcesDirectory)' #
-        displayName: Switch to the latest Xamarin SDK
-      - bash: echo '##vso[task.setvariable variable=MD_APPLE_SDK_ROOT;]'/Applications/Xcode_$(XCODE_VERSION).app;sudo xcode-select --switch /Applications/Xcode_$(XCODE_VERSION).app/Contents/Developer
-        workingDirectory: '$(Build.SourcesDirectory)' #
-        displayName: Switch to the latest Xcode
-      - bash: sh ./build.sh
-        workingDirectory: '$(Build.SourcesDirectory)' #
-        displayName: Run build
       - task: PublishTestResults@2
         displayName: Publish test results
         condition: always()
