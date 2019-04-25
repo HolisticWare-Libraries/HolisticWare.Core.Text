@@ -66,7 +66,12 @@ namespace Benchmarks
         }
 
         [Benchmark]
-        public IEnumerable<string> StreamReader_String_Returning_IEnumerable_Of_String()
+        public void StreamReader_String_Returning_IEnumerable_Of_String()
+        {
+            lines_strings = StreamReader_String_Returning_IEnumerable_Of_String_Impl().ToArray();
+        }
+
+        public IEnumerable<string> StreamReader_String_Returning_IEnumerable_Of_String_Impl()
         {
             using (StreamReader sr = File.OpenText(filename))
             {
@@ -79,7 +84,12 @@ namespace Benchmarks
         }
 
         [Benchmark]
-        public IEnumerable<string> FileStream_BufferedStream_StreamReader_String_Returning_IEnumerable_Of_String()
+        public void FileStream_BufferedStream_StreamReader_String_Returning_IEnumerable_Of_String()
+        {
+            lines_strings = FileStream_BufferedStream_StreamReader_String_Returning_IEnumerable_Of_String_Impl().ToArray();
+        }
+
+        public IEnumerable<string> FileStream_BufferedStream_StreamReader_String_Returning_IEnumerable_Of_String_Impl()
         {
             using (FileStream fs = File.Open(filename, FileMode.Open, FileAccess.Read))
             using (BufferedStream bs = new BufferedStream(fs))
@@ -94,7 +104,12 @@ namespace Benchmarks
         }
 
         [Benchmark]
-        public IEnumerable<string> FileStream_BufferedStream_Allocated_StreamReader_String_Returning_IEnumerable_Of_String()
+        public void FileStream_BufferedStream_Allocated_StreamReader_String_Returning_IEnumerable_Of_String()
+        {
+            lines_strings = FileStream_BufferedStream_Allocated_StreamReader_String_Returning_IEnumerable_Of_String_Impl().ToArray();
+        }
+
+        public IEnumerable<string> FileStream_BufferedStream_Allocated_StreamReader_String_Returning_IEnumerable_Of_String_Impl()
         {
             char[] g = new char[1024];
 
@@ -111,7 +126,12 @@ namespace Benchmarks
         }
 
         [Benchmark]
-        public IEnumerable<string> StreamReader_StringBuilder_Returning_IEnumerable_Of_String()
+        public void StreamReader_StringBuilder_Returning_IEnumerable_Of_String()
+        {
+            lines_strings = StreamReader_StringBuilder_Returning_IEnumerable_Of_String_Impl().ToArray();
+        }
+
+        public IEnumerable<string> StreamReader_StringBuilder_Returning_IEnumerable_Of_String_Impl()
         {
             using (StreamReader sr = File.OpenText(filename))
             {
@@ -125,7 +145,12 @@ namespace Benchmarks
         }
 
         [Benchmark]
-        public IEnumerable<string> StreamReader_BufferedStream_StreamReader_String_Returning_IEnumerable_Of_String()
+        public void StreamReader_BufferedStream_StreamReader_String_Returning_IEnumerable_Of_String()
+        {
+            lines_strings = StreamReader_BufferedStream_StreamReader_String_Returning_IEnumerable_Of_String_Impl().ToArray();
+        }
+
+        public IEnumerable<string> StreamReader_BufferedStream_StreamReader_String_Returning_IEnumerable_Of_String_Impl()
         {
             char[] g = new char[1024];
 
@@ -185,13 +210,14 @@ namespace Benchmarks
             }
         }
 
+        //----------------------------------------------------------------------------------------------------
         [Benchmark]
         public void FileStream_With_StreamReader()
         {
             lines_strings = FileStream_With_StreamReader_Strings_Impl().ToArray();
         }
 
-        public IEnumerable<ReadOnlyMemory<char>> FileStream_With_StreamReader_MemoryofChar_Impl()
+        public IEnumerable<ReadOnlyMemory<char>> FileStream_With_StreamReader_MemoryOfChar_Impl()
         {
             const Int32 BufferSize = 4_096; // NTFS
 
@@ -205,7 +231,9 @@ namespace Benchmarks
                 }
             }
         }
+        //----------------------------------------------------------------------------------------------------
 
+        //----------------------------------------------------------------------------------------------------
         [Benchmark]
         public void FileStream_BufferedStream_StreamReader_Strings()
         {
@@ -225,15 +253,16 @@ namespace Benchmarks
                 }
             }
         }
+        //----------------------------------------------------------------------------------------------------
 
-
+        //----------------------------------------------------------------------------------------------------
         [Benchmark]
-        public void FileStream_BufferedStream_StreamReader_MemoryOfChar()
+        public void FileStream_BufferedStream_StreamReader_ReadLine_MemoryOfChar()
         {
-            lines_memory_of_chars = FileStream_BufferedStream_StreamReader_MemoryOfChar_Impl();
+            lines_memory_of_chars = FileStream_BufferedStream_StreamReader_ReadLine_MemoryOfChar_Impl().ToArray();
         }
 
-        public IEnumerable<ReadOnlyMemory<char>> FileStream_BufferedStream_StreamReader_MemoryOfChar_Impl()
+        public IEnumerable<ReadOnlyMemory<char>> FileStream_BufferedStream_StreamReader_ReadLine_MemoryOfChar_Impl()
         {
             using (FileStream fs = File.Open(filename, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
             using (BufferedStream bs = new BufferedStream(fs))
@@ -246,8 +275,31 @@ namespace Benchmarks
                 }
             }
         }
+        //----------------------------------------------------------------------------------------------------
 
 
+        //----------------------------------------------------------------------------------------------------
+        [Benchmark]
+        public void FileStream_BufferedStream_StreamReader_ReadBlock_MemoryOfChar()
+        {
+            lines_memory_of_chars = FileStream_BufferedStream_StreamReader_ReadBlock_MemoryOfChar_Impl();
+        }
+
+        public IEnumerable<ReadOnlyMemory<char>> FileStream_BufferedStream_StreamReader_ReadBlock_MemoryOfChar_Impl()
+        {
+            using (FileStream fs = File.Open(filename, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+            using (BufferedStream bs = new BufferedStream(fs))
+            using (StreamReader sr = new StreamReader(bs))
+            {
+                Memory<char> line = new Memory<char>();
+                int length = sr.ReadBlock(line.Span);
+                while ( length > 0 )
+                {
+                    yield return line.ToArray().AsMemory();
+                }
+            }
+        }
+        //----------------------------------------------------------------------------------------------------
 
         /*
         private const char CR = '\r';  

@@ -9,15 +9,15 @@ namespace CharacterSeparatedValuesBenchmarkTest.dotnetcore
         static void Main(string[] args)
 
         {
-            //BenchmarkSwitcher.FromAssembly
-            //                            (
-            //                                typeof(Program).Assembly
-            //                            )
-            //                            .Run
-            //                                (
-            //                                    args,
-            //                                    new BenchmarkDotNet.Configs.DebugInProcessConfig()
-            //                                );
+            BenchmarkSwitcher.FromAssembly
+                                        (
+                                            typeof(Program).Assembly
+                                        )
+                                        .Run
+                                            (
+                                                args,
+                                                new BenchmarkDotNet.Configs.DebugInProcessConfig()
+                                            );
 
             BenchmarkRunner.Run<Benchmarks.FileReadingTests>();
 
