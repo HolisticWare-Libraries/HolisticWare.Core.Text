@@ -33,14 +33,14 @@ jobs:
         inputs:
           version: '$(DOTNET_SDK_VERSION)'
       - powershell: |
-            $(Build.SourcesDirectory)/build.ps1
+            $(Build.SourcesDirectory)\build.ps1
         workingDirectory: '$(Build.SourcesDirectory)' #
         displayName: 'Execute Cake PowerShell Bootstrapper'
       - powershell: |
             dotnet tool install --tool-path ./tools --version 0.30.0 Cake.Tool
             ./tools/dotnet-cake --version
-            ./build.ps1
-        workingDirectory: #
+            .\build.ps1
+        workingDirectory: '$(Build.SourcesDirectory)' #
         displayName: Run build
       - task: PublishTestResults@2
         displayName: Publish test results
@@ -62,15 +62,15 @@ jobs:
         inputs:
           version: '$(DOTNET_SDK_VERSION)'
       - powershell: |
-            ./$(Build.SourcesDirectory)/build.ps1
+            $(Build.SourcesDirectory)\build.ps1
         workingDirectory: '$(Build.SourcesDirectory)' #
         displayName: 'Execute Cake PowerShell Bootstrapper'
       - powershell: |
             dotnet tool install --tool-path ./tools --version 0.30.0 Cake.Tool
             ./tools/dotnet-cake --version
-            ./build.ps1
+            build.ps1
+        workingDirectory: '$(Build.SourcesDirectory)' #
         displayName: Run build
-        workingDirectory: #
       - task: PublishTestResults@2
         displayName: Publish test results
         condition: always()
