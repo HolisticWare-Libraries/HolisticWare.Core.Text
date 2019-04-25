@@ -17,6 +17,10 @@ trigger:
     exclude:
     - releases/old*
 
+
+variables:
+DOTNET_SDK_VERSION: '2.2.203'
+
 jobs:
 
   - job: build_windows_vs4w_2019
