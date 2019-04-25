@@ -52,16 +52,16 @@ jobs:
     pool:
       vmImage: macos-10.13
     steps:
-        - template: templates/steps-common.yml  # Template reference
-          parameters:
-            runExtendedTests: 'true'
-            vmImage: macos-10.13
         - bash: sudo $AGENT_HOMEDIRECTORY/scripts/select-xamarin-sdk.sh $(MONO_VERSION)
             displayName: Switch to the latest Xamarin SDK
             workingDirectory: '$(Build.SourcesDirectory)' #
         - bash: echo '##vso[task.setvariable variable=MD_APPLE_SDK_ROOT;]'/Applications/Xcode_$(XCODE_VERSION).app;sudo xcode-select --switch /Applications/Xcode_$(XCODE_VERSION).app/Contents/Developer
             displayName: Switch to the latest Xcode
             workingDirectory: '$(Build.SourcesDirectory)' #
+        - template: templates/steps-common.yml  # Template reference
+          parameters:
+            runExtendedTests: 'true'
+            vmImage: macos-10.13
         - bash: |
                 pwd
                 sh ./build.sh
