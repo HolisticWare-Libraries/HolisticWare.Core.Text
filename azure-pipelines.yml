@@ -26,7 +26,8 @@ jobs:
     steps:
       - checkout: self
         submodules: recursive
-      - powershell: .\build.ps1
+      - powershell: |
+        ./build.ps1
         displayName: Run build
       - task: PublishTestResults@2
         displayName: Publish test results
@@ -43,7 +44,8 @@ jobs:
     steps:
       - checkout: self
         submodules: recursive
-      - powershell: .\build.ps1
+      - powershell: |
+        ./build.ps1
         displayName: Run build
       - task: PublishTestResults@2
         displayName: Publish test results
