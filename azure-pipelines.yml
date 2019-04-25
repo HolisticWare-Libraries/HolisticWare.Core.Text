@@ -25,135 +25,74 @@ jobs:
     pool:
       vmImage: windows-2019
     steps:
-      - checkout: self
-        submodules: recursive
-      - task: DotNetCoreInstaller@0
-        displayName: 'Use .NET Core SDK 2.2.105'
-        inputs:
-          version: '2.2.105'
-      - task: DotNetCoreInstaller@0
-        displayName: 'Use .NET Core SDK 3.0.100-preview3-010431'
-        inputs:
-          version: '3.0.100-preview3-010431'
-      - powershell: |
-            $(Build.SourcesDirectory)\build.ps1
-        workingDirectory: '$(Build.SourcesDirectory)' #
-        displayName: 'Execute Cake PowerShell Bootstrapper'
-      - powershell: |
-            dotnet tool install --tool-path ./tools --version 0.30.0 Cake.Tool
-            ./tools/dotnet-cake --version
-            .\build.ps1
-        workingDirectory: '$(Build.SourcesDirectory)' #
-        displayName: Run build
-      - task: PublishTestResults@2
-        displayName: Publish test results
-        condition: always()
-        inputs:
-          testResultsFormat: xUnit
-          testResultsFiles: tests/**/TestResults/TestResults.xml
-          testRunTitle: Windows Tests
+        - template: templates/steps-with-params.yml  # Template reference
+            parameters:
+                runExtendedTests: 'true'
+                vmImage: windows-2019
 
   - job: build_windows_vs4w_2017
     displayName: Build on Windows with VS2017
     pool:
       vmImage: vs2017-win2016
     steps:
-      - checkout: self
-        submodules: recursive
-      - task: DotNetCoreInstaller@0
-        displayName: 'Use .NET Core SDK 2.2.105'
-        inputs:
-          version: '2.2.105'
-      - task: DotNetCoreInstaller@0
-        displayName: 'Use .NET Core SDK 3.0.100-preview3-010431'
-        inputs:
-          version: '3.0.100-preview3-010431'
-      - powershell: |
-            $(Build.SourcesDirectory)\build.ps1
-        workingDirectory: '$(Build.SourcesDirectory)' #
-        displayName: 'Execute Cake PowerShell Bootstrapper'
-      - powershell: |
-            dotnet tool install --tool-path ./tools --version 0.30.0 Cake.Tool
-            ./tools/dotnet-cake --version
-            build.ps1
-        workingDirectory: '$(Build.SourcesDirectory)' #
-        displayName: Run build
-      - task: PublishTestResults@2
-        displayName: Publish test results
-        condition: always()
-        inputs:
-          testResultsFormat: xUnit
-          testResultsFiles: tests/**/TestResults/TestResults.xml
-          testRunTitle: Windows Tests
+        - template: templates/steps-with-params.yml  # Template reference
+            parameters:
+                runExtendedTests: 'true'
+                vmImage: vs2017-win2016
+        # - task: PublishTestResults@2
+        #     displayName: Publish test results
+        #     condition: always()
+        #     inputs:
+        #     testResultsFormat: xUnit
+        #     testResultsFiles: tests/**/TestResults/TestResults.xml
+        #     testRunTitle: macOS Tests
 
   - job: build_macos
     displayName: Build on macOS
     pool:
       vmImage: macos-10.13
     steps:
-      - checkout: self
-        submodules: recursive
-      - task: DotNetCoreInstaller@0
-        displayName: 'Use .NET Core SDK 2.2.105'
-        inputs:
-          version: '2.2.105'
-      - task: DotNetCoreInstaller@0
-        displayName: 'Use .NET Core SDK 3.0.100-preview3-010431'
-        inputs:
-          version: '3.0.100-preview3-010431'
-      - bash: sudo $AGENT_HOMEDIRECTORY/scripts/select-xamarin-sdk.sh $(MONO_VERSION)
-        displayName: Switch to the latest Xamarin SDK
-        workingDirectory: '$(Build.SourcesDirectory)' #
-      - bash: echo '##vso[task.setvariable variable=MD_APPLE_SDK_ROOT;]'/Applications/Xcode_$(XCODE_VERSION).app;sudo xcode-select --switch /Applications/Xcode_$(XCODE_VERSION).app/Contents/Developer
-        displayName: Switch to the latest Xcode
-        workingDirectory: '$(Build.SourcesDirectory)' #
-      - bash: |
-            pwd
-            sh ./build.sh
-        displayName: Run build
-        workingDirectory: '$(Build.SourcesDirectory)' #
-      - powershell: |
-            dotnet tool install --tool-path ./tools --version 0.30.0 Cake.Tool
-            ./tools/dotnet-cake --version
-            $(Build.SourcesDirectory)/build.ps1
-        workingDirectory: '$(Build.SourcesDirectory)' #
-      - task: PublishTestResults@2
-        displayName: Publish test results
-        condition: always()
-        inputs:
-          testResultsFormat: xUnit
-          testResultsFiles: tests/**/TestResults/TestResults.xml
-          testRunTitle: macOS Tests
+        - template: templates/steps-with-params.yml  # Template reference
+            parameters:
+                runExtendedTests: 'true'
+                vmImage: macos-10.13
+        - bash: sudo $AGENT_HOMEDIRECTORY/scripts/select-xamarin-sdk.sh $(MONO_VERSION)
+            displayName: Switch to the latest Xamarin SDK
+            workingDirectory: '$(Build.SourcesDirectory)' #
+        - bash: echo '##vso[task.setvariable variable=MD_APPLE_SDK_ROOT;]'/Applications/Xcode_$(XCODE_VERSION).app;sudo xcode-select --switch /Applications/Xcode_$(XCODE_VERSION).app/Contents/Developer
+            displayName: Switch to the latest Xcode
+            workingDirectory: '$(Build.SourcesDirectory)' #
+        - bash: |
+                pwd
+                sh ./build.sh
+            displayName: Run build
+            workingDirectory: '$(Build.SourcesDirectory)' #
+        # - task: PublishTestResults@2
+        #     displayName: Publish test results
+        #     condition: always()
+        #     inputs:
+        #     testResultsFormat: xUnit
+        #     testResultsFiles: tests/**/TestResults/TestResults.xml
+        #     testRunTitle: macOS Tests
 
   - job: build_linux
     displayName: Build on Linux ubuntu 16.04
     pool:
       vmImage: ubuntu-16.04
     steps:
-      - checkout: self
-        submodules: recursive
-      - task: DotNetCoreInstaller@0
-        displayName: 'Use .NET Core SDK 2.2.105'
-        inputs:
-          version: '2.2.105'
-      - task: DotNetCoreInstaller@0
-        displayName: 'Use .NET Core SDK 3.0.100-preview3-010431'
-        inputs:
-          version: '3.0.100-preview3-010431'
-      - bash: |
-            pwd
-            sh ./build.sh
-        workingDirectory: '$(Build.SourcesDirectory)' #
-        displayName: Run build
-      - powershell: |
-            dotnet tool install --tool-path ./tools --version 0.30.0 Cake.Tool
-            ./tools/dotnet-cake --version
-            $(Build.SourcesDirectory)/build.ps1
-        workingDirectory: '$(Build.SourcesDirectory)' #
-      - task: PublishTestResults@2
-        displayName: Publish test results
-        condition: always()
-        inputs:
-          testResultsFormat: xUnit
-          testResultsFiles: tests/**/TestResults/TestResults.xml
-          testRunTitle: macOS Tests
+        - template: templates/steps-with-params.yml  # Template reference
+            parameters:
+                runExtendedTests: 'true'
+                vmImage: ubuntu-16.04
+        - bash: |
+                pwd
+                sh ./build.sh
+            displayName: Run build
+            workingDirectory: '$(Build.SourcesDirectory)' #
+    #   - task: PublishTestResults@2
+    #     displayName: Publish test results
+    #     condition: always()
+    #     inputs:
+    #       testResultsFormat: xUnit
+    #       testResultsFiles: tests/**/TestResults/TestResults.xml
+    #       testRunTitle: macOS Tests
