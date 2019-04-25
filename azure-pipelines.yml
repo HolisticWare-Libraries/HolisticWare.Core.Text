@@ -7,6 +7,7 @@
 variables:
   MONO_VERSION: 5_16_0
   XCODE_VERSION: 10.1
+  DOTNET_SDK_VERSION: '2.2.203'
 
 # specific branch build
 trigger:
@@ -17,9 +18,6 @@ trigger:
     exclude:
     - releases/old*
 
-
-variables:
-DOTNET_SDK_VERSION: '2.2.203'
 
 jobs:
 
