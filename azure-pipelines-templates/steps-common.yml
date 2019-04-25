@@ -1,7 +1,8 @@
 # File: templates/steps-with-params.yml
 
 parameters:
-  runExtendedTests: 'false'  # defaults for any parameters that aren't specified
+    runExtendedTests: 'false'  # defaults for any parameters that aren't specified
+    vmImage: ''
 
 steps:
     - checkout: self
