@@ -26,6 +26,12 @@ jobs:
     steps:
       - checkout: self
         submodules: recursive
+      - task: DotNetCoreInstaller@0
+        displayName: 'Use .NET Core SDK $(DOTNET_SDK_VERSION)'
+        inputs:
+          version: '$(DOTNET_SDK_VERSION)'
+      - powershell: ./build.ps1
+        displayName: 'Execute Cake PowerShell Bootstrapper'
       - powershell: |
             dotnet tool install --tool-path ./tools --version 0.30.0 Cake.Tool
             ./tools/dotnet-cake --version
@@ -46,6 +52,12 @@ jobs:
     steps:
       - checkout: self
         submodules: recursive
+      - task: DotNetCoreInstaller@0
+        displayName: 'Use .NET Core SDK $(DOTNET_SDK_VERSION)'
+        inputs:
+          version: '$(DOTNET_SDK_VERSION)'
+      - powershell: ./build.ps1
+        displayName: 'Execute Cake PowerShell Bootstrapper'
       - powershell: |
             dotnet tool install --tool-path ./tools --version 0.30.0 Cake.Tool
             ./tools/dotnet-cake --version
