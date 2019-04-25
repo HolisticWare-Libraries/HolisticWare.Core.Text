@@ -26,9 +26,9 @@ jobs:
       vmImage: windows-2019
     steps:
         - template: templates/steps-common.yml  # Template reference
-            parameters:
-                runExtendedTests: 'true'
-                vmImage: windows-2019
+          parameters:
+            runExtendedTests: 'true'
+            vmImage: windows-2019
 
   - job: build_windows_vs4w_2017
     displayName: Build on Windows with VS2017
@@ -36,9 +36,9 @@ jobs:
       vmImage: vs2017-win2016
     steps:
         - template: templates/steps-common.yml  # Template reference
-            parameters:
-                runExtendedTests: 'true'
-                vmImage: vs2017-win2016
+          parameters:
+            runExtendedTests: 'true'
+            vmImage: vs2017-win2016
         # - task: PublishTestResults@2
         #     displayName: Publish test results
         #     condition: always()
@@ -53,9 +53,9 @@ jobs:
       vmImage: macos-10.13
     steps:
         - template: templates/steps-common.yml  # Template reference
-            parameters:
-                runExtendedTests: 'true'
-                vmImage: macos-10.13
+          parameters:
+            runExtendedTests: 'true'
+            vmImage: macos-10.13
         - bash: sudo $AGENT_HOMEDIRECTORY/scripts/select-xamarin-sdk.sh $(MONO_VERSION)
             displayName: Switch to the latest Xamarin SDK
             workingDirectory: '$(Build.SourcesDirectory)' #
@@ -81,9 +81,9 @@ jobs:
       vmImage: ubuntu-16.04
     steps:
         - template: templates/steps-common.yml  # Template reference
-            parameters:
-                runExtendedTests: 'true'
-                vmImage: ubuntu-16.04
+          parameters:
+            runExtendedTests: 'true'
+            vmImage: ubuntu-16.04
         - bash: |
                 pwd
                 sh ./build.sh
