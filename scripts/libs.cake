@@ -1,8 +1,11 @@
 #load "./nuget-restore.cake"
 
+LibSourceSolutions = GetFiles(source_solutions);
+LibSourceProjects = GetFiles(source_projects);
+
 //---------------------------------------------------------------------------------------
 Task("libs")
-    .IsDependentOn ("nuget-restore")
+    .IsDependentOn ("nuget-restore-libs")
     .IsDependentOn ("libs-msbuild-solutions")
     .IsDependentOn ("libs-msbuild-projects")
     .IsDependentOn ("libs-dotnet-solutions")
@@ -114,8 +117,6 @@ Task("libs-dotnet-projects")
     (
         () =>
         {
-            FilePathCollection LibSourceProjects = GetFiles($"./source/**/*.csproj");
-
             foreach(FilePath prj in LibSourceProjects)
             {
                 DotNetCoreBuild

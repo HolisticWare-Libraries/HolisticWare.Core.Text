@@ -59,9 +59,7 @@ Running Cake to Build targets
 
 //---------------------------------------------------------------------------------------
 // unit testing
-#tool nuget:?package=NUnit.ConsoleRunner
-//#tool nuget:?package=NUnit.Console&version=3.8.0&include=../Nunit.ConsoleRunner/**/*
-//#tool nuget:?package=NUnit.Runners&version=3.8.0
+#tool nuget:?package=NUnit.ConsoleRunner&version=3.9.0
 #tool nuget:?package=xunit.runner.console
 //---------------------------------------------------------------------------------------
 // coverage
@@ -76,9 +74,13 @@ Running Cake to Build targets
 //---------------------------------------------------------------------------------------
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
-FilePathCollection LibSourceSolutions = GetFiles($"./source/**/*.sln");
-FilePathCollection LibSourceProjects = GetFiles($"./source/**/*.csproj");
+string source_solutions = $"./source/**/*.sln";
+string source_projects = $"./source/**/*.csproj";
 
+FilePathCollection LibSourceSolutions = null;
+FilePathCollection LibSourceProjects = null;
+
+#load "./scripts/main.cake"
 #load "./scripts/externals.cake"
 #load "./scripts/nuget-restore.cake"
 #load "./scripts/libs.cake"
@@ -88,27 +90,6 @@ FilePathCollection LibSourceProjects = GetFiles($"./source/**/*.csproj");
 // FilePathCollection UnitTestsNUnitMobileProjects = GetFiles($"./tests/unit-tests/project-references/**/*.NUnit.Xamarin*.csproj");
 // FilePathCollection UnitTestsXUnitProjects = GetFiles($"./tests/unit-tests/project-references/**/*.XUnit.csproj");
 // FilePathCollection UnitTestsMSTestProjects = GetFiles($"./tests/unit-tests/project-references/**/*.NUnit.csproj");
-
-
-
-
-
-
-
-
-Task ("clean")
-    .Does
-    (
-        () =>
-        {
-            if (DirectoryExists ("./externals/"))
-            {
-                DeleteDirectory ("./externals", true);
-            }
-
-            return;
-        }
-    );
 
 Task("Default")
 .Does
@@ -122,7 +103,7 @@ Task("Default")
 
 RunTarget (TARGET);
 
-if(! IsRunningOnWindows())
+if( ! IsRunningOnWindows())
 {
     try
     {
