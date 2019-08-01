@@ -80,30 +80,18 @@ string source_projects = $"./source/**/*.csproj";
 FilePathCollection LibSourceSolutions = null;
 FilePathCollection LibSourceProjects = null;
 
-#load "./scripts/externals.cake"
-#load "./scripts/nuget-restore.cake"
-#load "./scripts/libs.cake"
-#load "./scripts/tests-unit-tests.cake"
+#load "./scripts/common/externals.cake"
+#load "./scripts/private-protected-sensitive/externals.private.cake"
+#load "./scripts/common/main.cake"
+#load "./scripts/common/nuget-restore.cake"
+#load "./scripts/common/libs.cake"
+#load "./scripts/common/tests-unit-tests.cake"
 
 
 // FilePathCollection UnitTestsNUnitMobileProjects = GetFiles($"./tests/unit-tests/project-references/**/*.NUnit.Xamarin*.csproj");
 // FilePathCollection UnitTestsXUnitProjects = GetFiles($"./tests/unit-tests/project-references/**/*.XUnit.csproj");
 // FilePathCollection UnitTestsMSTestProjects = GetFiles($"./tests/unit-tests/project-references/**/*.NUnit.csproj");
 
-
-Task ("clean")
-    .Does
-    (
-        () =>
-        {
-            if (DirectoryExists ("./externals/"))
-            {
-                DeleteDirectory ("./externals", true);
-            }
-
-            return;
-        }
-    );
 
 Task("Default")
 .Does

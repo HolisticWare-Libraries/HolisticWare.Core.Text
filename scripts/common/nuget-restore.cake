@@ -86,4 +86,16 @@ Task("nuget-restore-tests")
             return;
         }
     );
+
+public void RestorePackages(string pattern)
+{
+	FilePathCollection files = GetFiles(pattern);
+
+	foreach(FilePath file in files)
+	{
+		NuGetRestore(file, new NuGetRestoreSettings { } );
+	}
+
+	return;
+}
 //---------------------------------------------------------------------------------------

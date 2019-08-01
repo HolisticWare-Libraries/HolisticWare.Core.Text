@@ -1,5 +1,7 @@
-#load "./nuget-restore.cake"
+#load "./../private-protected-sensitive/externals.private.cake"
+#load "./../common/nuget-restore.cake"
 
+//---------------------------------------------------------------------------------------
 Task ("externals")
     //.IsDependentOn ("externals-base")
     // .WithCriteria (!FileExists ("./externals/HolisticWare.Core.Math.Statistics.aar"))
@@ -19,10 +21,15 @@ Task ("externals")
             foreach(string folder in folders)
             {
                 Information($"    creating ...{folder}");
-                if (!DirectoryExists (folder))
+                if (! DirectoryExists (folder))
                 {
                     CreateDirectory (folder);
                 }
+            }
+
+            if (FileExists("externals.private.cake"))
+            {
+                CakeExecuteScript("externals.private.cake");
             }
 
             Information("    downloading ...");
@@ -31,6 +38,12 @@ Task ("externals")
             // {
             // 	//DownloadFile (AAR_URL, "./externals/HolisticWare.Core.Math.Statistics.aar");
             // }
+
+            return;
+            // Externals.Initialize(Context);
+            // Externals.Execute();
+
+            return;
         }
     );
 
@@ -62,3 +75,24 @@ Task("externals-build")
             return;
         }
     );
+
+
+public partial class Externals
+{
+    static partial void ExedcutePrivateSensitive();
+
+    public static void Execute()
+    {
+    }
+
+    private static ICakeContext context = null;
+
+    public static void Initialize(ICakeContext c)
+    {
+        context = c;
+
+        return;
+    }
+
+}
+//---------------------------------------------------------------------------------------
