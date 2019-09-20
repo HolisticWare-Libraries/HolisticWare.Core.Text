@@ -15,19 +15,21 @@ build-dotnet:
   #------------------------------------------------------------------------------------------
   image: microsoft/dotnet:2.2-sdk
   before_script:
-    - "cd source"
-    - "dotnet restore"
+    - "echo build-dotnet"
+    - "echo   microsoft/dotnet:2.2-sdk"
+    - "echo     before_script"
     - "cd .."
     - "cd samples"
     - "dotnet restore"
     - "cd .."
   script:
-      - "cd source"
-      - "dotnet build"
-      - "cd .."
-      - "cd samples"
-      - "dotnet build"
-      - "cd .."
+    - "sh ./devops/build-mono.sh"
+    - "cd source"
+    - "dotnet build"
+    - "cd .."
+    - "cd samples"
+    - "dotnet build"
+    - "cd .."
 
 build-mono:
   stage: build-mono
