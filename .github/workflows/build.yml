@@ -3,10 +3,8 @@ name: CI
 on: [push]
 
 jobs:
-  build:
-
-    runs-on: macOS-latest
-    
+  build-macOS-latest:
+    runs-on: macOS-latest    
     steps:
     - uses: actions/checkout@v1
     - name: Run a one-line script
@@ -16,8 +14,8 @@ jobs:
         echo Add other actions to build,
         echo test, and deploy your project.
 
-    runs-on: windows-latest
-    
+  build-windows-latest:  
+    runs-on: windows-latest    
     steps:
     - uses: actions/checkout@v1
     - name: Run a one-line script
@@ -27,8 +25,8 @@ jobs:
         echo Add other actions to build,
         echo test, and deploy your project.
 
-    runs-on: ubuntu-latest
-    
+  build-ubuntu-latest:  
+    runs-on: ubuntu-latest    
     steps:
     - uses: actions/checkout@v1
     - name: Run a one-line script
