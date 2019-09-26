@@ -22,8 +22,8 @@ jobs:
       run: echo Hello, world!
     - name: Run a multi-line script
       run: |
-        # "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\MSBuild.exe"
-        msbuild.exe /restore ./source/Source.sln
+        sedt MSBUILD="C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\MSBuild.exe"
+        %msbuild% /restore ./source/Source.sln
 
   build-ubuntu-latest:  
     runs-on: ubuntu-latest    
