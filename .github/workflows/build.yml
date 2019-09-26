@@ -1,3 +1,4 @@
+# https://help.github.com/en/articles/workflow-syntax-for-github-actions#about-yaml-syntax-for-workflows
 name: CI
 
 on: [push]
@@ -11,8 +12,7 @@ jobs:
       run: echo Hello, world!
     - name: Run a multi-line script
       run: |
-        echo Add other actions to build,
-        echo test, and deploy your project.
+        msbuild ./source/Source.sln
 
   build-windows-latest:  
     runs-on: windows-latest    
@@ -22,8 +22,8 @@ jobs:
       run: echo Hello, world!
     - name: Run a multi-line script
       run: |
-        echo Add other actions to build,
-        echo test, and deploy your project.
+        # "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\MSBuild.exe"
+        msbuild.exe ./source/Source.sln
 
   build-ubuntu-latest:  
     runs-on: ubuntu-latest    
@@ -34,5 +34,5 @@ jobs:
     - name: Run a multi-line script
       run: |
         echo Add other actions to build,
-        echo test, and deploy your project.
+        msbuild ./source/Source.sln
 
