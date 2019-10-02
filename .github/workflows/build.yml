@@ -4,7 +4,7 @@ name: CI
 on: [push]
 
 jobs:
-  build-macOS-latest:
+  build-macOS-latest-msbuild:
     runs-on: macOS-latest    
     steps:
     - uses: actions/checkout@v1
@@ -13,6 +13,17 @@ jobs:
     - name: Run a multi-line script
       run: |
         msbuild /restore ./source/Source.sln
+
+  build-macOS-latest-dotnet:
+    runs-on: macOS-latest    
+    steps:
+    - uses: actions/checkout@v1
+    - name: Run a one-line script
+      run: echo Hello, world!
+    - name: Run a multi-line script
+      run: |
+        dotnet restore ./source/Source.sln
+        dotnet build ./source/Source.sln
 
   build-windows-latest:  
     runs-on: windows-latest    
