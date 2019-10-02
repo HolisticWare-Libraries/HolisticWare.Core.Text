@@ -12,7 +12,7 @@ jobs:
       run: echo Hello, world!
     - name: Run a multi-line script
       run: |
-        msbuild /restore ./source/Source.sln
+        msbuild /restore ./source/**/*.sln
 
   build-macOS-latest-dotnet:
     runs-on: macOS-latest    
@@ -22,8 +22,8 @@ jobs:
       run: echo Hello, world!
     - name: Run a multi-line script
       run: |
-        dotnet restore ./source/Source.sln
-        dotnet build ./source/Source.sln
+        dotnet restore ./source/**/*.sln
+        dotnet build ./source/**/*.sln
 
   build-windows-latest:  
     runs-on: windows-latest    
