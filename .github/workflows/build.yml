@@ -8,6 +8,9 @@ jobs:
     runs-on: macOS-latest    
     steps:
     - uses: actions/checkout@v1
+    - name: Display the path bash
+      run: echo $PATH
+      shell: bash
     - name: build-macOS-latest-msbuild-oneliner
       run: echo build-macOS-latest-msbuild
     - name: build-macOS-latest-msbuild
@@ -19,6 +22,9 @@ jobs:
     needs: build-macOS-latest-msbuild    
     steps:
     - uses: actions/checkout@v1
+    - name: Display the path bash
+      run: echo $PATH
+      shell: bash
     - name: test-build-macOS-latest-msbuild-oneliner
       run: echo test-build-macOS-latest-msbuild
     - name: test-build-macOS-latest-msbuild
@@ -29,6 +35,9 @@ jobs:
     runs-on: macOS-latest    
     steps:
     - uses: actions/checkout@v1
+    - name: Display the path bash
+      run: echo $PATH
+      shell: bash
     - name: build-macOS-latest-dotnet-oneliner
       run: echo build-macOS-latest-dotnet-oneliner
     - name: build-macOS-latest-dotnet
@@ -37,13 +46,13 @@ jobs:
         dotnet build ./source/*.sln
 
 
-  build-windows-latest:  
+  build-windows-latest-msbuild:  
     runs-on: windows-latest    
     steps:
     - uses: actions/checkout@v1
-    - name: echo build-windows-latest-oneliner
-      run: echo build-windows-latest-oneliner
-    - name: build-windows-latest
+    - name: echo build-windows-latest-msbuild-oneliner
+      run: echo build-windows-latest-msbuild-oneliner
+    - name: build-windows-latest-msbuild
       run: |
         set MSBUILD="C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\MSBuild.exe"
         %msbuild% /restore ./source/Source.sln
@@ -52,31 +61,36 @@ jobs:
     runs-on: windows-latest    
     steps:
     - uses: actions/checkout@v1
-    - name: echo build-windows-latest-oneliner
-      run: echo build-windows-latest-oneliner
-    - name: build-windows-latest
+    - name: echo build-windows-latest-dotnet-oneliner
+      run: echo build-windows-latest-dotnet-oneliner
+    - name: build-windows-latest-dotnet
       run: |
         dotnet restore ./source/Source.sln
         dotnet build ./source/Source.sln
 
-  build-ubuntu-latest:
+  build-linux-ubuntu-latest-msbuid:
     runs-on: ubuntu-latest    
     steps:
     - uses: actions/checkout@v1
-    - name: build-ubuntu-latest-oneliner
-      run: echo build-ubuntu-latest-oneliner
-    - name: build-ubuntu-latest
+    - name: Display the path bash
+      run: echo $PATH
+      shell: bash
+    - name: build-linux-ubuntu-latest-msbuid-oneliner
+      run: echo build-linux-ubuntu-latest-msbuid-oneliner
+    - name: build-linux-ubuntu-msbuid-latest
       run: |
-        echo Add other actions to build,
         msbuild /restore ./source/*.sln
 
-  build-ubuntu-latest-dotnet:  
+  build-linux-ubuntu-latest-dotnet:  
     runs-on: ubuntu-latest    
     steps:
     - uses: actions/checkout@v1
-    - name: build-ubuntu-latest-oneliner
-      run: echo build-ubuntu-latest-oneliner
-    - name: build-ubuntu-latest
+    - name: Display the path bash
+      run: echo $PATH
+      shell: bash
+    - name: build-linux-ubuntu-latest-dotnet-oneliner
+      run: echo build-linux-ubuntu-latest-dotnet
+    - name: build-linux-ubuntu-latest-dotnet
       run: |
         dotnet restore ./source/*.sln
         dotnet build ./source/*.sln
