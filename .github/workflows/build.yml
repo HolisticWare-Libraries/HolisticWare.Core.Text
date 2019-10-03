@@ -59,7 +59,7 @@ jobs:
         dotnet restore ./source/Source.sln
         dotnet build ./source/Source.sln
 
-  build-ubuntu-latest:  
+  build-ubuntu-latest:
     runs-on: ubuntu-latest    
     steps:
     - uses: actions/checkout@v1
