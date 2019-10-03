@@ -16,7 +16,7 @@ jobs:
 
   test-build-macOS-latest-msbuild:
     runs-on: macOS-latest    
-    needs: build-macOS-latest-msbuild
+    needs: build-macOS-latest-msbuild    
     steps:
     - uses: actions/checkout@v1
     - name: test-build-macOS-latest-msbuild
