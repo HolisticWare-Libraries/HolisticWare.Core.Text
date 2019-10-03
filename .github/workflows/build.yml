@@ -8,8 +8,8 @@ jobs:
     runs-on: macOS-latest    
     steps:
     - uses: actions/checkout@v1
-    - name: build-macOS-latest-msbuild
-      run: build-macOS-latest-msbuild
+    - name: build-macOS-latest-msbuild-oneliner
+      run: echo build-macOS-latest-msbuild
     - name: build-macOS-latest-msbuild
       run: |
         msbuild /restore ./source/*.sln
@@ -19,8 +19,8 @@ jobs:
     needs: build-macOS-latest-msbuild    
     steps:
     - uses: actions/checkout@v1
-    - name: test-build-macOS-latest-msbuild
-      run: test-build-macOS-latest-msbuild
+    - name: test-build-macOS-latest-msbuild-oneliner
+      run: echo test-build-macOS-latest-msbuild
     - name: test-build-macOS-latest-msbuild
       run: |
         msbuild /restore ./tests/unit-tests/project-references/*.sln
@@ -29,32 +29,33 @@ jobs:
     runs-on: macOS-latest    
     steps:
     - uses: actions/checkout@v1
-    - name: Run a one-line script
-      run: echo Hello, world!
-    - name: Run a multi-line script
+    - name: build-macOS-latest-dotnet-oneliner
+      run: echo build-macOS-latest-dotnet-oneliner
+    - name: build-macOS-latest-dotnet
       run: |
         dotnet restore ./source/*.sln
         dotnet build ./source/*.sln
+
 
   build-windows-latest:  
     runs-on: windows-latest    
     steps:
     - uses: actions/checkout@v1
-    - name: Run a one-line script
-      run: echo Hello, world!
-    - name: Run a multi-line script
+    - name: echo build-windows-latest-oneliner
+      run: echo build-windows-latest-oneliner
+    - name: build-windows-latest
       run: |
         set MSBUILD="C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\MSBuild.exe"
-        %msbuild% /restore ./source/Source.sln
+        %msbuild% /restore ./source/*.sln
 
   build-ubuntu-latest:  
     runs-on: ubuntu-latest    
     steps:
     - uses: actions/checkout@v1
-    - name: Run a one-line script
-      run: echo Hello, world!
-    - name: Run a multi-line script
+    - name: build-ubuntu-latest-oneliner
+      run: echo build-ubuntu-latest-oneliner
+    - name: build-ubuntu-latest
       run: |
         echo Add other actions to build,
-        msbuild /restore ./source/Source.sln
+        msbuild /restore ./source/*.sln
 
