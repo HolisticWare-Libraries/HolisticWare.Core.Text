@@ -46,9 +46,20 @@ jobs:
     - name: build-windows-latest
       run: |
         set MSBUILD="C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\MSBuild.exe"
-        %msbuild% /restore ./source/*.sln
+        %msbuild% /restore ./source/Source.sln
 
-  build-ubuntu-latest:  
+  build-windows-latest-dotnet:  
+    runs-on: windows-latest    
+    steps:
+    - uses: actions/checkout@v1
+    - name: echo build-windows-latest-oneliner
+      run: echo build-windows-latest-oneliner
+    - name: build-windows-latest
+      run: |
+        dotnet restore ./source/Source.sln
+        dotnet build ./source/Source.sln
+
+build-ubuntu-latest:  
     runs-on: ubuntu-latest    
     steps:
     - uses: actions/checkout@v1
@@ -58,4 +69,15 @@ jobs:
       run: |
         echo Add other actions to build,
         msbuild /restore ./source/*.sln
+
+build-ubuntu-latest:  
+    runs-on: ubuntu-latest    
+    steps:
+    - uses: actions/checkout@v1
+    - name: build-ubuntu-latest-oneliner
+      run: echo build-ubuntu-latest-oneliner
+    - name: build-ubuntu-latest
+      run: |
+        dotnet restore ./source/*.sln
+        dotnet build ./source/*.sln
 
