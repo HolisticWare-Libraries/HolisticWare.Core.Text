@@ -8,6 +8,9 @@ jobs:
     runs-on: macOS-latest    
     steps:
     - uses: actions/checkout@v1
+    - name: Display the path pwsh
+      run: echo ${env:PATH}
+      shell: pwsh
     - name: Display the path bash
       run: echo $PATH
       shell: bash
@@ -22,6 +25,9 @@ jobs:
     needs: build-macOS-latest-msbuild    
     steps:
     - uses: actions/checkout@v1
+    - name: Display the path pwsh
+      run: echo ${env:PATH}
+      shell: pwsh
     - name: Display the path bash
       run: echo $PATH
       shell: bash
@@ -35,6 +41,9 @@ jobs:
     runs-on: macOS-latest    
     steps:
     - uses: actions/checkout@v1
+    - name: Display the path pwsh
+      run: echo ${env:PATH}
+      shell: pwsh
     - name: Display the path bash
       run: echo $PATH
       shell: bash
@@ -50,6 +59,9 @@ jobs:
     runs-on: windows-latest    
     steps:
     - uses: actions/checkout@v1
+    - name: Display the path pwsh
+      run: echo ${env:PATH}
+      shell: pwsh
     - name: echo build-windows-latest-msbuild-oneliner
       run: echo build-windows-latest-msbuild-oneliner
     - name: build-windows-latest-msbuild
@@ -61,6 +73,9 @@ jobs:
     runs-on: windows-latest    
     steps:
     - uses: actions/checkout@v1
+    - name: Display the path pwsh
+      run: echo ${env:PATH}
+      shell: pwsh
     - name: echo build-windows-latest-dotnet-oneliner
       run: echo build-windows-latest-dotnet-oneliner
     - name: build-windows-latest-dotnet
@@ -72,6 +87,9 @@ jobs:
     runs-on: ubuntu-latest    
     steps:
     - uses: actions/checkout@v1
+    - name: Display the path pwsh
+      run: echo ${env:PATH}
+      shell: pwsh
     - name: Display the path bash
       run: echo $PATH
       shell: bash
@@ -85,6 +103,9 @@ jobs:
     runs-on: ubuntu-latest    
     steps:
     - uses: actions/checkout@v1
+    - name: Display the path pwsh
+      run: echo ${env:PATH}
+      shell: pwsh
     - name: Display the path bash
       run: echo $PATH
       shell: bash
