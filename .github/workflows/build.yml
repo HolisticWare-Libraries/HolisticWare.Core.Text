@@ -4,15 +4,27 @@ name: CI
 on: [push]
 
 jobs:
+    needs: job1
   build-macOS-latest-msbuild:
     runs-on: macOS-latest    
     steps:
     - uses: actions/checkout@v1
-    - name: Run a one-line script
-      run: echo Hello, world!
-    - name: Run a multi-line script
+    - name: build-macOS-latest-msbuild
+      run: build-macOS-latest-msbuild
+    - name: build-macOS-latest-msbuild
       run: |
-        msbuild /restore ./source/**/*.sln
+        msbuild /restore ./source/*.sln
+
+  test-build-macOS-latest-msbuild:
+    runs-on: macOS-latest    
+    needs: build-macOS-latest-msbuild
+    steps:
+    - uses: actions/checkout@v1
+    - name: test-build-macOS-latest-msbuild
+      run: test-build-macOS-latest-msbuild
+    - name: test-build-macOS-latest-msbuild
+      run: |
+        msbuild /restore ./tests/unit-tests/project-references/*.sln
 
   build-macOS-latest-dotnet:
     runs-on: macOS-latest    
@@ -22,8 +34,8 @@ jobs:
       run: echo Hello, world!
     - name: Run a multi-line script
       run: |
-        dotnet restore ./source/**/*.sln
-        dotnet build ./source/**/*.sln
+        dotnet restore ./source/*.sln
+        dotnet build ./source/*.sln
 
   build-windows-latest:  
     runs-on: windows-latest    
