@@ -70,7 +70,7 @@ build-ubuntu-latest:
         echo Add other actions to build,
         msbuild /restore ./source/*.sln
 
-build-ubuntu-latest:  
+build-ubuntu-latest-dotnet:  
     runs-on: ubuntu-latest    
     steps:
     - uses: actions/checkout@v1
