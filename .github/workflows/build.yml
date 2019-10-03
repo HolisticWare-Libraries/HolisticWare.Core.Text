@@ -4,7 +4,6 @@ name: CI
 on: [push]
 
 jobs:
-    needs: job1
   build-macOS-latest-msbuild:
     runs-on: macOS-latest    
     steps:
