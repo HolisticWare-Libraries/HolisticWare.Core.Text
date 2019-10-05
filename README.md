@@ -2,6 +2,10 @@
 
 [![Join the chat at https://gitter.im/HolisticWare-Core-Text/community](https://badges.gitter.im/HolisticWare-Core-Text/community.svg)](https://gitter.im/HolisticWare-Core-Text/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
+|                                               |                                                                                                             |
+|-----------------------------------------------|-------------------------------------------------------------------------------------------------------------|
+| Build Library Source GitHub Actions           | https://github.com/holisticware/Holisticware.Core.Text/workflows/build-source/badge.svg                     |
+| Build Library Source AzureDevOps Pipelines    |                                                                                                             |
 
 
 Implementations are based on:
