@@ -4,7 +4,7 @@
 
 |                                               |                                                                                                             |
 |-----------------------------------------------|-------------------------------------------------------------------------------------------------------------|
-| Build Library Source GitHub Actions           | [![https://github.com/holisticware/Holisticware.Core.Text/workflows/build-source/badge.svg](https://github.com/holisticware/Holisticware.Core.Text/workflows/build-source/badge.svg)]                     |
+| Build Library Source GitHub Actions           | ![https://github.com/holisticware/Holisticware.Core.Text/workflows/build-source/badge.svg](https://github.com/holisticware/Holisticware.Core.Text/workflows/build-source/badge.svg)                    |
 | Build Library Source AzureDevOps Pipelines    |                                                                                                             |
 
 
