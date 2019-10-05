@@ -1,5 +1,5 @@
 # https://help.github.com/en/articles/workflow-syntax-for-github-actions#about-yaml-syntax-for-workflows
-name: build-library                                                 # workflow name
+name: build-source                                                      # workflow name
 
 on: [push]
 
