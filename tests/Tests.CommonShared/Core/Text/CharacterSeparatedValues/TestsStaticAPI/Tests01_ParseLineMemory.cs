@@ -73,11 +73,11 @@ namespace UnitTests.Core_Text_CharacterSeparatedValues
             //-----------------------------------------------------------------------------------------
             // Act
             sw.Start();
-            IEnumerable<string> line_parts = CharacterSeparatedValues.ParseLineMemory
-                                                                            (
-                                                                                line,
-                                                                                ','
-                                                                            );
+            IEnumerable<string> line_parts = new CharacterSeparatedValues().ParseLineMemory
+                                                                                    (
+                                                                                        line,
+                                                                                        ','
+                                                                                    );
             sw.Reset();
             //ConsoleOutput(csv_parsed);
             //-----------------------------------------------------------------------------------------

@@ -85,10 +85,21 @@ namespace Core.Text
         }
 
         public IEnumerable<string> ParseRowUsingMemory
-                                        (
-                                            ReadOnlyMemory<char> text_row,
-                                            char column_delimiter
-                                        )
+                                                        (
+                                                            string text_row,
+                                                            char column_delimiter
+                                                        )
+        {
+            ReadOnlyMemory<char> memory = text_row.AsMemory();
+
+            return ParseRowUsingMemory(memory, column_delimiter);
+        }
+
+        public IEnumerable<string> ParseRowUsingMemory
+                                                        (
+                                                            ReadOnlyMemory<char> text_row,
+                                                            char column_delimiter
+                                                        )
         {
             int i_end = text_row.Length;
             int i = 0;
@@ -110,10 +121,10 @@ namespace Core.Text
         }
 
         public IEnumerable<string> ParseRowUsingString
-                                        (
-                                            ReadOnlyMemory<char> text_row,
-                                            char column_delimiter
-                                        )
+                                                    (
+                                                        ReadOnlyMemory<char> text_row,
+                                                        char column_delimiter
+                                                    )
         {
             int i_end = text_row.Length;
             int i = 0;

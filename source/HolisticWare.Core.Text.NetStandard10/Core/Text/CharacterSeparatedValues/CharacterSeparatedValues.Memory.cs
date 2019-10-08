@@ -35,6 +35,15 @@ namespace Core.Text
 
         public IEnumerable<string> ParseRowUsingMemory
                                         (
+                                            string text_row,
+                                            char column_delimiter
+                                        )
+        {
+            throw new NotImplementedException("netstandard1.0 - Span<T> and Memory<T> not available");
+        }
+
+        public IEnumerable<string> ParseRowUsingMemory
+                                        (
                                             ReadOnlyMemory<char> text_row,
                                             char column_delimiter
                                         )
