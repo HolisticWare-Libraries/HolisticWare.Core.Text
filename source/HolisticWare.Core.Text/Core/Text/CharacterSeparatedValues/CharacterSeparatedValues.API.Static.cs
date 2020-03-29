@@ -8,6 +8,54 @@ namespace Core.Text
     public partial class CharacterSeparatedValues
     {
         //============================================================================================================
+        #if NETSTANDARD1_3
+        public static IEnumerable<string> ParseFile
+                                                (
+                                                    string file,
+                                                    char row_separator
+                                                )
+        {
+            string text = System.IO.File.ReadAllText(file);
+
+            return ParseLines(text, row_separator);
+        }
+
+        public static IEnumerable<string> ParseFile
+                                                (
+                                                    string file,
+                                                    string row_separator
+                                                )
+        {
+            string text = System.IO.File.ReadAllText(file);
+
+            return ParseLines(text, row_separator);
+        }
+
+        public static IEnumerable<string> ParseFileMemory
+                                                (
+                                                    string file,
+                                                    char row_separator
+                                                )
+        {
+            string text = System.IO.File.ReadAllText(file);
+
+            return ParseLinesMemory(text, row_separator);
+        }
+
+        public static IEnumerable<string> ParseFileMemory
+                                                (
+                                                    string file,
+                                                    string row_separator
+                                                )
+        {
+            string text = System.IO.File.ReadAllText(file);
+
+            return ParseLinesMemory(text, row_separator);
+        }
+        #endif
+        //============================================================================================================
+
+        //============================================================================================================
         public static IEnumerable<string> ParseLines
                                                 (
                                                     string lines,

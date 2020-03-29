@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <RootNamespace>Benchmarks</RootNamespace>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <LangVersion>7.1</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <LangVersion>7.1</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="BenchmarkDotNet" Version="0.11.5" />
+    <PackageReference Include="TinyCsvParser" Version="2.3.0" />
+    <PackageReference Include="NReco.Csv" Version="1.0.0" />
+    <PackageReference Include="Microsoft.ML" Version="0.11.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="androidx-class-mapping.csv" />
+    <None Remove="androidx-class-mapping.1.csv" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="androidx-class-mapping.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="androidx-class-mapping.1.csv" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\source\HolisticWare.Core.Text.NetStandard13\HolisticWare.Core.Text.NetStandard13.csproj" />
+  </ItemGroup>
+  <Import Project="..\Tests.Common.Shared\Tests.Common.Shared.projitems" Label="Shared" Condition="Exists('..\Tests.Common.Shared\Tests.Common.Shared.projitems')" />
+</Project>

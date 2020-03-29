@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>{F7FF99F8-E914-4F57-AF8E-F1DFA19CDEB8}</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Tests.Common.Shared</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)TestBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CSV\CharacterSeparatedValuesTest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CSV\MLnet.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Files\FileReadingTest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MemoryStringExtensions.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)CSV\AngaraTableTest.cs" />
+    <None Include="$(MSBuildThisFileDirectory)CSV\ChoETLTest.cs" />
+    <None Include="$(MSBuildThisFileDirectory)CSV\CsvHelperTest.cs" />
+    <None Include="$(MSBuildThisFileDirectory)CSV\FastCVSReaderTest.cs" />
+    <None Include="$(MSBuildThisFileDirectory)CSV\FileHelpersTest.cs" />
+    <None Include="$(MSBuildThisFileDirectory)CSV\NRecoCsvTest.cs" />
+    <None Include="$(MSBuildThisFileDirectory)CSV\TextFieldParserTest.cs" />
+    <None Include="$(MSBuildThisFileDirectory)CSV\TinyCsvParserTest.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)CSV\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Strings\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Files\" />
+  </ItemGroup>
+</Project>

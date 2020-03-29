@@ -31,9 +31,8 @@ namespace Core.Text
 {
     public partial class CharacterSeparatedValues
     {
-#if NETSTANDARD1_3
-#endif
-        public async Task<string> LoadAsync(string filename)
+        #if NETSTANDARD1_3
+        public async Task<string> LoadAsync(string filename, char line_separator)
         {
             using
                 (
@@ -54,5 +53,7 @@ namespace Core.Text
 
             return Text;
         }
+        #endif
+
     }
 }

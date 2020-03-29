@@ -32,7 +32,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "externals", "externals", "{
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HolisticWare.Core.Sample.Data", "..\..\..\externals\Core.Math.Data\data\HolisticWare.Core.Sample.Data\HolisticWare.Core.Sample.Data.csproj", "{B67B6D51-CD62-4374-9934-029CEFC1337C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HolisticWare.Xamarin.Tools.Bindings.XamarinAndroid.AndroidX.Data", "..\..\..\externals\AndroidX.Data\source\HolisticWare.Xamarin.Tools.Bindings.XamarinAndroid.AndroidX.Data\HolisticWare.Xamarin.Tools.Bindings.XamarinAndroid.AndroidX.Data.csproj", "{7AB51321-2155-47AD-BB0A-38171CA5B325}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HolisticWare.Xamarin.Tools.Bindings.XamarinAndroid.AndroidX.Data", "..\..\..\externals\AndroidX.Data\source\HolisticWare.Xamarin.Tools.Bindings.XamarinAndroid.AndroidX.Data\HolisticWare.Xamarin.Tools.Bindings.XamarinAndroid.AndroidX.Data.csproj", "{7AB51321-2155-47AD-BB0A-38171CA5B325}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "netstandard10", "netstandard10", "{306B81A0-DE7A-4731-BF24-53E56011D890}"
 EndProject
@@ -50,11 +50,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests.NUnit.XamarinIOS"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "netstandard13", "netstandard13", "{5C9F8548-D479-4F0E-8FB0-3E364EDF8A4B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTests.XUnit", "netstandard13\UnitTests.XUnit\UnitTests.XUnit.csproj", "{8100540C-88CD-412A-8D01-529774B01359}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests.XUnit", "netstandard13\UnitTests.XUnit\UnitTests.XUnit.csproj", "{8100540C-88CD-412A-8D01-529774B01359}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests.NUnit", "netstandard13\UnitTests.NUnit\UnitTests.NUnit.csproj", "{D7807051-4D85-4068-8E21-2FBACDDC5ECD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTests.MSTest", "netstandard13\UnitTests.MSTest\UnitTests.MSTest.csproj", "{6CAA3CBC-C59D-4423-954F-3BFCC07B600C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests.MSTest", "netstandard13\UnitTests.MSTest\UnitTests.MSTest.csproj", "{6CAA3CBC-C59D-4423-954F-3BFCC07B600C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests.NUnit.XamarinAndroid", "netstandard13\UnitTests.NUnit.XamarinAndroid\UnitTests.NUnit.XamarinAndroid.csproj", "{F375D21F-33F2-44EA-BE18-F777CE161F4E}"
 EndProject

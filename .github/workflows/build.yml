@@ -1,0 +1,118 @@
+# https://help.github.com/en/articles/workflow-syntax-for-github-actions#about-yaml-syntax-for-workflows
+name: build-source                                                      # workflow name
+
+on: [push]                                                              # trigger
+
+jobs:
+  build-macOS-latest-msbuild:
+    runs-on: macOS-latest    
+    steps:
+    - uses: actions/checkout@v1
+    - name: Display the path pwsh
+      run: echo ${env:PATH}
+      shell: pwsh
+    - name: Display the path bash
+      run: echo $PATH
+      shell: bash
+    - name: build-macOS-latest-msbuild-oneliner
+      run: echo build-macOS-latest-msbuild
+    - name: build-macOS-latest-msbuild
+      run: |
+        msbuild /restore ./source/*.sln
+
+  test-build-macOS-latest-msbuild:
+    runs-on: macOS-latest    
+    needs: build-macOS-latest-msbuild    
+    steps:
+    - uses: actions/checkout@v1
+    - name: Display the path pwsh
+      run: echo ${env:PATH}
+      shell: pwsh
+    - name: Display the path bash
+      run: echo $PATH
+      shell: bash
+    - name: test-build-macOS-latest-msbuild-oneliner
+      run: echo test-build-macOS-latest-msbuild
+    - name: test-build-macOS-latest-msbuild
+      run: |
+        msbuild /restore ./tests/unit-tests/project-references/*.sln
+
+  build-macOS-latest-dotnet:
+    runs-on: macOS-latest    
+    steps:
+    - uses: actions/checkout@v1
+    - name: Display the path pwsh
+      run: echo ${env:PATH}
+      shell: pwsh
+    - name: Display the path bash
+      run: echo $PATH
+      shell: bash
+    - name: build-macOS-latest-dotnet-oneliner
+      run: echo build-macOS-latest-dotnet-oneliner
+    - name: build-macOS-latest-dotnet
+      run: |
+        dotnet restore ./source/*.sln
+        dotnet build ./source/*.sln
+
+
+  build-windows-latest-msbuild:  
+    runs-on: windows-latest    
+    steps:
+    - uses: actions/checkout@v1
+    - name: Display the path pwsh
+      run: echo ${env:PATH}
+      shell: pwsh
+    - name: echo build-windows-latest-msbuild-oneliner
+      run: echo build-windows-latest-msbuild-oneliner
+    - name: build-windows-latest-msbuild
+      run: |
+        set MSBUILD="C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\MSBuild.exe"
+        %msbuild% /restore ./source/Source.sln
+
+  build-windows-latest-dotnet:  
+    runs-on: windows-latest    
+    steps:
+    - uses: actions/checkout@v1
+    - name: Display the path pwsh
+      run: echo ${env:PATH}
+      shell: pwsh
+    - name: echo build-windows-latest-dotnet-oneliner
+      run: echo build-windows-latest-dotnet-oneliner
+    - name: build-windows-latest-dotnet
+      run: |
+        dotnet restore ./source/Source.sln
+        dotnet build ./source/Source.sln
+
+  build-linux-ubuntu-latest-msbuid:
+    runs-on: ubuntu-latest    
+    steps:
+    - uses: actions/checkout@v1
+    - name: Display the path pwsh
+      run: echo ${env:PATH}
+      shell: pwsh
+    - name: Display the path bash
+      run: echo $PATH
+      shell: bash
+    - name: build-linux-ubuntu-latest-msbuid-oneliner
+      run: echo build-linux-ubuntu-latest-msbuid-oneliner
+    - name: build-linux-ubuntu-msbuid-latest
+      run: |
+        msbuild /restore ./source/*.sln
+
+  build-linux-ubuntu-latest-dotnet:  
+    runs-on: ubuntu-latest    
+    steps:
+    - uses: actions/checkout@v1
+    - name: Display the path pwsh
+      run: echo ${env:PATH}
+      shell: pwsh
+    - name: Display the path bash
+      run: echo $PATH
+      shell: bash
+    - name: build-linux-ubuntu-latest-dotnet-oneliner
+      run: echo build-linux-ubuntu-latest-dotnet
+    - name: build-linux-ubuntu-latest-dotnet
+      run: |
+        dotnet restore ./source/*.sln
+        dotnet build ./source/*.sln
+

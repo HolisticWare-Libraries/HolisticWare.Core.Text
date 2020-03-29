@@ -1,4 +1,4 @@
-﻿// /*
+// /*
 //    Copyright (c) 2017-12
 //
 //    moljac
@@ -89,7 +89,7 @@ namespace UnitTests.Core_Text_CharacterSeparatedValues
             #elif XUNIT
             Assert.Equal(count, 13);
             #elif MSTEST
-            Assert.AreEqual(count, 14);
+            Assert.AreEqual(count, 13);
             #endif
 
             string[] line_parts_assert = new string[]

@@ -11,6 +11,7 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Core\String\UnitTestsSplitConditionally\Tests01.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\Text\CharacterSeparatedValues\TestsStaticAPI\Tests01_ParseLineMemory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Text\CharacterSeparatedValues\TestsStaticAPI\Tests01_ParseLinesMemory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\Text\CharacterSeparatedValues\UnitTests20180416DataSetBasketball\Tests00Data.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\Text\CharacterSeparatedValues\UnitTests20180416DataSetBasketball\Tests01_CharacterSeparatedValues_Parse.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\Text\CharacterSeparatedValues\Android.Support.2.AndroidX\Tests.Step.01.ParsingLines.cs" />
