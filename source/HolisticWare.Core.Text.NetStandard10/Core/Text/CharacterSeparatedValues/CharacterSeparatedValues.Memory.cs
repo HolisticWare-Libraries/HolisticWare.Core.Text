@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -24,14 +24,6 @@ namespace Core.Text
             throw new NotImplementedException("netstandard1.0 - Span<T> and Memory<T> not available");
         }
 
-        public IEnumerable<IEnumerable<string>> ParseUsingMemory
-                                                       (
-                                                           char column_delimiter,
-                                                           char row_delimiter
-                                                       )
-        {
-            throw new NotImplementedException("netstandard1.0 - Span<T> and Memory<T> not available");
-        }
 
         public IEnumerable<string> ParseRowUsingMemory
                                         (

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -16,14 +16,6 @@ namespace Core.Text
             return this.ParseUsingMemory(column_delimiter, row_delimiter.ToCharArray());
         }
 
-        public IEnumerable<IEnumerable<string>> ParseUsingMemory
-                                                        (
-                                                            char column_delimiter,
-                                                            char[] row_delimiters
-                                                        )
-        {
-            throw new NotImplementedException("netstandard1.0 - Span<T> and Memory<T> not available");
-        }
 
         public IEnumerable<IEnumerable<string>> ParseUsingMemory
                                                        (
@@ -35,32 +27,14 @@ namespace Core.Text
         }
 
         public IEnumerable<string> ParseRowUsingMemory
-                                        (
-                                            ReadOnlyMemory<char> text_row,
-                                            char column_delimiter
-                                        )
-        {
-            throw new NotImplementedException("netstandard1.0 - Span<T> and Memory<T> not available");
-        }
-
-        public IEnumerable<string> ParseRowUsingString
-                                        (
-                                            ReadOnlyMemory<char> text_row,
-                                            char column_delimiter
-                                        )
-        {
-            throw new NotImplementedException("netstandard1.0 - Span<T> and Memory<T> not available");
-        }
-
-
-        public IEnumerable<IEnumerable<string>> ParseUsingString
                                                         (
-                                                            char column_delimiter,
-                                                            char[] row_delimiters
+                                                            ReadOnlyMemory<char> text_row,
+                                                            char column_delimiter
                                                         )
         {
             throw new NotImplementedException("netstandard1.0 - Span<T> and Memory<T> not available");
         }
+
 
         public IEnumerable<IEnumerable<string>> ParseUsingString
                                                        (
@@ -70,11 +44,8 @@ namespace Core.Text
         {
             throw new NotImplementedException("netstandard1.0 - Span<T> and Memory<T> not available");
         }
-
-        public class ReadOnlyMemory<T>
-        {
-        }
-        #else        
+#else
+        /* 
         public IEnumerable<IEnumerable<string>> ParseUsingMemory
                                                         (
                                                             char column_delimiter,
@@ -83,7 +54,6 @@ namespace Core.Text
         {
             return this.ParseUsingMemory(column_delimiter, row_delimiter.ToCharArray());
         }
-
         public IEnumerable<IEnumerable<string>> ParseUsingMemory
                                                         (
                                                             char column_delimiter,
@@ -151,6 +121,7 @@ namespace Core.Text
                 i++;
             }
         }
+        */
 
         public IEnumerable<string> ParseRowUsingMemory
                                                         (
