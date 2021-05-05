@@ -8,27 +8,6 @@ namespace Core.Text
 {
     public partial class CharacterSeparatedValues
     {
-        #if NETSTANDARD1_0
-        public static IEnumerable<string> ParseLineMemory(string line, char separator)
-        {
-            throw new NotImplementedException("netstandard1.0 - Span<T> and Memory<T> not available");
-        }
-
-        public static IEnumerable<string> ParseLineMemory(string line, IEnumerable<char> separators)
-        {
-            throw new NotImplementedException("netstandard1.0 - Span<T> and Memory<T> not available");
-        }
-
-        public static IEnumerable<string> ParseLinesMemory(string lines, char row_separator)
-        {
-            throw new NotImplementedException("netstandard1.0 - Span<T> and Memory<T> not available");
-        }
-
-        public static IEnumerable<string> ParseLinesMemory(string lines, string row_separator)
-        {
-            throw new NotImplementedException("netstandard1.0 - Span<T> and Memory<T> not available");
-        }
-        #else
         public static IEnumerable<string> ParseLineMemory(string line, char separator)
         {
             return line.FastSplit(separator);
@@ -60,9 +39,5 @@ namespace Core.Text
 
             return lines.FastSplit(row_separators.ToArray());
         }
-        #endif
-
-        #if NETSTANDARD1_3
-        #endif
     }
 }
