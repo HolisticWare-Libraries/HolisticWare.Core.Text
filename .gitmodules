@@ -1,6 +1,6 @@
-[submodule "externals/AndroidX.Data"]
-	path = externals/AndroidX.Data
+[submodule "externals-submodules/AndroidX.Data"]
+	path = externals-submodules/AndroidX.Data
 	url = https://github.com/moljac/HolisticWare.Xamarin.Tools.Bindings.XamarinAndroid.AndroidX.Data.git
-[submodule "externals/Core.Math.Data"]
-	path = externals/Core.Math.Data
+[submodule "externals-submodules/Core.Math.Data"]
+	path = externals-submodules/Core.Math.Data
 	url = https://github.com/HolisticWare/HolisticWare.Core.Math.Data.git
