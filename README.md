@@ -18,6 +18,16 @@ Implementations are based on:
 
     *   Tests [INPROGRESS]
 
+    *   performance bit hacks 
+
+        *   https://twitter.com/badamczewski01/status/1465311107984379907
+
+        *   some advanced bit-hacks, I have recorded two lectures that show some interesting ones:
+
+            *   https://youtube.com/watch?v=Q_Apap8Dfbk
+
+            *   https://youtube.com/watch?v=OPFJUpdCq0I
+
 *   `Span<T>` and `Memory<T>` from `System.Memory`
 
     *   `netstandard1.1`
