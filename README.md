@@ -38,6 +38,8 @@ Implementations are based on:
 
 *   https://github.com/secretGeek/AwesomeCSV
 
+    *   https://github.com/22222/CsvTextFieldParser
+
 Text utilities:
 
 *   CharacterSeparatedValues
