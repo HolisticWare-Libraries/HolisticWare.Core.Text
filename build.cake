@@ -2,36 +2,43 @@
 #########################################################################################
 Installing
 
-    Windows - powershell
+    dotnet cake global tool
 
-        Invoke-WebRequest http://cakebuild.net/download/bootstrapper/windows -OutFile build.ps1
-        .\build.ps1
+        dotnet tool uninstall 	-g Cake.Tool
+        dotnet tool install 	-g Cake.Tool	
 
-        Get-ExecutionPolicy -List
-        Set-ExecutionPolicy RemoteSigned -Scope Process
-        Unblock-File .\build.ps1
+    script bootstrappers (deprecated)
 
-    Windows - cmd.exe prompt
+        Windows - powershell
 
-        powershell ^
             Invoke-WebRequest http://cakebuild.net/download/bootstrapper/windows -OutFile build.ps1
-        powershell ^
             .\build.ps1
 
-    Mac OSX
+            Get-ExecutionPolicy -List
+            Set-ExecutionPolicy RemoteSigned -Scope Process
+            Unblock-File .\build.ps1
 
-        rm -fr tools/; mkdir ./tools/ ; \
-        cp cake.packages.config ./tools/packages.config ; \
-        curl -Lsfo build.sh http://cakebuild.net/download/bootstrapper/osx ; \
-        sh ./build.sh
+        Windows - cmd.exe prompt
 
-        chmod +x ./build.sh ;
-        ./build.sh
+            powershell ^
+                Invoke-WebRequest http://cakebuild.net/download/bootstrapper/windows -OutFile build.ps1
+            powershell ^
+                .\build.ps1
 
-    Linux
+        Mac OSX
 
-        curl -Lsfo build.sh http://cakebuild.net/download/bootstrapper/linux
-        chmod +x ./build.sh && ./build.sh
+            rm -fr tools/; mkdir ./tools/ ; \
+            cp cake.packages.config ./tools/packages.config ; \
+            curl -Lsfo build.sh http://cakebuild.net/download/bootstrapper/osx ; \
+            sh ./build.sh
+
+            chmod +x ./build.sh ;
+            ./build.sh
+
+        Linux
+
+            curl -Lsfo build.sh http://cakebuild.net/download/bootstrapper/linux
+            chmod +x ./build.sh && ./build.sh
 
 Running Cake to Build targets
 
@@ -50,10 +57,13 @@ Running Cake to Build targets
         mono tools/nunit.consolerunner/NUnit.ConsoleRunner/tools/nunit3-console.exe \
 
 
-
-
 #########################################################################################
 */
+
+// https://www.nuget.org/packages/Cake.CoreCLR
+//  Cake.CoreCLR add to ./tools/ folder for debugging
+#tool   nuget:?package=Cake.CoreCLR
+
 #addin nuget:?package=Cake.FileHelpers
 
 
@@ -74,16 +84,46 @@ Running Cake to Build targets
 //---------------------------------------------------------------------------------------
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
-string source_solutions = $"./source/**/*.sln";
-string source_projects = $"./source/**/*.csproj";
+string source_solutions         = $"./source/**/*.sln";
+string source_projects          = $"./source/**/*.csproj";
+string sample_solutions         = $"./samples/**/*.sln";
+string sample_projects          = $"./samples/**/*.csproj";
+string externals_cake_scripts   = $"./samples/**/*.cake";
+string samples_cake_scripts     = $"./samples/**/*.cake";
+string tests_cake_scripts       = $"./samples/**/*.cake";
 
-FilePathCollection LibSourceSolutions = null;
-FilePathCollection LibSourceProjects = null;
+FilePathCollection LibrarySourceSolutions   = GetFiles(source_solutions);
+FilePathCollection LibrarySourceProjects   = GetFiles(source_projects);
+
+FilePathCollection SamplesSolutions         = GetFiles(sample_solutions);
+FilePathCollection SamplesProjects          = GetFiles(sample_projects);
+
+string[] clean_folder_patterns = new string[]
+{
+    "./externals/",
+    "./output/",
+    "./**/.vs/",
+    "./source/**/bin/",
+    "./source/**/obj/",
+    "./samples/**/bin/",
+    "./samples/**/obj/",
+    "./samples/**/tools/",
+    "./tests/**/bin/",
+    "./tests/**/obj/",
+};
+
+string[] clean_file_patterns = new string[]
+{
+    "./**/*.binlog",
+    "./**/.DS_Store",
+};
+
 
 #load "./scripts/common/externals.cake"
 #load "./scripts/private-protected-sensitive/externals.private.cake"
 #load "./scripts/common/main.cake"
 #load "./scripts/common/nuget-restore.cake"
+#load "./scripts/common/nuget-pack.cake"
 #load "./scripts/common/libs.cake"
 #load "./scripts/common/tests-unit-tests.cake"
 
@@ -98,8 +138,7 @@ Task("Default")
     (
         () =>
         {
-            RunTarget("libs");
-            //RunTarget("unit-tests");
+            RunTarget("unit-tests");
         }
     );
 

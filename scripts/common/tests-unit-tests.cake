@@ -1,6 +1,7 @@
 //---------------------------------------------------------------------------------------
 Task("unit-tests")
     .IsDependentOn("libs")
+    .IsDependentOn("nuget-pack")
     .Does
     (
         () =>
