@@ -2,9 +2,9 @@
 using System;
 using System.Collections.Generic;
 
-namespace HolisticWare.Core.Text.Core.Text
+namespace Core.Text
 {
-    public static class Http
+    public static class HTTP
     {
         static ReadOnlySpan<char> Reserved()
         {
@@ -17,7 +17,8 @@ namespace HolisticWare.Core.Text.Core.Text
 
         static ReadOnlySpan<string> Hex()
         {
-            string[] hex = {
+            string[] hex = 
+            {
                 "%00", "%01", "%02", "%03", "%04", "%05", "%06", "%07",
                 "%08", "%09", "%0a", "%0b", "%0c", "%0d", "%0e", "%0f",
                 "%10", "%11", "%12", "%13", "%14", "%15", "%16", "%17",

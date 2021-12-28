@@ -69,8 +69,6 @@ namespace Core.Text
                     continue;
                 }
 
-
-
                 #if DEBUG
                 sb.Append(ch_at_position);
                 System.Diagnostics.Debug.WriteLine(sb.ToString());

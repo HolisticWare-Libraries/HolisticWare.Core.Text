@@ -43,7 +43,6 @@ namespace Core.Text.Legacy
                     is_commented = true;
                     break;
                 }
-
             }
 
             return is_commented;

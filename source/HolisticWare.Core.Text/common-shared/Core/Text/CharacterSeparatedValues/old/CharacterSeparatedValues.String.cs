@@ -7,6 +7,7 @@ namespace Core.Text
 {
     public partial class CharacterSeparatedValues
     {
+        /*
         public IEnumerable<IEnumerable<string>> ParseUsingString
                                                         (
                                                             char column_delimiter,
@@ -104,5 +105,6 @@ namespace Core.Text
         {
             return untyped_data;
         }
+        */
     }
 }

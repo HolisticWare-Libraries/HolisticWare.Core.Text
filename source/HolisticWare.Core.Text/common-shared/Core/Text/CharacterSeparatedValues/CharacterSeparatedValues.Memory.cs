@@ -6,7 +6,6 @@ namespace Core.Text
 {
     public partial class CharacterSeparatedValues
     {
-        #if NETSTANDARD1_0
         public IEnumerable<IEnumerable<string>> ParseUsingMemory
                                                         (
                                                             char column_delimiter,
@@ -74,7 +73,8 @@ namespace Core.Text
         public class ReadOnlyMemory<T>
         {
         }
-        #else        
+
+        /*
         public IEnumerable<IEnumerable<string>> ParseUsingMemory
                                                         (
                                                             char column_delimiter,
@@ -280,11 +280,7 @@ namespace Core.Text
                 i++;
             }
         }
-#endif
-
-#if NETSTANDARD1_3
-#endif
-
+        */
 
     }
 }

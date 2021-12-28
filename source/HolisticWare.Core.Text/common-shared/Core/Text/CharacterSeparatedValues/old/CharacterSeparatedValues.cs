@@ -7,6 +7,7 @@ namespace Core.Text
 {
     public partial class CharacterSeparatedValues
     {
+        /*
         public CharacterSeparatedValues()
         {
             Separators = new string[] { ",", ";", " ", @"\t", };
@@ -31,7 +32,7 @@ namespace Core.Text
             get;
             set;
         }
-
+        */
 
     }
 }

@@ -1,0 +1,63 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net5;net6;netstandard1.0;netstandard1.1;netstandard1.3</TargetFrameworks>
+    <!--
+    <DefaultItemExcludes>$(DefaultItemExcludes);.DS_Store</DefaultItemExcludes>
+    -->
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <RootNamespace>Core.Text</RootNamespace>
+    <AssemblyName>HolisticWare.Core.Text</AssemblyName>
+ </PropertyGroup>
+
+    <!-- common NuGet package refs that affect all projects -->
+    <ItemGroup>
+        <PackageReference Include="System.ValueTuple" Version="*" />
+    </ItemGroup>
+
+    <!-- .NET Standard 1.0 references, compilation flags and build options -->
+    <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard1.0'">
+        <DefineConstants>NETCORE;NETSTANDARD;NETSTANDARD1_0</DefineConstants>
+    </PropertyGroup>
+    <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.0'">
+        <Compile Include="$(MSBuildProjectDirectory)\common-shared\**\*.cs" />
+        <Compile Include="$(MSBuildProjectDirectory)\netstandard1.0\**\*.cs" />
+    </ItemGroup>
+
+    <!-- .NET Standard 1.1 references, compilation flags and build options -->
+    <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard1.1'">
+        <DefineConstants>NETCORE;NETSTANDARD;NETSTANDARD1_1</DefineConstants>
+    </PropertyGroup>
+    <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.1'">
+        <Compile Include="$(MSBuildProjectDirectory)\common-shared\**\*.cs" />
+        <Compile Include="$(MSBuildProjectDirectory)\netstandard1.0\**\*.cs" />
+        <!-- LINQ API over Memory and Span needed -->
+        <!--
+        <Compile Include="$(MSBuildProjectDirectory)\netstandard1.1\**\*.cs" />
+        -->
+    </ItemGroup>
+    <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.1'">
+        <PackageReference Include="System.Memory" Version="4.5.4" />
+    </ItemGroup>
+
+    <!-- .NET Standard 1.3 references, compilation flags and build options -->
+    <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard1.3'">
+        <DefineConstants>NETCORE;NETSTANDARD;NETSTANDARD1_3</DefineConstants>
+    </PropertyGroup>
+    <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.3'">
+        <Compile Include="$(MSBuildProjectDirectory)\common-shared\**\*.cs" />
+        <Compile Include="$(MSBuildProjectDirectory)\netstandard1.0\**\*.cs" />
+        <!-- LINQ API over Memory and Span needed -->
+        <!--
+        <Compile Include="$(MSBuildProjectDirectory)\netstandard1.1\**\*.cs" />
+        -->
+        <Compile Include="$(MSBuildProjectDirectory)\netstandard1.3\**\*.cs" />
+    </ItemGroup>
+    <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.3'">
+        <PackageReference Include="System.Memory" Version="4.5.4" />
+        <PackageReference Include="System.Collections.NonGeneric" Version="4.0.1" />      
+    </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\..\externals\Core.Linq\source\HolisticWare.Core.Linq.Memory\HolisticWare.Core.Linq.Memory.csproj" />
+    </ItemGroup>
+
+</Project>
