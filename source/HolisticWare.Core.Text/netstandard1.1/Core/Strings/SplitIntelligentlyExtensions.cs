@@ -31,7 +31,7 @@ using System.Diagnostics;
 
 namespace Core.Strings
 {
-    public static class SplitIntelligentlyExtensions
+    public static partial class SplitIntelligentlyExtensions
     {
         public static ((string Word, int Position)[] Words, string WordLongest) Words
                                 (

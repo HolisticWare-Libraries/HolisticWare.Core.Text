@@ -8,7 +8,6 @@ namespace Core.Text
 {
     public partial class CharacterSeparatedValues
     {
-        /*
         public static IEnumerable<string> ParseLineMemory(string line, char separator)
         {
             return line.FastSplit(separator);
@@ -40,6 +39,5 @@ namespace Core.Text
 
             return lines.FastSplit(row_separators.ToArray());
         }
-        */
     }
 }

@@ -12,7 +12,13 @@ namespace Core.Strings
         /// <param name="s"></param>
         /// <param name="character"></param>
         /// <returns></returns>
-        public static IEnumerable<string> SplitWithCharacter(this string s, char character)
+        public static 
+                    IEnumerable<string> 
+                                        SplitWithCharacter
+                                        (
+                                            this string s, 
+                                            char character
+                                        )
         {
             ReadOnlyMemory<char> memory = s.AsMemory();
 

@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Memory;
 
-namespace Core.Text
+namespace Core.Strings
 {
     public ref struct SpanBuilder
     {

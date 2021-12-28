@@ -1,18 +1,20 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFrameworks>net5;net6;netstandard1.0;netstandard1.1;netstandard1.3</TargetFrameworks>
-    <!--
-    <DefaultItemExcludes>$(DefaultItemExcludes);.DS_Store</DefaultItemExcludes>
-    -->
-    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-    <RootNamespace>Core.Text</RootNamespace>
-    <AssemblyName>HolisticWare.Core.Text</AssemblyName>
- </PropertyGroup>
+    <PropertyGroup>
+        <TargetFrameworks>net5;net6;netstandard1.0;netstandard1.1;netstandard1.3</TargetFrameworks>
+        <!--
+        <DefaultItemExcludes>$(DefaultItemExcludes);.DS_Store</DefaultItemExcludes>
+        -->
+        <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+        <RootNamespace>Core.Text</RootNamespace>
+        <AssemblyName>HolisticWare.Core.Text</AssemblyName>
+    </PropertyGroup>
 
     <!-- common NuGet package refs that affect all projects -->
     <ItemGroup>
         <PackageReference Include="System.ValueTuple" Version="*" />
     </ItemGroup>
+
+    <!-- common NuGet package refs that affect all projects -->
 
     <!-- .NET Standard 1.0 references, compilation flags and build options -->
     <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard1.0'">
@@ -21,6 +23,10 @@
     <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.0'">
         <Compile Include="$(MSBuildProjectDirectory)\common-shared\**\*.cs" />
         <Compile Include="$(MSBuildProjectDirectory)\netstandard1.0\**\*.cs" />
+    </ItemGroup>
+
+    <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.0'">
+        <PackageReference Include="System.ValueTuple" Version="4.5.0" />
     </ItemGroup>
 
     <!-- .NET Standard 1.1 references, compilation flags and build options -->
@@ -50,6 +56,7 @@
         <!--
         <Compile Include="$(MSBuildProjectDirectory)\netstandard1.1\**\*.cs" />
         -->
+        <Compile Include="$(MSBuildProjectDirectory)\netstandard1.1\**\*.cs" />
         <Compile Include="$(MSBuildProjectDirectory)\netstandard1.3\**\*.cs" />
     </ItemGroup>
     <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.3'">

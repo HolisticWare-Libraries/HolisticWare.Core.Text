@@ -6,16 +6,16 @@ namespace Core.Text
 {
     public partial class CharacterSeparatedValues
     {
-        /*
-        public IEnumerable<IEnumerable<string>> ParseUsingMemory
-                                                        (
-                                                            char column_delimiter,
-                                                            string row_delimiter
-                                                        )
+        public 
+                    IEnumerable<IEnumerable<string>> 
+                                        ParseUsingMemory
+                                            (
+                                                char column_delimiter,
+                                                string row_delimiter
+                                            )
         {
-            return this.ParseUsingMemory(column_delimiter, row_delimiter.ToCharArray());
+            return null;
         }
-
 
         public IEnumerable<IEnumerable<string>> ParseUsingMemory
                                                        (
@@ -48,8 +48,7 @@ namespace Core.Text
         public class ReadOnlyMemory<T>
         {
         }
-        */
-        
+
         /* 
         public IEnumerable<IEnumerable<string>> ParseUsingMemory
                                                         (
@@ -164,7 +163,9 @@ namespace Core.Text
             }
 
         }
+        */
 
+        /*
         public IEnumerable<string> ParseRowUsingString
                                                     (
                                                         ReadOnlyMemory<char> text_row,

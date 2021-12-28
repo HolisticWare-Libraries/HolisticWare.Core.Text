@@ -1,13 +1,10 @@
 using System;
 using System.Collections.Generic;
 
-using Core.Text;
-
 namespace Core.Strings
 {
     public static partial class HTTP
     {
-        /*
         static ReadOnlySpan<char> Reserved()
         {
             char[] reserved =
@@ -19,7 +16,7 @@ namespace Core.Strings
 
         static ReadOnlySpan<string> Hex()
         {
-            string[] hex = 
+            string[] hex =
             {
                 "%00", "%01", "%02", "%03", "%04", "%05", "%06", "%07",
                 "%08", "%09", "%0a", "%0b", "%0c", "%0d", "%0e", "%0f",
@@ -211,6 +208,5 @@ namespace Core.Strings
                 }
             }
         }
-        */
     }
 }
