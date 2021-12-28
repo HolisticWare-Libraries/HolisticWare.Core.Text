@@ -74,3 +74,17 @@ Text utilities:
 
 *   https://github.com/xamarin/Essentials/blob/master/Xamarin.Essentials/Xamarin.Essentials.csproj
 
+
+
+## Performance
+
+
+*   https://stackoverflow.com/questions/8037070/whats-the-fastest-way-to-read-a-text-file-line-by-line
+
+*   https://stackoverflow.com/questions/36420013/open-and-read-thousands-of-files-as-fast-as-possible
+
+*   https://stackoverflow.com/questions/7387085/how-to-read-an-entire-file-to-a-string-using-c
+
+*   https://cc.davelozinski.com/c-sharp/fastest-way-to-read-text-files
+
+*   https://cc.davelozinski.com/c-sharp/the-fastest-way-to-read-and-process-text-files
