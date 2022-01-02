@@ -1,0 +1,105 @@
+<Project>
+
+    <PropertyGroup Condition="$(Configuration.Contains('Release'))">
+        <DebugType>Full</DebugType>
+        <DefineDebug>false</DefineDebug>
+        <DefineTrace>true</DefineTrace>
+        <Optimize>true</Optimize>
+        <OutputPath>bin</OutputPath>
+        <DebugSymbols>true</DebugSymbols>
+    </PropertyGroup>
+
+
+  <PropertyGroup>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+
+    <LangVersion>Latest</LangVersion>
+    <!-- 
+        Disable XML doc warnings:
+        CS1570: XML comment has badly formed XML - 'Whitespace is not allowed at this location.'
+        CS1572: XML comment has a param tag for 'Bar', but there is no parameter by that name
+        CS1591: Missing XML comment for publicly visible type or member 'Foo'
+    -->
+    <NoWarn>1570;1572;1591</NoWarn>
+
+    <!--
+    The .snk has both private and public keys 
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>$(MSBuildThisFileDirectory)/build/MSAL.snk</AssemblyOriginatorKeyFile>
+    <DelaySign>false</DelaySign>
+
+    <CodeAnalysisRuleSet>$(MSBuildThisFileDirectory)/build/SolutionWideAnalyzerConfig.ruleset</CodeAnalysisRuleSet>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    -->
+  </PropertyGroup>
+  <!--
+      https://github.com/dotnet/roslyn-analyzers
+      Microsoft.CodeAnalysis.NetAnalyzers
+    -->
+  <PropertyGroup>
+    <!--
+      EnableNETAnalyzers  
+      -->
+    <EnableNETAnalyzers>true</EnableNETAnalyzers>
+    <!--
+      AnalysisLevel
+      -->
+    <AnalysisLevel>latest</AnalysisLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- 
+      PrivateAssets="All" is on these packages to ensure they're development dependencies
+      and aren't included as transitionary dependencies to package consumers.
+      For clarity, without PrivateAssets marked here, anyone consuming Microsoft.Identity.Client
+      would also be forced to install these dependencies.  PrivateAssets avoids this problem. 
+    -->
+    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="5.0.1" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.CodeAnalysis.BannedApiAnalyzers" Version="3.3.2" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.CodeAnalysis.PublicApiAnalyzers" Version="3.3.2" PrivateAssets="All" />
+    <!--
+    https://github.com/dotnet/roslyn-analyzers
+    package has been deprecated in favor of 'Microsoft.CodeAnalysis.NetAnalyzers'
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.2" PrivateAssets="All" />    
+    -->
+    <!--
+    https://github.com/dotnet/roslyn-analyzers
+    package has been deprecated in favor of 'Microsoft.CodeAnalysis.NetAnalyzers'
+    <PackageReference Include="Microsoft.CodeQuality.Analyzers" Version="3.3.2" PrivateAssets="All" />
+    -->
+    <!--
+    https://github.com/dotnet/roslyn-analyzers
+    package has been deprecated in favor of 'Microsoft.CodeAnalysis.NetAnalyzers'
+    <PackageReference Include="Microsoft.NetCore.Analyzers" Version="3.3.2" PrivateAssets="All" />
+    -->
+    <!--
+    https://github.com/dotnet/roslyn-analyzers
+    package has been deprecated in favor of 'Microsoft.CodeAnalysis.NetAnalyzers'
+    <PackageReference Include="Microsoft.NetFramework.Analyzers" Version="3.3.2" PrivateAssets="All" />
+    -->
+
+
+    <!--
+    https://github.com/DotNetAnalyzers/StyleCopAnalyzers  
+    -->
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118" PrivateAssets="All" />
+
+
+    <!--
+      https://github.com/JosefPihrt/Roslynator#nuget-analyzers
+
+      https://www.nuget.org/packages/Roslynator.DotNet.Cli
+    -->
+    <PackageReference Include="Roslynator.Analyzers" Version="3.0.0" PrivateAssets="All" />
+    <PackageReference Include="Roslynator.CodeAnalysis.Analyzers" Version="1.0.0" PrivateAssets="All" />
+    <PackageReference Include="Roslynator.Formatting.Analyzers" Version="1.0.0" PrivateAssets="All" />
+
+
+    <PackageReference Include="AsyncUsageAnalyzers" Version="1.0.0-alpha003" PrivateAssets="All" />
+    <!--
+      http://www.asyncfixer.com/
+    -->
+    <PackageReference Include="AsyncFixer" Version="1.0.0" PrivateAssets="All" />
+  </ItemGroup>
+
+</Project>
