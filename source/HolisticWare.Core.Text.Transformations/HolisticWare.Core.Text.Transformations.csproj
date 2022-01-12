@@ -1,8 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-      <RootNamespace>Core.Text.Transformations</RootNamespace>
-</PropertyGroup>
+    <PropertyGroup>
+        <TargetFrameworks>netstandard1.3;net5;net6</TargetFrameworks>
+        <RootNamespace>Core.Text.Transformations</RootNamespace>
+    </PropertyGroup>
 
+    <ItemGroup>
+      <None Remove="System.Linq" />
+    </ItemGroup>
+    <ItemGroup>
+      <PackageReference Include="System.Linq" Version="4.3.0" />
+    </ItemGroup>
 </Project>
