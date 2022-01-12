@@ -21,6 +21,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Core\Text\CharacterSeparatedValues\TestsStaticAPI\Tests01_ParseLines.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\Text\CharacterSeparatedValues\TestsStaticAPI\Tests01_ParseAndConvertLine.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Core\Text\CharacterSeparatedValues\TestsStaticAPI\Tests01_ConvertLine.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Core\Text\Transformations\PascalCase.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Core\Text\CharacterSeparatedValues\UnitTests20180416DataSetBasketball\" />
