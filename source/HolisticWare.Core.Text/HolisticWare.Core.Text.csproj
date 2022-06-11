@@ -11,7 +11,14 @@
 
     <!-- common NuGet package refs that affect all projects -->
     <ItemGroup>
-        <PackageReference Include="System.ValueTuple" Version="*" />
+        <PackageReference Include="System.ValueTuple" Version="4.5.0" />
+        <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="6.0.0" />
+        <PackageReference Include="Microsoft.CodeAnalysis.BannedApiAnalyzers" Version="3.3.3" />
+        <PackageReference Include="Microsoft.CodeAnalysis.PublicApiAnalyzers" Version="3.3.3" />
+        <PackageReference Include="Roslynator.Analyzers" Version="4.1.1" />
+        <PackageReference Include="Roslynator.CodeAnalysis.Analyzers" Version="4.1.1" />
+        <PackageReference Include="Roslynator.Formatting.Analyzers" Version="4.1.1" />
+        <PackageReference Include="AsyncFixer" Version="1.6.0" />
     </ItemGroup>
 
     <!-- common NuGet package refs that affect all projects -->
@@ -67,4 +74,13 @@
       <ProjectReference Include="..\..\externals\Core.Linq\source\HolisticWare.Core.Linq.Memory\HolisticWare.Core.Linq.Memory.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Remove="Microsoft.CodeAnalysis.NetAnalyzers" />
+      <None Remove="Microsoft.CodeAnalysis.BannedApiAnalyzers" />
+      <None Remove="Microsoft.CodeAnalysis.PublicApiAnalyzers" />
+      <None Remove="Roslynator.Analyzers" />
+      <None Remove="Roslynator.CodeAnalysis.Analyzers" />
+      <None Remove="Roslynator.Formatting.Analyzers" />
+      <None Remove="AsyncFixer" />
+    </ItemGroup>
 </Project>
