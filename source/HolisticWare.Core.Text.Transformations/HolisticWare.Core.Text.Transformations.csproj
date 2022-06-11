@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFrameworks>netstandard1.3;net6</TargetFrameworks>
+        <TargetFrameworks>netstandard1.3</TargetFrameworks>
         <RootNamespace>Core.Text.Transformations</RootNamespace>
     </PropertyGroup>
 
