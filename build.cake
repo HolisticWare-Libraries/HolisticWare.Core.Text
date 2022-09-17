@@ -64,12 +64,11 @@ Running Cake to Build targets
 //  Cake.CoreCLR add to ./tools/ folder for debugging
 #tool   nuget:?package=Cake.CoreCLR
 
-#addin nuget:?package=Cake.FileHelpers&version=4.0.1
-
+#addin nuget:?package=Cake.FileHelpers
 
 //---------------------------------------------------------------------------------------
 // unit testing
-#tool nuget:?package=NUnit.ConsoleRunner&version=3.9.0
+#tool nuget:?package=NUnit.ConsoleRunner
 #tool nuget:?package=xunit.runner.console
 //---------------------------------------------------------------------------------------
 // coverage
@@ -98,11 +97,19 @@ FilePathCollection LibrarySourceProjects   = GetFiles(source_projects);
 FilePathCollection SamplesSolutions         = GetFiles(sample_solutions);
 FilePathCollection SamplesProjects          = GetFiles(sample_projects);
 
+string[] configurations = new string[] 
+{ 
+    //"Debug", 
+    "Release",
+};
+
 string[] clean_folder_patterns = new string[]
 {
     "./externals/",
     "./output/",
     "./**/.vs/",
+    "./**/.idea/",
+    "./**/*-packages/",
     "./**/.mfractor/",
     "./source/**/bin/",
     "./source/**/obj/",
@@ -115,6 +122,8 @@ string[] clean_folder_patterns = new string[]
     "./tests/**/obj/",
     "./tests/**/packages/",
 };
+
+string verbosity = "Diagnostic";
 
 string[] clean_file_patterns = new string[]
 {
