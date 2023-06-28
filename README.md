@@ -18,7 +18,7 @@ Implementations are based on:
 
     *   Tests [INPROGRESS]
 
-    *   performance bit hacks 
+    *   performance bit hacks
 
         *   https://twitter.com/badamczewski01/status/1465311107984379907
 
@@ -43,7 +43,7 @@ Implementations are based on:
 Text utilities:
 
 *   CharacterSeparatedValues
-    
+
     *   CSV https://en.wikipedia.org/wiki/Comma-separated_values
 
     *   TSV https://en.wikipedia.org/wiki/Tabulator-separated_values
@@ -88,3 +88,10 @@ Text utilities:
 *   https://cc.davelozinski.com/c-sharp/fastest-way-to-read-text-files
 
 *   https://cc.davelozinski.com/c-sharp/the-fastest-way-to-read-and-process-text-files
+
+
+##  Sep
+
+*   https://github.com/nietras/Sep
+
+*   https://nietras.com/2023/06/05/introducing-sep/
