@@ -1,32 +1,38 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Reflection;
-using BenchmarkDotNet.Attributes;
-using BenchmarkDotNet.Engines;
+﻿using System;
 using BenchmarkDotNet.Running;
-using Core.Text;
 
-namespace CharacterSeparatedValuesBenchmarkTest
+
+namespace CharacterSeparatedValuesBenchmarkTest.dotnetcore
 {
-    [MemoryDiagnoser]
-    class MainClass
+    class Program
     {
-        public static void Main(string[] args)
+        static void Main(string[] args)
+
         {
-            BenchmarkRunner.Run<Benchmarks.CharacterSeparatedValuesTest>();
+            BenchmarkSwitcher.FromAssembly
+                                        (
+                                            typeof(Program).Assembly
+                                        )
+                                        .Run
+                                            (
+                                                args,
+                                                new BenchmarkDotNet.Configs.DebugInProcessConfig()
+                                            );
 
+            BenchmarkRunner.Run<Benchmarks.FileReadingTests>();
 
-            // var data = LoadDataFromFile(new string[] { $@"androidx-class-mapping.csv", });
-            // var test = CharacterSeparatedValues.ParseLine(data, ',');
+            //BenchmarkRunner.Run<Benchmarks.CharacterSeparatedValuesTest>();
+            //BenchmarkRunner.Run<Benchmarks.MLnet>();
+            //BenchmarkRunner.Run<Benchmarks.AngaraTableTest>();
+            //BenchmarkRunner.Run<Benchmarks.ChoETLTest>();
+            //BenchmarkRunner.Run<Benchmarks.CsvHelperTest>();
+            //BenchmarkRunner.Run<Benchmarks.FileHelpersTest>();
 
-            // Console.WriteLine("***************************** PARSE LINE");
-            // Console.WriteLine(string.Join(Environment.NewLine, test));
-            // var testMemory = CharacterSeparatedValues.ParseLineMemory(data, ',');
-            // Console.WriteLine("***************************** PARSE LINE MEMORY");
-            // Console.WriteLine(string.Join(Environment.NewLine, testMemory));
-            Console.ReadKey();
+            // https://docs.microsoft.com/en-us/dotnet/api/microsoft.visualbasic.fileio.textfieldparser?redirectedfrom=MSDN&view=netframework-4.7.2
+            //BenchmarkRunner.Run<Benchmarks.TextFieldParserTest>();
+            //BenchmarkRunner.Run<Benchmarks.TinyCsvParserTest>();
+
+            return;
         }
     }
 }
-
