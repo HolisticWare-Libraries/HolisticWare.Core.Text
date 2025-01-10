@@ -68,10 +68,7 @@
     </ItemGroup>
     <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.3'">
         <PackageReference Include="System.Memory" Version="4.5.4" />
-        <PackageReference Include="System.Collections.NonGeneric" Version="4.0.1" />      
-    </ItemGroup>
-    <ItemGroup>
-      <ProjectReference Include="..\..\externals\Core.Linq\source\HolisticWare.Core.Linq.Memory\HolisticWare.Core.Linq.Memory.csproj" />
+        <PackageReference Include="System.Collections.NonGeneric" Version="4.0.1" />
     </ItemGroup>
 
     <ItemGroup>

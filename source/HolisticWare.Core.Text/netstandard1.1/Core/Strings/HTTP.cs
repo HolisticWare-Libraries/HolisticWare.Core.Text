@@ -73,7 +73,7 @@ namespace Core.Strings
             for (int i = 0; i < length; i++)
             {
                 ch = readOnlySpan[i];
-                
+
                 if ('A' <= ch && ch <= 'Z')
                 {       // 'A'..'Z'
                     encodedUrl.Append((char)ch);
@@ -90,8 +90,11 @@ namespace Core.Strings
                 {           // space
                     encodedUrl.Append('+');
                 }
-                else if (ch == '-' || ch == '_'     // unreserved
-                      || ch == '.' || ch == '!'
+                else if
+                    (
+                        ch == '-' || ch == '_'     // unreserved
+                        ||
+                        ch == '.' || ch == '!'
                       || ch == '~' || ch == '*'
                       || ch == '\''|| ch == '('
                       || ch == ')')
@@ -118,7 +121,7 @@ namespace Core.Strings
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="url"></param>
         /// <returns></returns>
@@ -176,13 +179,13 @@ namespace Core.Strings
                         if (temporary.Span.LastIndexOf('#') != -1)
                         {
                             yield return ValueTuple.Create(
-                                temporary.Slice(0, temporary.Span.IndexOf('=')).ToString(), 
+                                temporary.Slice(0, temporary.Span.IndexOf('=')).ToString(),
                                 temporary.Slice(temporary.Span.IndexOf('=') + 1, temporary.Span.LastIndexOf('#') - temporary.Span.IndexOf('=') - 1).ToString());
                         }
                         else
                         {
                             yield return ValueTuple.Create(
-                                temporary.Slice(0, temporary.Span.LastIndexOf('=')).ToString(), 
+                                temporary.Slice(0, temporary.Span.LastIndexOf('=')).ToString(),
                                 temporary.Slice(temporary.Span.IndexOf('=') + 1).ToString());
                         }
                         startIndex = i + 1;
@@ -196,13 +199,13 @@ namespace Core.Strings
                     if (newMemory.Span.IndexOf('#') != -1)
                     {
                         yield return ValueTuple.Create(
-                            newMemory.Slice(0, newMemory.Span.Length - (newMemory.Span.Length - newMemory.Span.IndexOf('='))).ToString(), 
+                            newMemory.Slice(0, newMemory.Span.Length - (newMemory.Span.Length - newMemory.Span.IndexOf('='))).ToString(),
                             newMemory.Slice(newMemory.Span.IndexOf('=') + 1, newMemory.Span.IndexOf('#') - newMemory.Span.IndexOf('=') - 1).ToString());
                     }
                     else
                     {
                         yield return ValueTuple.Create(
-                            newMemory.Slice(0, newMemory.Span.Length - (newMemory.Span.Length - newMemory.Span.IndexOf('='))).ToString(), 
+                            newMemory.Slice(0, newMemory.Span.Length - (newMemory.Span.Length - newMemory.Span.IndexOf('='))).ToString(),
                             newMemory.Slice(newMemory.Span.IndexOf('=') + 1).ToString());
                     }
                 }
