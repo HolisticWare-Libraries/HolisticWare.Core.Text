@@ -49,8 +49,8 @@ namespace Core.Text
         {
         }
         */
-        
-        /* 
+
+        /*
         public IEnumerable<IEnumerable<string>> ParseUsingMemory
                                                         (
                                                             char column_delimiter,
